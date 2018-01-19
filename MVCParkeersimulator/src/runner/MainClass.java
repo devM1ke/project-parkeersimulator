@@ -1,6 +1,6 @@
 package runner;
 
-import Parkeersimulator.Simulator;
+import controller.Simulator;
 
 public class MainClass {
 	
