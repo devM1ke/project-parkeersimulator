@@ -4,14 +4,13 @@ import java.util.Random;
 import javax.swing.*;
 import java.awt.*;
 
-import Parkeersimulator.AdHocCar;
-import Parkeersimulator.Car;
-import Parkeersimulator.CarQueue;
-import Parkeersimulator.Location;
-import Parkeersimulator.ParkingPassCar;
-import Parkeersimulator.SimulatorView.CarParkView;
-import MVCParkeersimulator.CarQueue;
-import MVCParkeersimulator.SimulatorView;
+import model.AdHocCar;
+import model.Car;
+import model.CarQueue;
+import model.Location;
+import model.ParkingPassCar;
+import view.CarParkView;
+import view.SimulatorView;
 
 public class Simulator {
     private int numberOfFloors = 3;
