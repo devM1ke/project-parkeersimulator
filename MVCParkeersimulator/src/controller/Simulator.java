@@ -51,6 +51,7 @@ public class Simulator {
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         
         SimulatorView simulatorView = new SimulatorView();
+        this.simulatorView = simulatorView;
     } 
 
     public void run() {
@@ -83,7 +84,6 @@ public class Simulator {
     }
     
     public void updateViews() {
-    	System.out.println("1");
     	simulatorView.updateView();
     }
     
