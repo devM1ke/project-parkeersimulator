@@ -1,7 +1,8 @@
-package nl.hanze.t12.mvc.view;
+package view;
 
 import java.awt.*;
-import nl.hanze.t12.mvc.logic.*;
+
+import model.*;
 
 public class PieView extends AbstractView {
 	private static final long serialVersionUID = 5455934187803194147L;

@@ -1,7 +1,9 @@
-package nl.hanze.t12.mvc.controller;
+package controller;
 
 import javax.swing.*;
-import nl.hanze.t12.mvc.logic.*;
+
+import model.*;
+
 import java.awt.event.*;
 
 public class Controller extends AbstractController implements ActionListener {

@@ -1,4 +1,4 @@
-package nl.hanze.t12.mvc.logic;
+package model;
 
 public class Model extends AbstractModel implements Runnable {
 	private int aantal;

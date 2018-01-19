@@ -1,7 +1,8 @@
-package nl.hanze.t12.mvc.view;
+package view;
 
 import javax.swing.*;
-import nl.hanze.t12.mvc.logic.*;
+
+import model.*;
 
 public abstract class AbstractView extends JPanel {
 	private static final long serialVersionUID = -2767764579227738552L;

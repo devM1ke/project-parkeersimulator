@@ -1,7 +1,8 @@
-package nl.hanze.t12.mvc.logic;
+package model;
 
 import java.util.*;
-import nl.hanze.t12.mvc.view.*;
+
+import view.*;
 
 public abstract class AbstractModel {
 	private List<AbstractView> views;

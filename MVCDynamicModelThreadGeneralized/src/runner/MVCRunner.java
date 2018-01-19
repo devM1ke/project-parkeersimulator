@@ -1,6 +1,6 @@
-package nl.hanze.t12.mvc.runner;
+package runner;
 
-import nl.hanze.t12.mvc.main.*;
+import logic.*;
 
 public class MVCRunner {
 	public static void main(String[] args) {

@@ -1,10 +1,10 @@
-package nl.hanze.t12.mvc.main;
+package logic;
 
 import javax.swing.*;
 
-import nl.hanze.t12.mvc.controller.*;
-import nl.hanze.t12.mvc.logic.*;
-import nl.hanze.t12.mvc.view.*;
+import controller.*;
+import model.*;
+import view.*;
 
 public class MVCDDynamicModelThreadGeneralized {
 	private Model model;
