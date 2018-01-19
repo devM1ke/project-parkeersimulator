@@ -12,9 +12,9 @@ import model.ParkingPassCar;
 import view.SimulatorView;
 
 public class Simulator {
-    private static int numberOfFloors = 3;
-    private static int numberOfRows = 6;
-    private static int numberOfPlaces = 30;
+    private int numberOfFloors = 3;
+    private int numberOfRows = 6;
+    private int numberOfPlaces = 30;
     private int numberOfOpenSpots;
     private Car[][][] cars;
     
@@ -50,7 +50,7 @@ public class Simulator {
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         
-        SimulatorView SimulatorView = new SimulatorView();
+        SimulatorView simulatorView = new SimulatorView();
     } 
 
     public void run() {
@@ -58,6 +58,7 @@ public class Simulator {
             tick();
         }
     }
+    
     public void setGarage(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
     	this.numberOfFloors = numberOfFloors;
     	this.numberOfRows = numberOfRows;
@@ -81,19 +82,20 @@ public class Simulator {
 
     }
     
-    public void updateView() {
-        SimulatorView.updateView();
+    public void updateViews() {
+    	System.out.println("1");
+    	simulatorView.updateView();
     }
     
-	public static int getNumberOfFloors() {
+	public int getNumberOfFloors() {
         return numberOfFloors;
     }
 
-    public static int getNumberOfRows() {
+    public int getNumberOfRows() {
         return numberOfRows;
     }
 
-    public static int getNumberOfPlaces() {
+    public int getNumberOfPlaces() {
         return numberOfPlaces;
     }
 
@@ -101,7 +103,7 @@ public class Simulator {
     	return numberOfOpenSpots;
     }
     
-    public static Car getCarAt(Location location) {
+    public Car getCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
         }
@@ -164,10 +166,19 @@ public class Simulator {
         }
         return null;
     }
-
-
-
+    
     public void tick() {
+    	advanceTime();
+    	handleExit();
+    	updateViews();
+    	// Pause
+        try {
+            Thread.sleep(tickPause);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    	handleEntrance();
+    	
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
@@ -191,7 +202,6 @@ public class Simulator {
         return true;
     }
     
-
     private void handleEntrance(){
     	carsArriving();
     	carsEntering(entrancePassQueue);
@@ -202,12 +212,6 @@ public class Simulator {
         carsReadyToLeave();
         carsPaying();
         carsLeaving();
-    }
-    
-    private void updateViews(){
-    	simulatorView.tick();
-        // Update the car park view.
-        simulatorView.updateView();	
     }
     
     private void carsArriving(){

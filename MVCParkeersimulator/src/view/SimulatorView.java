@@ -13,6 +13,7 @@ public class SimulatorView extends JPanel{
     
     private Dimension size;
     private Image carParkImage;    
+    private Simulator simulator;
 
     /**
      * Constructor for objects of class CarPark
@@ -55,17 +56,18 @@ public class SimulatorView extends JPanel{
     }
 
     public void updateView() {
+    	System.out.println("2");
         // Create a new car park image if the size has changed.
         if (!size.equals(getSize())) {
             size = getSize();
             carParkImage = createImage(size.width, size.height);
         }
         Graphics graphics = carParkImage.getGraphics();
-        for(int floor = 0; floor < Simulator.getNumberOfFloors(); floor++) {
-            for(int row = 0; row < Simulator.getNumberOfRows(); row++) {
-                for(int place = 0; place < Simulator.getNumberOfPlaces(); place++) {
+        for(int floor = 0; floor < simulator.getNumberOfFloors(); floor++) {
+            for(int row = 0; row < simulator.getNumberOfRows(); row++) {
+                for(int place = 0; place < simulator.getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
-                    Car car = Simulator.getCarAt(location);
+                    Car car = simulator.getCarAt(location);
                     Color color = car == null ? Color.white : car.getColor();
                     drawPlace(graphics, location, color);
                 }
