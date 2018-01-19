@@ -9,13 +9,12 @@ import model.Car;
 import model.CarQueue;
 import model.Location;
 import model.ParkingPassCar;
-import view.CarParkView;
 import view.SimulatorView;
 
 public class Simulator {
-    private int numberOfFloors = 3;
-    private int numberOfRows = 6;
-    private int numberOfPlaces = 30;
+    private static int numberOfFloors = 3;
+    private static int numberOfRows = 6;
+    private static int numberOfPlaces = 30;
     private int numberOfOpenSpots;
     private Car[][][] cars;
     
@@ -49,16 +48,9 @@ public class Simulator {
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
-        cars = new Car[this.numberOfFloors][this.numberOfRows][this.numberOfPlaces];
+        cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         
-        carParkView = new CarParkView();
-
-        Container contentPane = getContentPane();
-        contentPane.add(carParkView, BorderLayout.CENTER);
-        pack();
-        setVisible(true);
-
-        updateView();
+        SimulatorView SimulatorView = new SimulatorView();
     } 
 
     public void run() {
@@ -90,18 +82,18 @@ public class Simulator {
     }
     
     public void updateView() {
-        carParkView.updateView();
+        SimulatorView.updateView();
     }
     
-	public int getNumberOfFloors() {
+	public static int getNumberOfFloors() {
         return numberOfFloors;
     }
 
-    public int getNumberOfRows() {
+    public static int getNumberOfRows() {
         return numberOfRows;
     }
 
-    public int getNumberOfPlaces() {
+    public static int getNumberOfPlaces() {
         return numberOfPlaces;
     }
 
@@ -109,7 +101,7 @@ public class Simulator {
     	return numberOfOpenSpots;
     }
     
-    public Car getCarAt(Location location) {
+    public static Car getCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
         }
@@ -229,18 +221,18 @@ public class Simulator {
         int i=0;
         // Remove car from the front of the queue and assign to a parking space.
     	while (queue.carsInQueue()>0 && 
-    			simulatorView.getNumberOfOpenSpots()>0 && 
+    			getNumberOfOpenSpots()>0 && 
     			i<enterSpeed) {
             Car car = queue.removeCar();
-            Location freeLocation = simulatorView.getFirstFreeLocation();
-            simulatorView.setCarAt(freeLocation, car);
+            Location freeLocation = getFirstFreeLocation();
+            setCarAt(freeLocation, car);
             i++;
         }
     }
     
     private void carsReadyToLeave(){
         // Add leaving cars to the payment queue.
-        Car car = simulatorView.getFirstLeavingCar();
+        Car car = getFirstLeavingCar();
         while (car!=null) {
         	if (car.getHasToPay()){
 	            car.setIsPaying(true);
@@ -249,7 +241,7 @@ public class Simulator {
         	else {
         		carLeavesSpot(car);
         	}
-            car = simulatorView.getFirstLeavingCar();
+            car = getFirstLeavingCar();
         }
     }
 
@@ -304,7 +296,7 @@ public class Simulator {
     }
     
     private void carLeavesSpot(Car car){
-    	simulatorView.removeCarAt(car.getLocation());
+    	removeCarAt(car.getLocation());
         exitCarQueue.addCar(car);
     }
 	

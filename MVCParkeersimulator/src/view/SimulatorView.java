@@ -2,10 +2,12 @@ package view;
 
 import javax.swing.*;
 
+
 import java.awt.*;
 
-import Parkeersimulator.Car;
-import Parkeersimulator.Location;
+import model.Car;
+import model.Location;
+import controller.Simulator;
 
 public class SimulatorView extends JPanel{
     
@@ -17,6 +19,13 @@ public class SimulatorView extends JPanel{
      */
     public SimulatorView() {
         size = new Dimension(0, 0);
+        
+        /*Container contentPane = getContentPane();
+-         contentPane.add(SimulatorView, BorderLayout.CENTER);
+-         pack();
+-         setVisible(true);
+- 
+-         updateView();*/
     }
 
     /**
@@ -52,11 +61,11 @@ public class SimulatorView extends JPanel{
             carParkImage = createImage(size.width, size.height);
         }
         Graphics graphics = carParkImage.getGraphics();
-        for(int floor = 0; floor < getNumberOfFloors(); floor++) {
-            for(int row = 0; row < getNumberOfRows(); row++) {
-                for(int place = 0; place < getNumberOfPlaces(); place++) {
+        for(int floor = 0; floor < Simulator.getNumberOfFloors(); floor++) {
+            for(int row = 0; row < Simulator.getNumberOfRows(); row++) {
+                for(int place = 0; place < Simulator.getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
-                    Car car = getCarAt(location);
+                    Car car = Simulator.getCarAt(location);
                     Color color = car == null ? Color.white : car.getColor();
                     drawPlace(graphics, location, color);
                 }
