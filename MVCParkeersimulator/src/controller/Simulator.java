@@ -1,12 +1,25 @@
-package Parkeersimulator;
+package controller;
 
 import java.util.Random;
+import javax.swing.*;
+import java.awt.*;
 
-import javax.swing.JPanel;
+import Parkeersimulator.AdHocCar;
+import Parkeersimulator.Car;
+import Parkeersimulator.CarQueue;
+import Parkeersimulator.Location;
+import Parkeersimulator.ParkingPassCar;
+import Parkeersimulator.SimulatorView.CarParkView;
+import MVCParkeersimulator.CarQueue;
+import MVCParkeersimulator.SimulatorView;
 
-public class Simulator extends JPanel{
-
-	
+public class Simulator {
+    private int numberOfFloors = 3;
+    private int numberOfRows = 6;
+    private int numberOfPlaces = 30;
+    private int numberOfOpenSpots;
+    private Car[][][] cars;
+    
 	private static final String AD_HOC = "1";
 	private static final String PASS = "2";
 	
@@ -20,7 +33,7 @@ public class Simulator extends JPanel{
     private int hour = 0;
     private int minute = 0;
 
-    private int tickPause = 2;
+    private int tickPause = 100;
 
     int weekDayArrivals= 100; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour
@@ -30,34 +43,36 @@ public class Simulator extends JPanel{
     int enterSpeed = 3; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
     int exitSpeed = 5; // number of cars that can leave per minute
-
+    
     public Simulator() {
         entranceCarQueue = new CarQueue();
         entrancePassQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
-        simulatorView = new SimulatorView(3, 6, 30);
-    }
+        this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
+        cars = new Car[this.numberOfFloors][this.numberOfRows][this.numberOfPlaces];
+        
+        carParkView = new CarParkView();
+
+        Container contentPane = getContentPane();
+        contentPane.add(carParkView, BorderLayout.CENTER);
+        pack();
+        setVisible(true);
+
+        updateView();
+    } 
 
     public void run() {
         for (int i = 0; i < 10000; i++) {
             tick();
         }
     }
-
-    private void tick() {
-    	advanceTime();
-    	handleExit();
-    	updateViews();
-    	// Pause.
-        try {
-            Thread.sleep(tickPause);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    	handleEntrance();
+    public void setGarage(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
+    	this.numberOfFloors = numberOfFloors;
+    	this.numberOfRows = numberOfRows;
+    	this.numberOfPlaces = numberOfPlaces;
     }
-
+    
     private void advanceTime(){
         // Advance the time by one minute.
         minute++;
@@ -74,6 +89,117 @@ public class Simulator extends JPanel{
         }
 
     }
+    
+    public void updateView() {
+        carParkView.updateView();
+    }
+    
+	public int getNumberOfFloors() {
+        return numberOfFloors;
+    }
+
+    public int getNumberOfRows() {
+        return numberOfRows;
+    }
+
+    public int getNumberOfPlaces() {
+        return numberOfPlaces;
+    }
+
+    public int getNumberOfOpenSpots(){
+    	return numberOfOpenSpots;
+    }
+    
+    public Car getCarAt(Location location) {
+        if (!locationIsValid(location)) {
+            return null;
+        }
+        return cars[location.getFloor()][location.getRow()][location.getPlace()];
+    }
+
+    public boolean setCarAt(Location location, Car car) {
+        if (!locationIsValid(location)) {
+            return false;
+        }
+        Car oldCar = getCarAt(location);
+        if (oldCar == null) {
+            cars[location.getFloor()][location.getRow()][location.getPlace()] = car;
+            car.setLocation(location);
+            numberOfOpenSpots--;
+            return true;
+        }
+        return false;
+    }
+
+    public Car removeCarAt(Location location) {
+        if (!locationIsValid(location)) {
+            return null;
+        }
+        Car car = getCarAt(location);
+        if (car == null) {
+            return null;
+        }
+        cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
+        car.setLocation(null);
+        numberOfOpenSpots++;
+        return car;
+    }
+
+    public Location getFirstFreeLocation() {
+        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                    Location location = new Location(floor, row, place);
+                    if (getCarAt(location) == null) {
+                        return location;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public Car getFirstLeavingCar() {
+        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                    Location location = new Location(floor, row, place);
+                    Car car = getCarAt(location);
+                    if (car != null && car.getMinutesLeft() <= 0 && !car.getIsPaying()) {
+                        return car;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+
+
+    public void tick() {
+        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                    Location location = new Location(floor, row, place);
+                    Car car = getCarAt(location);
+                    if (car != null) {
+                        car.tick();
+                    }
+                }
+            }
+        }
+    }
+
+    private boolean locationIsValid(Location location) {
+        int floor = location.getFloor();
+        int row = location.getRow();
+        int place = location.getPlace();
+        if (floor < 0 || floor >= numberOfFloors || row < 0 || row > numberOfRows || place < 0 || place > numberOfPlaces) {
+            return false;
+        }
+        return true;
+    }
+    
 
     private void handleEntrance(){
     	carsArriving();
