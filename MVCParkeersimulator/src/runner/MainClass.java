@@ -10,6 +10,7 @@ public class MainClass {
 
 	public static void main(String[] args) {
 		Simulator simulator = new Simulator();
+		simulator.giveRef(simulator);
 		simulator.run();
 	}
 }

@@ -33,7 +33,14 @@ public class SimulatorView extends JFrame {
     	carParkView.updateView();
     }
     
-    public class CarParkView extends JPanel {
+    public void getRef(Simulator ref) {
+    	this.simulator = ref;
+    	carParkView.getRef(ref);
+    }
+    
+    public class CarParkView extends JPanel {  
+    	
+        private Simulator simulator;
     	
         public CarParkView() {
             size = new Dimension(0, 0);
@@ -45,6 +52,10 @@ public class SimulatorView extends JFrame {
             return new Dimension(800, 500);
         }
 
+        public void getRef(Simulator ref) {
+        	this.simulator = ref;
+        }
+        
         /**
          * Overridden. The car park view component needs to be redisplayed. Copy the
          * internal image to screen.
@@ -65,7 +76,6 @@ public class SimulatorView extends JFrame {
         }
 
         public void updateView() {
-        	System.out.println("2");
             // Create a new car park image if the size has changed.
             if (!size.equals(getSize())) {
                 size = getSize();

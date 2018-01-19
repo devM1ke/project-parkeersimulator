@@ -1,8 +1,6 @@
 package controller;
 
 import java.util.Random;
-import javax.swing.*;
-import java.awt.*;
 
 import model.AdHocCar;
 import model.Car;
@@ -53,7 +51,11 @@ public class Simulator {
         SimulatorView simulatorView = new SimulatorView();
         this.simulatorView = simulatorView;
     } 
-
+    
+    public void giveRef(Simulator simRef) {
+        simulatorView.getRef(simRef);
+    }
+    
     public void run() {
         for (int i = 0; i < 10000; i++) {
             tick();
