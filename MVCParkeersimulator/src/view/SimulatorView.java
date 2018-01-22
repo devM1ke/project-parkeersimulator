@@ -2,18 +2,17 @@ package view;
 
 import javax.swing.*;
 
-import main.Simulator;
-
 import java.awt.*;
 
 import model.Car;
 import model.Location;
+import model.Model;
 
 public class SimulatorView extends JFrame{
 
     private Dimension size;
     private Image carParkImage;    
-    private Simulator simulator;
+    private Model model;
     private CarParkView carParkView;
 
     /**
@@ -34,14 +33,15 @@ public class SimulatorView extends JFrame{
     	carParkView.updateView();
     }
     
-    public void getRef(Simulator ref) {
-    	this.simulator = ref;
-    	carParkView.getRef(ref);
+    public void getRef(Model simRef) {
+    	this.model = simRef;
+    	carParkView.getRef(simRef);
     }
     
     public class CarParkView extends JPanel {  
     	
-        private Simulator simulator;
+        private Model model;
+		
     	
         public CarParkView() {
             size = new Dimension(0, 0);
@@ -53,8 +53,8 @@ public class SimulatorView extends JFrame{
             return new Dimension(800, 500);
         }
 
-        public void getRef(Simulator ref) {
-        	this.simulator = ref;
+        public void getRef(Model simRef) {
+        	this.model = simRef;
         }
         
         /**
@@ -71,7 +71,7 @@ public class SimulatorView extends JFrame{
                 g.drawImage(carParkImage, 0, 0, null);
             }
             else {
-                // Rescale the previous image.
+                // Rescaled the previous image.
                 g.drawImage(carParkImage, 0, 0, currentSize.width, currentSize.height, null);
             }
         }
@@ -83,11 +83,11 @@ public class SimulatorView extends JFrame{
                 carParkImage = createImage(size.width, size.height);
             }
             Graphics graphics = carParkImage.getGraphics();
-            for(int floor = 0; floor < simulator.getNumberOfFloors(); floor++) {
-                for(int row = 0; row < simulator.getNumberOfRows(); row++) {
-                    for(int place = 0; place < simulator.getNumberOfPlaces(); place++) {
+            for(int floor = 0; floor < model.getNumberOfFloors(); floor++) {
+                for(int row = 0; row < model.getNumberOfRows(); row++) {
+                    for(int place = 0; place < model.getNumberOfPlaces(); place++) {
                         Location location = new Location(floor, row, place);
-                        Car car = simulator.getCarAt(location);
+                        Car car = model.getCarAt(location);
                         Color color = car == null ? Color.white : car.getColor();
                         drawPlace(graphics, location, color);
                     }
