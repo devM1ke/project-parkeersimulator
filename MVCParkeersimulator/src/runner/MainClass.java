@@ -1,6 +1,6 @@
 package runner;
 
-import controller.Simulator;
+import main.Simulator;
 
 public class MainClass {
 		

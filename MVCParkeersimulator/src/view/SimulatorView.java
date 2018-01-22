@@ -2,11 +2,12 @@ package view;
 
 import javax.swing.*;
 
+import main.Simulator;
+
 import java.awt.*;
 
 import model.Car;
 import model.Location;
-import controller.Simulator;
 
 public class SimulatorView extends JFrame {
 
