@@ -9,7 +9,7 @@ import java.awt.*;
 import model.Car;
 import model.Location;
 
-public class SimulatorView extends JFrame {
+public class SimulatorView extends JFrame{
 
     private Dimension size;
     private Image carParkImage;    
