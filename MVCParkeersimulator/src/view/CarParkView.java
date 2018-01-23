@@ -26,9 +26,6 @@ public Dimension getPreferredSize() {
     return new Dimension(800, 500);
 }
 
-
-
-
 /**
  * Overridden. The car park view component needs to be redisplayed. Copy the
  * internal image to screen.
