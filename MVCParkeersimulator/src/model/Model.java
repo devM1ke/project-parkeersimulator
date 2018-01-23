@@ -67,17 +67,10 @@ public class Model extends AbstractModel implements Runnable {
 		while(run) {
 			tick();
 			try {
-				Thread.sleep(100);
+				Thread.sleep(this.tickPause);
 			} catch (Exception e) {} 
 		}
 	}
-
-    
-//    public void run() {
-//        for (int i = 0; i < 10000; i++) {
-//            tick();
-//        }
-//    }
     
     public void setGarage(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
     	this.numberOfFloors = numberOfFloors;
@@ -189,14 +182,7 @@ public class Model extends AbstractModel implements Runnable {
     public void tick() {
     	advanceTime();
     	handleExit();
-    	//updateViews();
     	notifyViews();
-    	// Pause
-        try {
-            Thread.sleep(tickPause);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     	handleEntrance();
     	
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
