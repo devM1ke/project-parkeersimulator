@@ -6,14 +6,17 @@ import java.awt.*;
 import javax.swing.*;
 import view.SimulatorView;
 import view.CarParkView;
+import view.MenuBarView;
 import view.PieView;
+import view.SettingsView;
 
 public class Simulator{
 	private Model model;
 	private JFrame screen;
-	private SimulatorView simulatorview;
 	private CarParkView carparkview;
 	private PieView pieview;
+	private MenuBarView menubarview;
+	//private SettingsView settingsview;
 	
 	public Simulator() {
 		model = new Model();
@@ -23,6 +26,8 @@ public class Simulator{
 		
 		screen.getContentPane().add(carparkview);
 		screen.getContentPane().add(pieview);
+		//screen.getContentPane().add(menubarview);
+		//screen.getContentPane().add(settingsview);
 
 		screen.setVisible(true);
 		screen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 public class SettingsView extends AbstractView{
 
     private JFrame settingsFrame;
-    private JTextField t1, t2;
+    private JTextField speedtext;
 
     public SettingsView(Model model)
     {
@@ -25,7 +25,7 @@ public class SettingsView extends AbstractView{
         JPanel content = new JPanel(new GridLayout(3,2));
 
         JLabel speedlabel = new JLabel("Snelheid");
-        JTextField speedtext = new JTextField(String.valueOf(Model.getTickPause()+"") ,5);
+        //speedtext = new JTextField(String.valueOf(Model.getTickPause()+"") ,5);
 
         content.add(speedlabel);
         content.add(speedtext);
@@ -60,10 +60,10 @@ public class SettingsView extends AbstractView{
                 try
                 {
 
-                    String speed = t2.getText();
-                    Model.setTickPause(Integer.parseInt(speed));
+                    String speed = speedtext.getText();
+                    //Model.setTickPause(Integer.parseInt(speed));
 
-                    AbstractView.updateView();
+                    //AbstractView.updateView();
                     settingsFrame.dispose();
                 }
                 catch(Exception ex)

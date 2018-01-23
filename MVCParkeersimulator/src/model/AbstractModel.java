@@ -3,10 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JFrame;
+
 import view.AbstractView;
 
 
-public abstract class AbstractModel {
+public abstract class AbstractModel extends JFrame{
 	private List<AbstractView> views;
 	
 	public AbstractModel() {

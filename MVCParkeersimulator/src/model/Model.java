@@ -2,6 +2,9 @@ package model;
 
 import java.util.Random;
 
+import javax.swing.JMenuBar;
+
+import view.MenuBarView;
 import model.AdHocCar;
 import model.Car;
 import model.CarQueue;
@@ -52,13 +55,16 @@ public class Model extends AbstractModel implements Runnable {
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         this.runner = new Thread(this);
         this.runner.start();
+        MenuBarView menuBarView = new MenuBarView();
+        setJMenuBar(menuBarView.CreateMenuBar());
       
     }
 //    public void start() {
 //		new Thread(this).start();
 //	}
-    
-    public void stop() {
+   
+
+	public void stop() {
 		run=false;
 	}
     
@@ -79,6 +85,15 @@ public class Model extends AbstractModel implements Runnable {
     	this.numberOfPlaces = numberOfPlaces;
     }
     
+    public int getTickPause()
+    {
+        return this.tickPause;
+    }
+
+    public void setTickPause(int ticks)
+    {
+        this.tickPause = ticks;
+    }
     private void advanceTime(){
         // Advance the time by one minute.
         minute++;
