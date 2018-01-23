@@ -30,7 +30,7 @@ public class Model extends AbstractModel implements Runnable {
     private int hour = 0;
     private int minute = 0;
 
-    private int tickPause = 100;
+    private int tickPause = 40;
 
     int weekDayArrivals= 100; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour
@@ -113,6 +113,10 @@ public class Model extends AbstractModel implements Runnable {
 
     public int getNumberOfOpenSpots(){
     	return numberOfOpenSpots;
+    }
+    
+    public int getTotalParkingSpots() {
+    	return numberOfFloors * numberOfRows * numberOfPlaces;
     }
     
     public Car getCarAt(Location location) {

@@ -11,13 +11,13 @@ public class CarParkView extends AbstractView {
 	 private Dimension size;
 	 private Model model;
 	 private Image carParkImage; 
+	 
 	 public CarParkView(Model model) {
 		super(model);
 		this.model = model;
 		
 		size = new Dimension(0, 0);
-		setSize(500, 500);
-
+		setSize(1000,500);
 	 }
 /**
  * Overridden. Tell the GUI manager how big we would like to be.
