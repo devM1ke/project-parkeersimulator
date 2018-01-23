@@ -1,7 +1,8 @@
 package model;
 
 public class Location {
-
+	
+	private int type = 0;
     private int floor;
     private int row;
     private int place;
@@ -45,7 +46,9 @@ public class Location {
     public int hashCode() {
         return (floor << 20) + (row << 10) + place;
     }
-
+    public void setType(int type) {
+    	this.type = type;
+    }
     /**
      * @return The floor.
      */

@@ -7,6 +7,7 @@ import model.Car;
 import model.CarQueue;
 import model.Location;
 import model.ParkingPassCar;
+import model.locationManager;
 import view.SimulatorView;
 
 public class Model extends AbstractModel implements Runnable {
