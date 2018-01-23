@@ -11,8 +11,10 @@ public class CarParkView extends JPanel {
 	 private Dimension size;
 	 private Model model;
 	 private Image carParkImage; 
-public CarParkView() {
+public CarParkView(Model model) {
+	this.model = model;
     size = new Dimension(0, 0);
+
 }
 /**
  * Overridden. Tell the GUI manager how big we would like to be.
@@ -21,9 +23,8 @@ public Dimension getPreferredSize() {
     return new Dimension(800, 500);
 }
 
-public void getRef(Model simRef) {
-	this.model = simRef;
-}
+
+
 
 /**
  * Overridden. The car park view component needs to be redisplayed. Copy the

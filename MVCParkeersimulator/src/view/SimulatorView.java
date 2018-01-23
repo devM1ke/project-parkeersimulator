@@ -7,7 +7,7 @@ import java.awt.*;
 
 import model.Model;
 
-public class SimulatorView extends JFrame{
+public class SimulatorView extends JPanel{
 
 
  
@@ -17,24 +17,16 @@ public class SimulatorView extends JFrame{
     /**
      * Constructor for objects of class CarPark
      */
-    public SimulatorView() {
-
+    public SimulatorView(Model model) {
+    	this.model = model;
         
-        carParkView = new CarParkView();
-	
-	    Container contentPane = getContentPane();
-	    contentPane.add(carParkView, BorderLayout.CENTER);
-	    pack();
-	    setVisible(true);
     }
     
     public void updateView() {
     	carParkView.updateView();
     }
     
-    public void getRef(Model simRef) {
-    	this.model = simRef;
-    	carParkView.getRef(simRef);
+
     }
     
-    }
+    

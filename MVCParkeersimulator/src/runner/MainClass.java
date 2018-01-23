@@ -1,6 +1,6 @@
 package runner;
 
-import model.Model;
+import main.Simulator;
 
 public class MainClass {
 		
@@ -9,8 +9,7 @@ public class MainClass {
 	}
 
 	public static void main(String[] args) {
-		Model model = new Model();
-		model.giveRef(model);
-		model.run();
+		Simulator simulator = new Simulator();
+		
 	}
 }

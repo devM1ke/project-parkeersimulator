@@ -48,13 +48,10 @@ public class Model {
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         
-        SimulatorView simulatorView = new SimulatorView();
-        this.simulatorView = simulatorView;
+      
     } 
     
-    public void giveRef(Model simRef) {
-        simulatorView.getRef(simRef);
-    }
+
     
     public void run() {
         for (int i = 0; i < 10000; i++) {
