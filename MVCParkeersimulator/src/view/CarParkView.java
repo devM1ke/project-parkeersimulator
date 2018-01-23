@@ -14,6 +14,8 @@ public class CarParkView extends JPanel {
 	 public CarParkView(Model model) {
 		this.model = model;
 		size = new Dimension(0, 0);
+		setSize(500, 500);
+
 	 }
 /**
  * Overridden. Tell the GUI manager how big we would like to be.
@@ -50,6 +52,7 @@ public void updateView() {
         size = getSize();
         carParkImage = createImage(size.width, size.height);
     }
+    
     Graphics graphics = carParkImage.getGraphics();
     for(int floor = 0; floor < model.getNumberOfFloors(); floor++) {
         for(int row = 0; row < model.getNumberOfRows(); row++) {

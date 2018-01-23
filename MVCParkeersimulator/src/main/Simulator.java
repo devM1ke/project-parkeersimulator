@@ -19,9 +19,6 @@ public class Simulator{
 		screen = new JFrame();
 		simulatorview = new SimulatorView(model);
 		carparkview = new CarParkView(model);
-		screen.setSize(450, 285);
-		screen.setResizable(true);
-		screen.setLayout(null);
 		screen.getContentPane().add(simulatorview);
 		screen.getContentPane().add(carparkview, BorderLayout.CENTER);
 		screen.pack();

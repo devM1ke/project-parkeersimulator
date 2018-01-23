@@ -9,7 +9,7 @@ import model.Location;
 import model.ParkingPassCar;
 import view.SimulatorView;
 
-public class Model {
+public class Model extends AbstractModel {
     private int numberOfFloors = 3;
     private int numberOfRows = 6;
     private int numberOfPlaces = 30;
