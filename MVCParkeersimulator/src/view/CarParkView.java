@@ -11,11 +11,10 @@ public class CarParkView extends JPanel {
 	 private Dimension size;
 	 private Model model;
 	 private Image carParkImage; 
-public CarParkView(Model model) {
-	this.model = model;
-    size = new Dimension(0, 0);
-
-}
+	 public CarParkView(Model model) {
+		this.model = model;
+		size = new Dimension(0, 0);
+	 }
 /**
  * Overridden. Tell the GUI manager how big we would like to be.
  */

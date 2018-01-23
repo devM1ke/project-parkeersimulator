@@ -2,8 +2,7 @@ package main;
 
 import model.Model;
 
-
-
+import java.awt.BorderLayout;
 
 import javax.swing.*;
 import view.SimulatorView;
@@ -24,9 +23,13 @@ public class Simulator{
 		screen.setResizable(true);
 		screen.setLayout(null);
 		screen.getContentPane().add(simulatorview);
-		screen.getContentPane().add(carparkview);
+		screen.getContentPane().add(carparkview, BorderLayout.CENTER);
 		screen.pack();
 		screen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		screen.setVisible(true);
+		updateView();
+	}
+	public void updateView(){
+		carparkview.updateView();
 	}
 }

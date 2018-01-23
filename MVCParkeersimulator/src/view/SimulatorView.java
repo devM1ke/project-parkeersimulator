@@ -19,6 +19,8 @@ public class SimulatorView extends JPanel{
      */
     public SimulatorView(Model model) {
     	this.model = model;
+    	
+    	//updateView();
         
     }
     
