@@ -17,14 +17,13 @@ public class Simulator{
 	public Simulator() {
 		model = new Model();
 		screen = new JFrame();
-		simulatorview = new SimulatorView(model);
 		carparkview = new CarParkView(model);
-		screen.getContentPane().add(simulatorview);
-		screen.getContentPane().add(carparkview, BorderLayout.CENTER);
+
+		screen.getContentPane().add(carparkview);
 		screen.pack();
 		screen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		screen.setVisible(true);
-		updateView();
+		//updateView();
 	}
 	public void updateView(){
 		carparkview.updateView();

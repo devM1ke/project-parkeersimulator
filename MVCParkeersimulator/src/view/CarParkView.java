@@ -7,12 +7,14 @@ import model.Car;
 import model.Location;
 import model.Model;
 
-public class CarParkView extends JPanel {  
+public class CarParkView extends AbstractView {  
 	 private Dimension size;
 	 private Model model;
 	 private Image carParkImage; 
 	 public CarParkView(Model model) {
+		super(model);
 		this.model = model;
+		
 		size = new Dimension(0, 0);
 		setSize(500, 500);
 

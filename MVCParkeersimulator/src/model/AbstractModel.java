@@ -6,7 +6,7 @@ import java.util.List;
 import view.AbstractView;
 
 
-public class AbstractModel {
+public abstract class AbstractModel {
 	private List<AbstractView> views;
 	
 	public AbstractModel() {

@@ -9,12 +9,13 @@ import model.Location;
 import model.ParkingPassCar;
 import view.SimulatorView;
 
-public class Model extends AbstractModel {
+public class Model extends AbstractModel implements Runnable {
     private int numberOfFloors = 3;
     private int numberOfRows = 6;
     private int numberOfPlaces = 30;
     private int numberOfOpenSpots;
     private Car[][][] cars;
+    private boolean run;
     
 	private static final String AD_HOC = "1";
 	private static final String PASS = "2";
@@ -40,6 +41,7 @@ public class Model extends AbstractModel {
     int paymentSpeed = 7; // number of cars that can pay per minute
     int exitSpeed = 5; // number of cars that can leave per minute
     
+    Thread runner;
     public Model() {
         entranceCarQueue = new CarQueue();
         entrancePassQueue = new CarQueue();
@@ -47,17 +49,35 @@ public class Model extends AbstractModel {
         exitCarQueue = new CarQueue();
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
-        
+        this.runner = new Thread(this);
+        this.runner.start();
       
-    } 
+    }
+//    public void start() {
+//		new Thread(this).start();
+//	}
     
+    public void stop() {
+		run=false;
+	}
+    
+    @Override
+	public void run() {
+		run=true;
+		while(run) {
+			tick();
+			try {
+				Thread.sleep(100);
+			} catch (Exception e) {} 
+		}
+	}
 
     
-    public void run() {
-        for (int i = 0; i < 10000; i++) {
-            tick();
-        }
-    }
+//    public void run() {
+//        for (int i = 0; i < 10000; i++) {
+//            tick();
+//        }
+//    }
     
     public void setGarage(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
     	this.numberOfFloors = numberOfFloors;
@@ -169,7 +189,8 @@ public class Model extends AbstractModel {
     public void tick() {
     	advanceTime();
     	handleExit();
-    	updateViews();
+    	//updateViews();
+    	notifyViews();
     	// Pause
         try {
             Thread.sleep(tickPause);
