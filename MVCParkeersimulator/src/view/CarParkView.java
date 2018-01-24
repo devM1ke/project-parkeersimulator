@@ -6,6 +6,7 @@ import javax.swing.*;
 import model.Car;
 import model.Location;
 import model.Model;
+import model.LocationManager;
 
 public class CarParkView extends AbstractView {  
 	 private Dimension size;
@@ -56,7 +57,7 @@ public void updateView() {
     for(int floor = 0; floor < model.getNumberOfFloors(); floor++) {
         for(int row = 0; row < model.getNumberOfRows(); row++) {
             for(int place = 0; place < model.getNumberOfPlaces(); place++) {
-                Location location = new Location(floor, row, place);
+                Location location = getModel().getLocationManager().getLocation(floor, row, place);
                 Car car = model.getCarAt(location);
                 Color color = car == null ? Color.white : car.getColor();
                 drawPlace(graphics, location, color);
