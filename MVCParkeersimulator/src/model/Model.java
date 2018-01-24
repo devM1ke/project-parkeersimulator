@@ -147,15 +147,7 @@ public class Model extends AbstractModel implements Runnable {
         case 6:  dailyearningsday7 = dailyearnings;;
                  break;
         }
-        System.out.println(dailyearnings);
-        System.out.println(dailyearningsday1);
-        System.out.println(dailyearningsday2);
-        System.out.println(dailyearningsday3);
-        System.out.println(dailyearningsday4);
-        System.out.println(dailyearningsday5);
-        System.out.println(dailyearningsday6);
-        System.out.println(dailyearningsday7);
-        
+
         
 		dailyearnings = 0;
 		}
@@ -323,6 +315,7 @@ public class Model extends AbstractModel implements Runnable {
         while (car!=null) {
         	if (car.getHasToPay()){
 	            car.setIsPaying(true);
+	            dailyearnings = dailyearnings + price;
 	            paymentCarQueue.addCar(car);
         	}
         	else {
