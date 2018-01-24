@@ -10,7 +10,7 @@ import model.Car;
 import model.CarQueue;
 import model.Location;
 import model.ParkingPassCar;
-import model.locationManager;
+import model.LocationManager;
 import view.SimulatorView;
 
 public class Model extends AbstractModel implements Runnable {
@@ -29,7 +29,8 @@ public class Model extends AbstractModel implements Runnable {
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
     private SimulatorView simulatorView;
-
+    private LocationManager locationManager;
+    
     private int day = 0;
     private int hour = 0;
     private int minute = 0;
@@ -51,6 +52,7 @@ public class Model extends AbstractModel implements Runnable {
         entrancePassQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
+        locationManager = new LocationManager(numberOfFloors, numberOfRows, numberOfPlaces);
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         this.runner = new Thread(this);
@@ -63,7 +65,7 @@ public class Model extends AbstractModel implements Runnable {
 //		new Thread(this).start();
 //	}
    
-
+    
 	public void stop() {
 		run=false;
 	}
@@ -135,6 +137,9 @@ public class Model extends AbstractModel implements Runnable {
     	return numberOfFloors * numberOfRows * numberOfPlaces;
     }
     
+    public LocationManager getLocationManager() {
+    	return locationManager;
+    }
     public Car getCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
@@ -208,7 +213,8 @@ public class Model extends AbstractModel implements Runnable {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
+                    //Location location = new Location(floor, row, place);
+                	Location location = locationManager.getLocation(floor, row, place);
                     Car car = getCarAt(location);
                     if (car != null) {
                         car.tick();

@@ -46,6 +46,11 @@ public class Location {
     public int hashCode() {
         return (floor << 20) + (row << 10) + place;
     }
+    
+    /**
+     * sets the type of the location to 0 for normal spot, 1 for subscriber spot, 2 for reserved.
+     * @param type
+     */
     public void setType(int type) {
     	this.type = type;
     }
@@ -69,5 +74,5 @@ public class Location {
     public int getPlace() {
         return place;
     }
-
+    
 }
