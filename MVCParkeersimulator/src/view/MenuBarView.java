@@ -21,33 +21,32 @@ public class MenuBarView extends AbstractView{
         JMenuBar menuBar = new JMenuBar();
 
         menuBar.add(options());
-
         return menuBar;
     }
 
     private JMenu options()
     {
         JMenu menu = new JMenu( "Options");
-        JMenuItem settings = settings();
+        //JMenuItem settings = settings();
         //JMenuItem reset = reset();
 
-        menu.add(settings);
+        // menu.add(settings);
         //menu.add(reset);
         return menu;
     }
 
 
-    private JMenuItem settings()
+    /*private JMenuItem settings()
     {
         JMenuItem settings = new JMenuItem("Settings");
         settings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-				new SettingsView(null);
+				new SettingsView(model);
             }
         });
         return settings;
-    }
+    }*/
 
    /* private JMenuItem reset()
     {

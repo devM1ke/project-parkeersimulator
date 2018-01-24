@@ -9,7 +9,6 @@ public class PieView extends AbstractView{
 
 	public PieView(Model model) {
 		super(model);
-		setSize(200, 200);
 	}
 
 	public void paintComponent(Graphics g) {
