@@ -30,7 +30,7 @@ public class LocationManager extends AbstractModel {
 	            }
 	        }
 		}
-		changeType(1, 1, 119);
+		changeType(1, 421, 120);
 	}
 
 	
@@ -73,7 +73,7 @@ public class LocationManager extends AbstractModel {
 	}
 	
 	public void changeType(int type, int placeNumberStart, int NumberOfPlaces) {
-		for(int i = 0; i <= NumberOfPlaces; i++) {
+		for(int i = 0; i <= NumberOfPlaces - 1; i++) {
 			int[] locationArray;
 			locationArray = new int[3];
 			locationArray = getLocationNumber(placeNumberStart + i);
