@@ -65,6 +65,11 @@ public void updateView() {
                 		color = Color.cyan;
                 	}
                 }
+                if(location.getType() == 2) {
+                	if(color == Color.white) {
+                		color = Color.yellow;
+                	}
+                }
                 drawPlace(graphics, location, color);
             }
         }
