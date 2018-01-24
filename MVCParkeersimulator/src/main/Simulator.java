@@ -17,19 +17,18 @@ public class Simulator{
 	private CarParkView carparkview;
 	private PieView pieview;
 	private MenuBarView menubarview;
-	private ManagementView managementview;
-	//private SettingsView settingsview;
+	//private ManagementView managementview;
+	private SettingsView settingsview;
 	
 	public Simulator() {
 		model = new Model();
 		screen = new JFrame();
 		carparkview = new CarParkView(model);
 		pieview = new PieView(model);
+		menubarview = new MenuBarView(model);
+		//managementview = new ManagementView(model);
 
-		managementview = new ManagementView(model);
-
-		//menubarview = new MenuBarView(model);
-		//settingsview = new SettingsView(model);
+		settingsview = new SettingsView(model);
 
 		
 		screen.getContentPane().add(carparkview);
