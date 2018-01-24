@@ -82,6 +82,9 @@ public class Model extends AbstractModel implements Runnable {
 	public void run() {
 		for(int i = 0; i < 10080; i++) {
 			tick();
+			try {
+				Thread.sleep(this.tickPause);
+			} catch (Exception e) {} 
 		}
 	}
     
