@@ -20,7 +20,7 @@ public class Model extends AbstractModel implements Runnable {
     private int numberOfOpenSpots;
     private Car[][][] cars;
     private boolean run;
-    
+    public static int potatoe;
 	private static final String AD_HOC = "1";
 	private static final String PASS = "2";
 	
@@ -179,7 +179,7 @@ public class Model extends AbstractModel implements Runnable {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
+                	Location location = getLocationManager().getLocation(floor, row, place);
                     if (getCarAt(location) == null) {
                         return location;
                     }
@@ -193,7 +193,7 @@ public class Model extends AbstractModel implements Runnable {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
+                	Location location = getLocationManager().getLocation(floor, row, place);
                     Car car = getCarAt(location);
                     if (car != null && car.getMinutesLeft() <= 0 && !car.getIsPaying()) {
                         return car;
@@ -209,11 +209,9 @@ public class Model extends AbstractModel implements Runnable {
     	handleExit();
     	notifyViews();
     	handleEntrance();
-    	
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    //Location location = new Location(floor, row, place);
                 	Location location = locationManager.getLocation(floor, row, place);
                     Car car = getCarAt(location);
                     if (car != null) {
