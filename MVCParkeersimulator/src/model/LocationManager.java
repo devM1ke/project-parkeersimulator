@@ -19,7 +19,7 @@ public class LocationManager extends AbstractModel {
 		this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
 		this.numberOfFloors = numberOfFloors;
 		this.numberOfRows = numberOfRows;
-		this.numberOfPlaces = numberOfRows;
+		this.numberOfPlaces = numberOfPlaces;
 		locations = new Location[numberOfFloors][numberOfRows][numberOfPlaces];
 		
 		for(int floor = 0; floor < numberOfFloors; floor++) {
@@ -30,6 +30,7 @@ public class LocationManager extends AbstractModel {
 	            }
 	        }
 		}
+		changeType(1, 1, 119);
 	}
 
 	
@@ -71,5 +72,13 @@ public class LocationManager extends AbstractModel {
 		return locations[floor][row][place];
 	}
 	
+	public void changeType(int type, int placeNumberStart, int NumberOfPlaces) {
+		for(int i = 0; i <= NumberOfPlaces; i++) {
+			int[] locationArray;
+			locationArray = new int[3];
+			locationArray = getLocationNumber(placeNumberStart + i);
+			locations[locationArray[0]][locationArray[1]][locationArray[2]].setType(type);
+		}
+	}
 	
 }

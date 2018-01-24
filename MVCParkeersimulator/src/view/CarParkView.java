@@ -60,6 +60,11 @@ public void updateView() {
                 Location location = getModel().getLocationManager().getLocation(floor, row, place);
                 Car car = model.getCarAt(location);
                 Color color = car == null ? Color.white : car.getColor();
+                if(location.getType() == 1) {
+                	if(color == Color.white) {
+                		color = Color.green;
+                	}
+                }
                 drawPlace(graphics, location, color);
             }
         }
