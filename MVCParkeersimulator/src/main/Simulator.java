@@ -23,12 +23,13 @@ public class Simulator{
 		screen = new JFrame();
 		carparkview = new CarParkView(model);
 		pieview = new PieView(model);
+		menubarview = new MenuBarView(model);
 		
 		screen.getContentPane().add(carparkview);
 		screen.getContentPane().add(pieview);
-		//screen.getContentPane().add(menubarview);
+		screen.getContentPane().add(menubarview);
 		//screen.getContentPane().add(settingsview);
-
+		
 		screen.setVisible(true);
 		screen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		screen.pack();
