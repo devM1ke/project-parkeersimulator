@@ -217,7 +217,20 @@ public class Model extends AbstractModel implements Runnable {
     }
 
     public Location getFirstFreeLocation(Color color) {
-        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+    	if(color == Color.blue) {
+    		for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+                for (int row = 0; row < getNumberOfRows(); row++) {
+                    for (int place = 0; place < getNumberOfPlaces(); place++) {
+                    	Location location = getLocationManager().getLocation(floor, row, place);
+	                    if (getCarAt(location) == null && location.getType() == 1) {
+	                        return location;
+	                    }
+                	}
+                }
+            }
+		}
+    	
+    	for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
                 	Location location = getLocationManager().getLocation(floor, row, place);
