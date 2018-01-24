@@ -30,7 +30,6 @@ public class Model extends AbstractModel implements Runnable {
     private int numberOfOpenSpots;
     private Car[][][] cars;
     private boolean run;
-    public static int potatoe;
 	private static final String AD_HOC = "1";
 	private static final String PASS = "2";
 	
@@ -69,7 +68,6 @@ public class Model extends AbstractModel implements Runnable {
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         this.runner = new Thread(this);
         this.runner.start();
-		//MenuBarView menuBarView = new MenuBarView(this.model);
        
       
     }

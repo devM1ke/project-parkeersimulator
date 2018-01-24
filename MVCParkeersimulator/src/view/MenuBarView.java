@@ -2,15 +2,17 @@ package view;
 
 import javax.swing.*;
 
+import model.Model;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class MenuBarView {
+public class MenuBarView extends AbstractView {
 	
-	public MenuBarView() 
+	public MenuBarView(Model model) 
 	{
-		
+		super(model);
 	}
 
     public JMenuBar CreateMenuBar()
