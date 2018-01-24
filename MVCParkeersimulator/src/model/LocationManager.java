@@ -12,7 +12,9 @@ public class LocationManager extends AbstractModel {
 	private int numberOfPlaces;
 	private Location[][][] locations;
 	
-	
+	/*
+	 * LocationManager creates the locations and puts them into the array locations
+	 */
 	public LocationManager(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
 		this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
 		this.numberOfFloors = numberOfFloors;
