@@ -134,17 +134,17 @@ public class Model extends AbstractModel implements Runnable {
         switch (getDay()) {
         case 0:  dailyearningsday1 = dailyearnings;
                  break;
-        case 1:  dailyearningsday2 = dailyearnings;;
+        case 1:  dailyearningsday2 = dailyearnings;
                  break;
-        case 2:  dailyearningsday3 = dailyearnings;;
+        case 2:  dailyearningsday3 = dailyearnings;
                  break;
-        case 3:  dailyearningsday4 = dailyearnings;;
+        case 3:  dailyearningsday4 = dailyearnings;
                  break;
-        case 4:  dailyearningsday5 = dailyearnings;;
+        case 4:  dailyearningsday5 = dailyearnings;
                  break;
-        case 5:  dailyearningsday6 = dailyearnings;;
+        case 5:  dailyearningsday6 = dailyearnings;
                  break;
-        case 6:  dailyearningsday7 = dailyearnings;;
+        case 6:  dailyearningsday7 = dailyearnings;
                  break;
         }
 
