@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javax.swing.JMenuBar;
 
+import view.ManagementView;
 import view.MenuBarView;
 import model.AdHocCar;
 import model.Car;
@@ -14,7 +15,16 @@ import model.LocationManager;
 import view.SimulatorView;
 
 public class Model extends AbstractModel implements Runnable {
-    private int numberOfFloors = 3;
+	public int price = 5;
+	public int dailyearnings = 0;
+	public int dailyearningsday1 = 0;
+	public int dailyearningsday2 = 0;
+	public int dailyearningsday3 = 0;
+	public int dailyearningsday4 = 0;
+	public int dailyearningsday5 = 0;
+	public int dailyearningsday6 = 0;
+	public int dailyearningsday7 = 0;
+	private int numberOfFloors = 3;
     private int numberOfRows = 6;
     private int numberOfPlaces = 30;
     private int numberOfOpenSpots;
@@ -30,7 +40,7 @@ public class Model extends AbstractModel implements Runnable {
     private CarQueue exitCarQueue;
     private SimulatorView simulatorView;
     private LocationManager locationManager;
-    
+
     private int day = 0;
     private int hour = 0;
     private int minute = 0;
@@ -52,7 +62,9 @@ public class Model extends AbstractModel implements Runnable {
         entrancePassQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
+
         locationManager = new LocationManager(numberOfFloors, numberOfRows, numberOfPlaces);
+
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         this.runner = new Thread(this);
@@ -91,6 +103,10 @@ public class Model extends AbstractModel implements Runnable {
     {
         return this.tickPause;
     }
+    public int getDay(){
+    	return day;
+    }
+    
 
     public void setTickPause(int ticks)
     {
@@ -105,6 +121,7 @@ public class Model extends AbstractModel implements Runnable {
         }
         while (hour > 23) {
             hour -= 24;
+			setDailyEarningZero();            
             day++;
         }
         while (day > 6) {
@@ -112,7 +129,43 @@ public class Model extends AbstractModel implements Runnable {
         }
 
     }
-    
+	public void setDailyEarningZero(){
+		
+        switch (getDay()) {
+        case 0:  dailyearningsday1 = dailyearnings;
+                 break;
+        case 1:  dailyearningsday2 = dailyearnings;;
+                 break;
+        case 2:  dailyearningsday3 = dailyearnings;;
+                 break;
+        case 3:  dailyearningsday4 = dailyearnings;;
+                 break;
+        case 4:  dailyearningsday5 = dailyearnings;;
+                 break;
+        case 5:  dailyearningsday6 = dailyearnings;;
+                 break;
+        case 6:  dailyearningsday7 = dailyearnings;;
+                 break;
+        }
+        System.out.println(dailyearnings);
+        System.out.println(dailyearningsday1);
+        System.out.println(dailyearningsday2);
+        System.out.println(dailyearningsday3);
+        System.out.println(dailyearningsday4);
+        System.out.println(dailyearningsday5);
+        System.out.println(dailyearningsday6);
+        System.out.println(dailyearningsday7);
+        
+        
+		dailyearnings = 0;
+		}
+	public int stillToBeEarned(){
+		return (getTotalParkingSpots()-getNumberOfOpenSpots())*price;
+	}
+	public void setPrice(int price){
+		this.price = price;
+	}
+	
     public void updateViews() {
     	simulatorView.updateView();
     }

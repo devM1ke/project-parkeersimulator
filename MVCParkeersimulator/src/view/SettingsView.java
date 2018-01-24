@@ -17,6 +17,7 @@ public class SettingsView extends AbstractView{
     public SettingsView(Model model)
     {
     	super(model);
+
     }
 
     private JPanel CreatePanel()
@@ -24,7 +25,7 @@ public class SettingsView extends AbstractView{
         JPanel content = new JPanel(new GridLayout(3,2));
 
         JLabel speedlabel = new JLabel("Snelheid");
-        speedtext = new JTextField(String.valueOf(getModel().getTickPause()+""));
+        //speedtext = new JTextField(String.valueOf(Model.getTickPause()+"") ,5);
 
         content.add(speedlabel);
         content.add(speedtext);
@@ -60,9 +61,9 @@ public class SettingsView extends AbstractView{
                 {
 
                     String speed = speedtext.getText();
-                    getModel().setTickPause(Integer.parseInt(speed));
+                    //Model.setTickPause(Integer.parseInt(speed));
 
-                    //g.updateView();
+                    //AbstractView.updateView();
                     settingsFrame.dispose();
                 }
                 catch(Exception ex)

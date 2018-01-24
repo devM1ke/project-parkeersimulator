@@ -9,6 +9,7 @@ public class PieView extends AbstractView{
 
 	public PieView(Model model) {
 		super(model);
+		setSize(200, 200);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -23,7 +24,7 @@ public class PieView extends AbstractView{
 		emptySpots =Math.round(emptySpots);
 		filledSpots = Math.round(filledSpots);
 		
-		System.out.println("empty: " + emptySpots + " | filled: " + filledSpots);
+		//System.out.println("empty: " + emptySpots + " | filled: " + filledSpots);
 		
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 500, 200, 200);
