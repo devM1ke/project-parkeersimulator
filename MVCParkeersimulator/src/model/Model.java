@@ -31,7 +31,7 @@ public class Model extends AbstractModel implements Runnable {
     private int numberOfPlaces = 30;
     private int numberOfOpenSpots;
     private Car[][][] cars;
-    private boolean run = true;
+    private boolean run;
     
 	private static final String AD_HOC = "1";
 	private static final String PASS = "2";
@@ -73,26 +73,14 @@ public class Model extends AbstractModel implements Runnable {
         this.runner.start();
 		//MenuBarView menuBarView = new MenuBarView(this.model);
     }
+   
+	public void stop() {
+		run=false;
+	}
     
- 	public void stop() {
- 		run=false;
- 	}
-    
- 	public void start() {
- 		run=true;
- 	}
- 	
- 	public void run(int count) {
-		for(int i = 0; i < count && run == true; i++) {
-			tick();
-			try {
-				Thread.sleep(this.tickPause);
-			} catch (Exception e) {} 
-		}
- 	}
- 	
+    @Override
 	public void run() {
-		for(int i = 0; i < 10080 && run == true; i++) {
+		for(int i = 0; i < 10080; i++) {
 			tick();
 			try {
 				Thread.sleep(this.tickPause);
