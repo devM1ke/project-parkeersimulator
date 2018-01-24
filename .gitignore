@@ -10,3 +10,4 @@ bin/MVCDynamicModelThreadGeneralized_Voorbeeld/.project
 bin/MVCDynamicModelThreadGeneralized_Voorbeeld/.settings/org.eclipse.jdt.core.prefs
 bin/MVCDynamicModelThreadGeneralized_Voorbeeld/src/nl/hanze/t12/mvc/controller/AbstractController.class
 *.class
+*.class
