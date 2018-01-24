@@ -39,13 +39,8 @@ public class Model extends AbstractModel implements Runnable {
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
     private SimulatorView simulatorView;
-<<<<<<< HEAD
-
-
-=======
     private LocationManager locationManager;
-    
->>>>>>> dfaaf478e9cc3a85d51909cabfbf958ae46a4e33
+
     private int day = 0;
     private int hour = 0;
     private int minute = 0;
@@ -67,11 +62,9 @@ public class Model extends AbstractModel implements Runnable {
         entrancePassQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
-<<<<<<< HEAD
 
-=======
         locationManager = new LocationManager(numberOfFloors, numberOfRows, numberOfPlaces);
->>>>>>> dfaaf478e9cc3a85d51909cabfbf958ae46a4e33
+
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         this.runner = new Thread(this);
