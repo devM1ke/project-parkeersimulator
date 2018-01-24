@@ -62,7 +62,7 @@ public void updateView() {
                 Color color = car == null ? Color.white : car.getColor();
                 if(location.getType() == 1) {
                 	if(color == Color.white) {
-                		color = Color.green;
+                		color = Color.cyan;
                 	}
                 }
                 drawPlace(graphics, location, color);
