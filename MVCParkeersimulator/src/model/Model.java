@@ -57,8 +57,8 @@ public class Model extends AbstractModel implements Runnable {
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         this.runner = new Thread(this);
         this.runner.start();
-        MenuBarView menuBarView = new MenuBarView();
-        setJMenuBar(menuBarView.CreateMenuBar());
+		//MenuBarView menuBarView = new MenuBarView(this.model);
+       
       
     }
 //    public void start() {
