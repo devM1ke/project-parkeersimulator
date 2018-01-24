@@ -13,6 +13,7 @@ import model.Location;
 import model.ParkingPassCar;
 import model.LocationManager;
 import view.SimulatorView;
+import java.awt.*;
 
 public class Model extends AbstractModel implements Runnable {
 	public int price = 5;
@@ -24,12 +25,14 @@ public class Model extends AbstractModel implements Runnable {
 	public int dailyearningsday5 = 0;
 	public int dailyearningsday6 = 0;
 	public int dailyearningsday7 = 0;
+	
 	private int numberOfFloors = 3;
     private int numberOfRows = 6;
     private int numberOfPlaces = 30;
     private int numberOfOpenSpots;
     private Car[][][] cars;
     private boolean run;
+    
 	private static final String AD_HOC = "1";
 	private static final String PASS = "2";
 	
@@ -51,7 +54,7 @@ public class Model extends AbstractModel implements Runnable {
     int weekDayPassArrivals= 50; // average number of arriving cars per hour
     int weekendPassArrivals = 5; // average number of arriving cars per hour
 
-    int enterSpeed = 3; // number of cars that can enter per minute
+    int enterSpeed = 20; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
     int exitSpeed = 5; // number of cars that can leave per minute
     
@@ -68,14 +71,9 @@ public class Model extends AbstractModel implements Runnable {
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         this.runner = new Thread(this);
         this.runner.start();
-       
-      
+		//MenuBarView menuBarView = new MenuBarView(this.model);
     }
-//    public void start() {
-//		new Thread(this).start();
-//	}
    
-    
 	public void stop() {
 		run=false;
 	}
@@ -101,15 +99,16 @@ public class Model extends AbstractModel implements Runnable {
     {
         return this.tickPause;
     }
+    
     public int getDay(){
     	return day;
     }
     
-
     public void setTickPause(int ticks)
     {
         this.tickPause = ticks;
     }
+    
     private void advanceTime(){
         // Advance the time by one minute.
         minute++;
@@ -127,6 +126,7 @@ public class Model extends AbstractModel implements Runnable {
         }
 
     }
+    
 	public void setDailyEarningZero(){
 		
         switch (getDay()) {
@@ -146,12 +146,13 @@ public class Model extends AbstractModel implements Runnable {
                  break;
         }
 
-        
 		dailyearnings = 0;
-		}
+	}
+	
 	public int stillToBeEarned(){
 		return (getTotalParkingSpots()-getNumberOfOpenSpots())*price;
 	}
+	
 	public void setPrice(int price){
 		this.price = price;
 	}
@@ -183,6 +184,7 @@ public class Model extends AbstractModel implements Runnable {
     public LocationManager getLocationManager() {
     	return locationManager;
     }
+    
     public Car getCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
@@ -218,14 +220,20 @@ public class Model extends AbstractModel implements Runnable {
         return car;
     }
 
-    public Location getFirstFreeLocation() {
+    public Location getFirstFreeLocation(Color color) {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
                 	Location location = getLocationManager().getLocation(floor, row, place);
-                    if (getCarAt(location) == null) {
-                        return location;
-                    }
+                	if(color == Color.blue) {
+	                    if (getCarAt(location) == null) {
+	                        return location;
+	                    }
+                	} else {
+	                    if (getCarAt(location) == null && location.getType() == 0) {
+	                        return location;
+	                    }
+                	}
                 }
             }
         }
@@ -252,6 +260,7 @@ public class Model extends AbstractModel implements Runnable {
     	handleExit();
     	notifyViews();
     	handleEntrance();
+    	
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
@@ -300,15 +309,20 @@ public class Model extends AbstractModel implements Runnable {
     	while (queue.carsInQueue()>0 && 
     			getNumberOfOpenSpots()>0 && 
     			i<enterSpeed) {
-            Car car = queue.removeCar();
-            Location freeLocation = getFirstFreeLocation();
-            setCarAt(freeLocation, car);
-            i++;
+    		Car car = queue.getRef();
+            Location freeLocation = getFirstFreeLocation(car.getColor());
+            if(freeLocation != null) {
+	            setCarAt(freeLocation, car);
+	            i++;
+	            car = queue.removeCar();
+            } else {
+	            i++;
+            }
         }
     }
     
     private void carsReadyToLeave(){
-        // Add leaving cars to the payment queue.
+        // Add leaving cars to the payment queue.\
         Car car = getFirstLeavingCar();
         while (car!=null) {
         	if (car.getHasToPay()){
