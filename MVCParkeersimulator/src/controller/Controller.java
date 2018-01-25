@@ -16,9 +16,8 @@ public class Controller extends AbstractController implements ActionListener {
 		this.model=model;
 
 		setSize(50, 50);
-		//initialize button with the actionlistener so it can peform somthing when the button is clicked
 		buttonTick=new JButton("Tick");
-		buttonTick.addActionListener(this);
+
 		this.setLayout(null);
 		
 		add(buttonTick);
@@ -30,8 +29,7 @@ public class Controller extends AbstractController implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == buttonTick ) {
-			//this works now tho
-			System.out.println("passed");
+			
 		}
 	}
 }
