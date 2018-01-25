@@ -18,7 +18,7 @@ public class CarParkView extends AbstractView {
 		this.model = model;
 		
 		size = new Dimension(0, 0);
-		setSize(1000,500);
+		setSize(800,500);
 	 }
 /**
  * Overridden. Tell the GUI manager how big we would like to be.
