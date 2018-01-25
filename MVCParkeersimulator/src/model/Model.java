@@ -17,14 +17,9 @@ import java.awt.*;
 
 public class Model extends AbstractModel implements Runnable {
 	public int price = 5;
+	public int howmanydays = 7;
+	public int[] dailyearningdays;
 	public int dailyearnings = 0;
-	public int dailyearningsday1 = 0;
-	public int dailyearningsday2 = 0;
-	public int dailyearningsday3 = 0;
-	public int dailyearningsday4 = 0;
-	public int dailyearningsday5 = 0;
-	public int dailyearningsday6 = 0;
-	public int dailyearningsday7 = 0;
 	
 	private int numberOfFloors = 3;
     private int numberOfRows = 6;
@@ -64,7 +59,7 @@ public class Model extends AbstractModel implements Runnable {
         entrancePassQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
-
+        dailyearningdays = new int[howmanydays];
         locationManager = new LocationManager(numberOfFloors, numberOfRows, numberOfPlaces);
 
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
@@ -127,25 +122,14 @@ public class Model extends AbstractModel implements Runnable {
     }
     
 	public void setDailyEarningZero(){
-		
-        switch (getDay()) {
-        case 0:  dailyearningsday1 = dailyearnings;
-                 break;
-        case 1:  dailyearningsday2 = dailyearnings;
-                 break;
-        case 2:  dailyearningsday3 = dailyearnings;
-                 break;
-        case 3:  dailyearningsday4 = dailyearnings;
-                 break;
-        case 4:  dailyearningsday5 = dailyearnings;
-                 break;
-        case 5:  dailyearningsday6 = dailyearnings;
-                 break;
-        case 6:  dailyearningsday7 = dailyearnings;
-                 break;
-        }
+		for (int i = 0; i < howmanydays; i++)
+		{
+        if (getDay()==i) {
+        	dailyearningdays[i] = dailyearnings;
+        	dailyearnings = 0;       
+        }}
 
-		dailyearnings = 0;
+		
 	}
 	
 	public int stillToBeEarned(){
