@@ -13,6 +13,7 @@ public class MenuBarView extends AbstractView {
 	public MenuBarView(Model model) 
 	{
 		super(model);
+		
 	}
 
     public JMenuBar CreateMenuBar()
@@ -20,13 +21,13 @@ public class MenuBarView extends AbstractView {
         JMenuBar menuBar = new JMenuBar();
 
         menuBar.add(options());
-
+        //setVisible(true);
         return menuBar;
     }
 
     private JMenu options()
     {
-        JMenu menu = new JMenu( "Options");
+        JMenu menu = new JMenu("Options");
         JMenuItem settings = settings();
         //JMenuItem reset = reset();
 
