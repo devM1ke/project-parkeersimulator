@@ -26,7 +26,7 @@ public class Model extends AbstractModel implements Runnable {
     private int numberOfPlaces = 30;
     private int numberOfOpenSpots;
     private Car[][][] cars;
-    volatile private boolean run = true;
+    volatile private boolean run;
     
 	private static final String AD_HOC = "1";
 	private static final String PASS = "2";
