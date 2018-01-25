@@ -31,7 +31,7 @@ public class Model extends AbstractModel implements Runnable {
     private int numberOfPlaces = 30;
     private int numberOfOpenSpots;
     private Car[][][] cars;
-    private boolean run = true;
+    volatile private boolean run = true;
     
 	private static final String AD_HOC = "1";
 	private static final String PASS = "2";
@@ -47,7 +47,7 @@ public class Model extends AbstractModel implements Runnable {
     private int hour = 0;
     private int minute = 0;
 
-    private int tickPause = 100;
+    private int tickPause = 0;
 
     int weekDayArrivals= 100; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour
@@ -59,6 +59,7 @@ public class Model extends AbstractModel implements Runnable {
     int exitSpeed = 5; // number of cars that can leave per minute
     
     Thread runner;
+    
     public Model() {
         entranceCarQueue = new CarQueue();
         entrancePassQueue = new CarQueue();
@@ -73,44 +74,58 @@ public class Model extends AbstractModel implements Runnable {
         this.runner.start();
 		//MenuBarView menuBarView = new MenuBarView(this.model);
     }
-   
-	public void stop() {
-		run=false;
-	}
 	
 	public void start() {
 		run=true;
 	}
-    
-	public void run1() {
-		stop();
-		for(int i = 0; i < 1 && run == true; i++) {
-			tick();
-			try {
-				Thread.sleep(this.tickPause);
-			} catch (Exception e) {} 
-		}
+
+	public void stop() {
+		run=false;
+	}
+
+	public void runFor(int tick) {
+		run=false;
+		int buffTickPause = this.tickPause;
+		tickPause = 0;
+        for(int i = 0; i < tick; i++) {
+        	tick();
+        }
+        tickPause = buffTickPause;
 	}
 	
-	public void run100() {
-		stop();
-		for(int i = 0; i < 100 && run == true; i++) {
-			tick();
-			try {
-				Thread.sleep(this.tickPause);
-			} catch (Exception e) {} 
-		}
-	}
-	
-    @Override
+	@Override
 	public void run() {
-		for(int i = 0; i < 10080 && run == true; i++) {
-			tick();
-			try {
-				Thread.sleep(this.tickPause);
-			} catch (Exception e) {} 
+        tick();
+		while(true) {
+			if(run) {
+				tick(); 
+			}
 		}
 	}
+    
+    public void tick() {
+    	System.out.println("Tick!");
+		try {
+			Thread.sleep(this.tickPause);
+		} catch (Exception e) {}
+		
+    	advanceTime();
+    	handleExit();
+    	notifyViews();
+    	handleEntrance();
+    	
+        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                	Location location = locationManager.getLocation(floor, row, place);
+                    Car car = getCarAt(location);
+                    if (car != null) {
+                        car.tick();
+                    }
+                }
+            }
+        }
+    }
     
     public void setGarage(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
     	this.numberOfFloors = numberOfFloors;
@@ -123,13 +138,21 @@ public class Model extends AbstractModel implements Runnable {
         return this.tickPause;
     }
     
+    public void setTickPause(int ticks)
+    {
+        this.tickPause = ticks;
+    }
+    
     public int getDay(){
     	return day;
     }
     
-    public void setTickPause(int ticks)
-    {
-        this.tickPause = ticks;
+    public int getHour(){
+    	return hour;
+    }
+    
+    public int getMinute(){
+    	return minute;
     }
     
     private void advanceTime(){
@@ -290,25 +313,6 @@ public class Model extends AbstractModel implements Runnable {
         }
         return null;
     }
-    
-    public void tick() {
-    	advanceTime();
-    	handleExit();
-    	notifyViews();
-    	handleEntrance();
-    	
-        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
-            for (int row = 0; row < getNumberOfRows(); row++) {
-                for (int place = 0; place < getNumberOfPlaces(); place++) {
-                	Location location = locationManager.getLocation(floor, row, place);
-                    Car car = getCarAt(location);
-                    if (car != null) {
-                        car.tick();
-                    }
-                }
-            }
-        }
-    }
 
     private boolean locationIsValid(Location location) {
         int floor = location.getFloor();
@@ -358,7 +362,7 @@ public class Model extends AbstractModel implements Runnable {
     }
     
     private void carsReadyToLeave(){
-        // Add leaving cars to the payment queue.\
+        // Add leaving cars to the payment queue.
         Car car = getFirstLeavingCar();
         while (car!=null) {
         	if (car.getHasToPay()){
@@ -427,5 +431,4 @@ public class Model extends AbstractModel implements Runnable {
     	removeCarAt(car.getLocation());
         exitCarQueue.addCar(car);
     }
-	
 }

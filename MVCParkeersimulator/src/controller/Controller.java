@@ -37,21 +37,19 @@ public class Controller extends AbstractController implements ActionListener {
 		
 		buttonTick1.setBounds(510,550,100,30);
 		buttonTick100.setBounds(710,550,100,30);
-		start.setBounds(310,550,100,30);
-		stop.setBounds(110,550,100,30);
+		start.setBounds(110,550,100,30);
+		stop.setBounds(310,550,100,30);
 
 		setVisible(true);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == buttonTick1) {
-			//this works now tho
-			model.run1();
+			model.runFor(1);
 		}
 		
 		if(e.getSource() == buttonTick100) {
-			model.run100();
-
+			model.runFor(100);
 		} 
 	
 		if(e.getSource() == start) {
