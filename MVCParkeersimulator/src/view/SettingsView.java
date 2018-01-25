@@ -20,7 +20,7 @@ public class SettingsView extends AbstractView{
 
     }
 
-    private JPanel CreatePanel()
+    public JPanel CreatePanel()
     {
         JPanel content = new JPanel(new GridLayout(3,2));
 

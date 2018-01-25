@@ -18,7 +18,7 @@ public class CarParkView extends AbstractView {
 		this.model = model;
 		
 		size = new Dimension(0, 0);
-		setSize(800,500);
+		setSize(1600,500);
 	 }
 /**
  * Overridden. Tell the GUI manager how big we would like to be.
@@ -77,15 +77,19 @@ public void updateView() {
     repaint();
 }
 
-/**
- * Paint a place on this car park view in a given color.
- */
+
+
 private void drawPlace(Graphics graphics, Location location, Color color) {
+	/*int numberOfRows = model.getNumberOfFloors();
+	int spaceHeight = 10;
+	int spaceWidth = 10;
+	int spaceBetweenSpacesTB = 1;
+	int spaceBetweenSpacesLR = 1;*/
+	
     graphics.setColor(color);
     graphics.fillRect(
-            location.getFloor() * 260 + (1 + (int)Math.floor(location.getRow() * 0.5)) * 75 + (location.getRow() % 2) * 20,
-            60 + location.getPlace() * 10,
-            20 - 1,
-            10 - 1); // TODO use dynamic size or constants
+            location.getFloor() * 260 + (1 + (int)Math.floor(location.getRow() * 0.5)) * 75 + (location.getRow() % 2) * 20, 60 + location.getPlace() * 10, 20 - 1, 10 - 1); // TODO use dynamic size or constants
+    		//location.getFloor() * (numberOfRows * 50) + location.getRow() * 50, 60 + location.getPlace() * 10, 20 - 1, 10 - 1);
 }
 }
+
