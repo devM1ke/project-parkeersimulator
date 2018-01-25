@@ -23,12 +23,13 @@ public class ManagementView extends AbstractView{
         	add(dagLabel[i]);
         }
         
-        add(verwachtOmzetLabel);
+        //add(verwachtOmzetLabel);
 
         setVisible(true);
 	}
 	
 	public void paintComponent(Graphics g) {
+//		super.paintComponent(g);
 		  int dagOmzet = model.dailyearnings;
 		  int[] dagOmzetdag = new int[model.howmanydays];
 		  for (int i = 0; i < model.howmanydays; i++){
@@ -40,7 +41,6 @@ public class ManagementView extends AbstractView{
 	        for (int i = 0; i < model.howmanydays; i++){
 	        dagLabel[i].setText("Omzet dag "+ (i+1) + ": "+dagOmzetdag[i]);
 	        }
-
 	        verwachtOmzetLabel.setText("Nog niet betaald: "+VerwachteOmzet);
 
 
