@@ -17,8 +17,8 @@ public class CarParkView extends AbstractView {
 		super(model);
 		this.model = model;
 		
-		size = new Dimension(0, 0);
-		setSize(1600,500);
+		size = new Dimension(0,0);
+		setSize(800,500);
 	 }
 /**
  * Overridden. Tell the GUI manager how big we would like to be.
@@ -53,6 +53,9 @@ public void updateView() {
         carParkImage = createImage(size.width, size.height);
     }
     
+    carParkImage = createImage(size.width, size.height);
+    
+    if(carParkImage != null) {
     Graphics graphics = carParkImage.getGraphics();
     for(int floor = 0; floor < model.getNumberOfFloors(); floor++) {
         for(int row = 0; row < model.getNumberOfRows(); row++) {
@@ -73,6 +76,7 @@ public void updateView() {
                 drawPlace(graphics, location, color);
             }
         }
+    }
     }
     repaint();
 }
