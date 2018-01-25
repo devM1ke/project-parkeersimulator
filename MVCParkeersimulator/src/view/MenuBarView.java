@@ -43,7 +43,7 @@ public class MenuBarView extends AbstractView {
         settings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-				new SettingsView(null);
+				new SettingsView(model).CreatePanel();
             }
         });
         return settings;
