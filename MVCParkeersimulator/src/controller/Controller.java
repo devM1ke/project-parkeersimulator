@@ -11,6 +11,8 @@ public class Controller extends AbstractController implements ActionListener {
 	
 	private JButton buttonTick1;
 	private JButton buttonTick100;
+	private JButton start;
+	private JButton stop;
 	
 	public Controller(Model model) {
 		super(model);
@@ -19,24 +21,45 @@ public class Controller extends AbstractController implements ActionListener {
 		setSize(50, 50);
 		//initialize button with the actionlistener so it can peform somthing when the button is clicked
 		buttonTick1=new JButton("+1");
-		buttonTick100 = new JButton("+100");
 		buttonTick1.addActionListener(this);
+		buttonTick100 = new JButton("+100");
 		buttonTick100.addActionListener(this);
+		start = new JButton("Start");
+		start.addActionListener(this);
+		stop = new JButton("Stop");
+		stop.addActionListener(this);
 		this.setLayout(null);
 		
 		add(buttonTick1);
 		add(buttonTick100);
+		add(start);
+		add(stop);
 		
-		buttonTick1.setBounds(410,650,100,30);
-		buttonTick100.setBounds(600,650,100,30);
+		buttonTick1.setBounds(510,550,100,30);
+		buttonTick100.setBounds(710,550,100,30);
+		start.setBounds(310,550,100,30);
+		stop.setBounds(110,550,100,30);
 
 		setVisible(true);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == buttonTick1 &&  e.getSource() == buttonTick100) {
+		if(e.getSource() == buttonTick1) {
 			//this works now tho
-			System.out.println("passed");
+			model.run1();
 		}
+		
+		if(e.getSource() == buttonTick100) {
+			model.run100();
+
+		} 
+	
+		if(e.getSource() == start) {
+			model.start();
+		} 
+	
+		if(e.getSource() == stop) {
+			model.stop();
+		} 
 	}
 }
