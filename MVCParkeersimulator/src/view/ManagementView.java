@@ -7,23 +7,23 @@ import model.Model;
 
 public class ManagementView extends AbstractView{
 	private JLabel dagOmzetLabel, verwachtOmzetLabel;
-	private JLabel[] dagLabel;
+	private JLabel dagLabel[]= new JLabel[model.howmanydays];
+	
 	public ManagementView(Model model){
 		super(model);
 		setSize(200,200);
-        //Creating labels to show the profits
-        
-
-		dagLabel = new JLabel[model.howmanydays];	
         dagOmzetLabel = new JLabel("dagomzet: ");
         verwachtOmzetLabel = new JLabel("Verwachte omzet");
 
         add(dagOmzetLabel);
-        for (int i = 0; i < model.howmanydays; i++){
-        add(dagLabel[i]);
-        }
         add(verwachtOmzetLabel);
 
+        for (int i = 0; i < model.howmanydays; i++){
+        	this.dagLabel[i] = new JLabel();
+        	add(dagLabel[i]);
+        }
+        
+        add(verwachtOmzetLabel);
 
         setVisible(true);
 	}
@@ -34,18 +34,11 @@ public class ManagementView extends AbstractView{
 		  for (int i = 0; i < model.howmanydays; i++){
 				dagOmzetdag[i] =  model.dailyearningdays[i];
 		  }
-
-	        String dagOmzetS = dagOmzet + "";
-	        String MaandagOmzet = "";
-	        for (int i = 0; i < model.howmanydays; i++){
-	        MaandagOmzet = dagOmzetdag[i] + "";
-	        	        }
 	        String VerwachteOmzet = model.stillToBeEarned() + "";
 	        
-
-	        dagOmzetLabel.setText("Dagomzet: "+dagOmzetS);
+	        dagOmzetLabel.setText("Dagomzet: "+dagOmzet);
 	        for (int i = 0; i < model.howmanydays; i++){
-	        dagLabel[i].setText("Omzet dag "+ i + ": "+MaandagOmzet);
+	        dagLabel[i].setText("Omzet dag "+ (i+1) + ": "+dagOmzetdag[i]);
 	        }
 
 	        verwachtOmzetLabel.setText("Nog niet betaald: "+VerwachteOmzet);
