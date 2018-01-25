@@ -42,7 +42,7 @@ public class Model extends AbstractModel implements Runnable {
     private int hour = 0;
     private int minute = 0;
 
-    private int tickPause = 0;
+    private int tickPause = 100;
 
     int weekDayArrivals= 100; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour
@@ -99,7 +99,6 @@ public class Model extends AbstractModel implements Runnable {
 	}
     
     public void tick() {
-    	System.out.println("Tick!");
 		try {
 			Thread.sleep(this.tickPause);
 		} catch (Exception e) {}
