@@ -33,7 +33,7 @@ public class PieView extends AbstractView{
 		
 		//System.out.println("empty: " + emptySpots + " | filled: " + filledSpots);
 		//g.drawString("PieView", 10, 10);
-		g.setColor(Color.GRAY);
+		g.setColor(Color.WHITE);
 		g.fillArc(0, 0, 160, 160, 90, (int) emptySpots);
 		g.setColor(Color.RED);
 		g.fillArc(0, 0, 160, 160, (int) emptySpots + 90, (int) filledSpots);

@@ -27,7 +27,7 @@ public class Simulator extends JFrame{
 	private PieView pieview;
 	private Controller controller;
 	private MenuBarView menubarview;
-	//private ManagementView managementview;
+	private ManagementView managementview;
 	//private SettingsView settingsview;
 	GridLayout experimentLayout = new GridLayout(0,2);
 	private JPanel contentPane;
@@ -108,6 +108,12 @@ public class Simulator extends JFrame{
 		contentPane.add(buttonPanel);
 		model.start();
 		
+		JPanel managementview = new ManagementView(model);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, managementview, 10, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, managementview, -876, SpringLayout.EAST, contentPane);
+
+
+		contentPane.add(managementview);
 		//screen.setSize(1000, 800);
 //		screen.setVisible(true);
 //		screen.setTitle("Parkeersimulator");

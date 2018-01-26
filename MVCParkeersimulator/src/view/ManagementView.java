@@ -29,7 +29,7 @@ public class ManagementView extends AbstractView{
 	}
 	
 	public void paintComponent(Graphics g) {
-//		super.paintComponent(g);
+		super.paintComponent(g);
 		  int dagOmzet = model.dailyearnings;
 		  int[] dagOmzetdag = new int[model.howmanydays];
 		  for (int i = 0; i < model.howmanydays; i++){
