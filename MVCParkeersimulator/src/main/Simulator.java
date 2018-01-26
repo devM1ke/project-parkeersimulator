@@ -110,7 +110,7 @@ public class Simulator extends JFrame{
 		
 		JPanel managementview = new ManagementView(model);
 		sl_contentPane.putConstraint(SpringLayout.NORTH, managementview, 10, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, managementview, -876, SpringLayout.EAST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, managementview, -276, SpringLayout.EAST, contentPane);
 
 
 		contentPane.add(managementview);

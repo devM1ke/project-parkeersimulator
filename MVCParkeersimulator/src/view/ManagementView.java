@@ -36,8 +36,8 @@ public class ManagementView extends AbstractView{
 				dagOmzetdag[i] =  model.dailyearningdays[i];
 		  }
 	        String VerwachteOmzet = model.stillToBeEarned() + "";
-	        
-	        dagOmzetLabel.setText("Dagomzet: "+dagOmzet);
+	 
+	        dagOmzetLabel.setText("Dagomzet: "+dagOmzet );
 	        for (int i = 0; i < model.howmanydays; i++){
 	        dagLabel[i].setText("Omzet dag "+ (i+1) + ": "+dagOmzetdag[i]);
 	        }
