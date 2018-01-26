@@ -1,19 +1,26 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
+import javax.swing.*;
 import model.Model;
 
 public class PieView extends AbstractView{
 	private static final long serialVersionUID = 1L;
-
+	private Model model;
+	private Dimension size;
 	public PieView(Model model) {
 		super(model);
-		setSize(200, 200);
+		this.model = model;
+		
+		size = new Dimension(0,0);
+		//setSize(200, 200);
 	}
-
+	public Dimension getPreferredSize() {
+	    return new Dimension(200, 200);
+	}
 	public void paintComponent(Graphics g) {
 		//amount of empty spots
+		super.paintComponent(g);
 		double emptySpots=getModel().getNumberOfOpenSpots();
 		
 		double totalSpots = getModel().getTotalParkingSpots();
@@ -24,13 +31,15 @@ public class PieView extends AbstractView{
 		emptySpots =Math.round(emptySpots);
 		filledSpots = Math.round(filledSpots);
 		
-		//System.out.println("empty: " + emptySpots + " | filled: " + filledSpots);
-		
+		System.out.println("empty: " + emptySpots + " | filled: " + filledSpots);
+		g.drawString("PieView", 10, 10);
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 500, 200, 200);
 		g.setColor(Color.GRAY);
 		g.fillArc(10, 510, 180, 180, 90, (int) emptySpots);
 		g.setColor(Color.RED);
 		g.fillArc(10, 510, 180, 180, (int) emptySpots + 90, (int) filledSpots);
+		//g.fillArc(10, 510, 180, 180, 90, 90);
+		repaint();
 	}	
 }

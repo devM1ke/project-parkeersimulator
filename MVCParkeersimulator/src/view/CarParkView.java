@@ -31,7 +31,9 @@ public Dimension getPreferredSize() {
  * Overridden. The car park view component needs to be redisplayed. Copy the
  * internal image to screen.
  */
-public void paintComponent(Graphics g) {
+@Override
+protected void paintComponent(Graphics g) {
+	super.paintComponent(g);
     if (carParkImage == null) {
         return;
     }
