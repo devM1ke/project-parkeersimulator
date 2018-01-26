@@ -36,7 +36,7 @@ public class Simulator extends JFrame{
 		model = new Model();
 		//screen = new JFrame();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 825, 510);
+		setBounds(100, 100, 1300, 600);
 		setVisible(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -88,6 +88,8 @@ public class Simulator extends JFrame{
 		contentPane.add(lblLegePlekken);
 		
 		JSlider slider = new JSlider();
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, slider, -33, SpringLayout.SOUTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, slider, -10, SpringLayout.EAST, contentPane);
 		slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				JSlider source = (JSlider)e.getSource();
@@ -95,16 +97,14 @@ public class Simulator extends JFrame{
 			}
 		});
 		slider.setValue(100);
-		sl_contentPane.putConstraint(SpringLayout.EAST, pieview, -423, SpringLayout.WEST, slider);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, slider, 0, SpringLayout.SOUTH, pieview);
-		sl_contentPane.putConstraint(SpringLayout.EAST, slider, -10, SpringLayout.EAST, contentPane);
 		contentPane.add(slider);
 		
 		JPanel buttonPanel = new Controller(model);
+		sl_contentPane.putConstraint(SpringLayout.WEST, buttonPanel, 645, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, pieview, -467, SpringLayout.WEST, buttonPanel);
 		sl_contentPane.putConstraint(SpringLayout.NORTH, buttonPanel, 39, SpringLayout.SOUTH, carparkview);
-		sl_contentPane.putConstraint(SpringLayout.WEST, buttonPanel, 11, SpringLayout.EAST, pieview);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, buttonPanel, 337, SpringLayout.NORTH, lblBezettePlaatsen);
-		sl_contentPane.putConstraint(SpringLayout.EAST, buttonPanel, 271, SpringLayout.WEST, carparkview);
+		sl_contentPane.putConstraint(SpringLayout.EAST, buttonPanel, -825, SpringLayout.EAST, contentPane);
 		contentPane.add(buttonPanel);
 		model.start();
 		
