@@ -36,7 +36,7 @@ public class Simulator extends JFrame{
 		model = new Model();
 		//screen = new JFrame();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1300, 600);
+		setBounds(100, 100, 1500, 600);
 		setVisible(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -110,7 +110,7 @@ public class Simulator extends JFrame{
 		
 		JPanel managementview = new ManagementView(model);
 		sl_contentPane.putConstraint(SpringLayout.NORTH, managementview, 10, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, managementview, -276, SpringLayout.EAST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, managementview, -400, SpringLayout.EAST, contentPane);
 
 
 		contentPane.add(managementview);
