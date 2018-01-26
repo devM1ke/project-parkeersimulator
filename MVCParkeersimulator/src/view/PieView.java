@@ -31,15 +31,14 @@ public class PieView extends AbstractView{
 		emptySpots =Math.round(emptySpots);
 		filledSpots = Math.round(filledSpots);
 		
-		System.out.println("empty: " + emptySpots + " | filled: " + filledSpots);
-		g.drawString("PieView", 10, 10);
-		g.setColor(Color.WHITE);
-		g.fillRect(0, 500, 200, 200);
+		//System.out.println("empty: " + emptySpots + " | filled: " + filledSpots);
+		//g.drawString("PieView", 10, 10);
 		g.setColor(Color.GRAY);
-		g.fillArc(10, 510, 180, 180, 90, (int) emptySpots);
+		g.fillArc(0, 0, 160, 160, 90, (int) emptySpots);
 		g.setColor(Color.RED);
-		g.fillArc(10, 510, 180, 180, (int) emptySpots + 90, (int) filledSpots);
+		g.fillArc(0, 0, 160, 160, (int) emptySpots + 90, (int) filledSpots);
 		//g.fillArc(10, 510, 180, 180, 90, 90);
+		
 		repaint();
 	}	
 }

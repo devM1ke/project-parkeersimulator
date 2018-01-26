@@ -1,43 +1,47 @@
-package main;
+package view;
 
-import model.Model;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.*;
+import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ChangeEvent;
+import javax.swing.JButton;
+import javax.swing.SpringLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JSplitPane;
+import javax.swing.JSlider;
+import javax.swing.JToolBar;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
-import controller.Controller;
-import view.SimulatorView;
-import view.CarParkView;
-import view.JFrame;
-import view.MenuBarView;
-import view.PieView;
-import view.SettingsView;
-import view.ManagementView; 
+public class JFrame extends javax.swing.JFrame {
 
-public class Simulator extends JFrame{
-	private Model model;
-	private JFrame screen;
-	private CarParkView carparkview;
-	private PieView pieview;
-	private Controller controller;
-	private MenuBarView menubarview;
-	//private ManagementView managementview;
-	//private SettingsView settingsview;
-	GridLayout experimentLayout = new GridLayout(0,2);
 	private JPanel contentPane;
-	
-	public Simulator() {
-		model = new Model();
-		//screen = new JFrame();
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					JFrame frame = new JFrame();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public JFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 825, 510);
-		setVisible(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -49,15 +53,15 @@ public class Simulator extends JFrame{
 		sl_contentPane.putConstraint(SpringLayout.EAST, btnNewButton_2, 0, SpringLayout.EAST, contentPane);
 		contentPane.add(btnNewButton_2);
 		
-		JPanel carparkview = new CarParkView(model);
+		JPanel carparkview = new JPanel();
 		sl_contentPane.putConstraint(SpringLayout.NORTH, carparkview, 10, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, carparkview, -176, SpringLayout.SOUTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.EAST, carparkview, -6, SpringLayout.WEST, btnNewButton_2);
 		contentPane.add(carparkview);
 		
-		JPanel pieview = new PieView(model);
-		sl_contentPane.putConstraint(SpringLayout.NORTH, pieview, 0, SpringLayout.SOUTH, carparkview);
-		sl_contentPane.putConstraint(SpringLayout.WEST, pieview, 0, SpringLayout.WEST, contentPane);
+		JPanel pieview = new JPanel();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, pieview, 34, SpringLayout.SOUTH, carparkview);
+		sl_contentPane.putConstraint(SpringLayout.WEST, pieview, 10, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, pieview, -10, SpringLayout.SOUTH, contentPane);
 		contentPane.add(pieview);
 		
@@ -89,47 +93,20 @@ public class Simulator extends JFrame{
 		
 		JSlider slider = new JSlider();
 		slider.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				JSlider source = (JSlider)e.getSource();
-				model.setTickPause(source.getValue());
+			public void stateChanged(ChangeEvent arg0) {
 			}
 		});
-		slider.setValue(100);
+		slider.setValue(0);
 		sl_contentPane.putConstraint(SpringLayout.EAST, pieview, -423, SpringLayout.WEST, slider);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, slider, 0, SpringLayout.SOUTH, pieview);
 		sl_contentPane.putConstraint(SpringLayout.EAST, slider, -10, SpringLayout.EAST, contentPane);
 		contentPane.add(slider);
 		
-		JPanel buttonPanel = new Controller(model);
+		JPanel buttonPanel = new JPanel();
 		sl_contentPane.putConstraint(SpringLayout.NORTH, buttonPanel, 39, SpringLayout.SOUTH, carparkview);
 		sl_contentPane.putConstraint(SpringLayout.WEST, buttonPanel, 11, SpringLayout.EAST, pieview);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, buttonPanel, 337, SpringLayout.NORTH, lblBezettePlaatsen);
 		sl_contentPane.putConstraint(SpringLayout.EAST, buttonPanel, 271, SpringLayout.WEST, carparkview);
 		contentPane.add(buttonPanel);
-		model.start();
-		
-		//screen.setSize(1000, 800);
-//		screen.setVisible(true);
-//		screen.setTitle("Parkeersimulator");
-//		screen.setLayout(new FlowLayout());
-//		carparkview = new CarParkView(model);
-//		//carparkview.setLayout(new BoxLayout(carparkview, BoxLayout.PAGE_AXIS));
-//		pieview = new PieView(model);
-//		//pieview.setLayout(new BoxLayout(pieview, BoxLayout.X_AXIS));
-		
-//		//controller.setLayout(new BoxLayout(controller, BoxLayout.X_AXIS));
-		menubarview = new MenuBarView(model);
-		setJMenuBar(menubarview.CreateMenuBar());
-//		screen.add(pieview);
-//		screen.add(carparkview);
-		
-//		
-//		screen.revalidate();
-//		screen.repaint();
-//		
-//		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		screen.pack();
-//		screen.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		//screen.setVisible(true);
 	}
 }

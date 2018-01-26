@@ -18,7 +18,7 @@ public class Controller extends AbstractController implements ActionListener {
 		super(model);
 		this.model=model;
 
-		setSize(50, 50);
+		//setSize(50, 50);
 		//initialize button with the actionlistener so it can peform somthing when the button is clicked
 		buttonTick1=new JButton("+1");
 		buttonTick1.addActionListener(this);
@@ -40,7 +40,7 @@ public class Controller extends AbstractController implements ActionListener {
 		start.setBounds(110,550,100,30);
 		stop.setBounds(310,550,100,30);
 
-		setVisible(true);
+		//setVisible(true);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
