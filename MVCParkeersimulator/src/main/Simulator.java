@@ -74,7 +74,7 @@ public class Simulator{
 		
 		
 		slider.setBounds(1050, 600, 100, 20);
-		managementview.setBounds(1000, 20, 150, 200);
+		managementview.setBounds(1000, 20, 175, 210);
 		carparkview.setBounds(150, 20, 800, 400);
 		pieview.setBounds(20, 470, 200, 200);
 		controller.setBounds(20, 20, 100, 150);
