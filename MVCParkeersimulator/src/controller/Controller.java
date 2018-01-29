@@ -40,7 +40,7 @@ public class Controller extends AbstractController implements ActionListener {
 		start.setBounds(200,0,100,30);
 		stop.setBounds(300,0,100,30);
 
-		setVisible(true);
+		//setVisible(true);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
