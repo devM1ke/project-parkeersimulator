@@ -34,12 +34,11 @@ public class Simulator{
 	private MenuBarView menubarview;
 	private ManagementView managementview;
 	private LegendView legendview;
-<<<<<<< HEAD
+
 	private QueueView queueview;
-	//private TimeView timeview;
-=======
+
 	private TimeView timeview;
->>>>>>> 90d0910c5c875e5b5594321163a05419847f6040
+
 	
 	public Simulator() {
 		model = new Model();
@@ -55,12 +54,10 @@ public class Simulator{
 		carparkview = new CarParkView(model);
 		managementview = new ManagementView(model);
 		legendview = new LegendView(model);
-<<<<<<< HEAD
 		queueview = new QueueView(model);
-		//timeview = new TimeView(model); 
-=======
+
 		timeview = new TimeView(model); 
->>>>>>> 90d0910c5c875e5b5594321163a05419847f6040
+
 		//legendview.setBackground(Color.BLACK);
 		
 		BarView chart = new BarView(model);
@@ -83,12 +80,10 @@ public class Simulator{
 		screen.getContentPane().add(carparkview);
 		screen.getContentPane().add(chart);
 		screen.getContentPane().add(legendview);
-<<<<<<< HEAD
+
 		screen.getContentPane().add(queueview);
-		//screen.getContentPane().add(timeview);
-=======
 		screen.getContentPane().add(timeview);
->>>>>>> 90d0910c5c875e5b5594321163a05419847f6040
+
 		
 		queueview.setBounds(1000, 300, 175, 210);
 		slider.setBounds(1050, 600, 100, 20);
