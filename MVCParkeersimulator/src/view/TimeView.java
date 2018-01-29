@@ -49,7 +49,8 @@ public class TimeView extends AbstractView {
     /**
      * Updating the date/time view
      */
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g){ 
+    	super.paintComponent(g);
         //Updating the date/time with every tick()
         day.setText("Day: " + model.getDay());
         time.setText("Hour: " + timeController.getTime());
