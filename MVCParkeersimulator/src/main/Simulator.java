@@ -56,6 +56,7 @@ public class Simulator{
 
 		
 		JSlider slider = new JSlider();
+		slider.setInverted(true);
 		slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				JSlider source = (JSlider)e.getSource();
