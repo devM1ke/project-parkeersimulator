@@ -368,9 +368,9 @@ public class Model extends AbstractModel implements Runnable {
     }
     
     private void carsArriving(){
-    	int numberOfCars=getNumberOfCars(weekDayArrivals, weekendArrivals);
+    	int numberOfCars=getNumberOfCars(weekDayArrivals, weekendArrivals, 0);
         addArrivingCars(numberOfCars, AD_HOC);    	
-    	numberOfCars=getNumberOfCars(weekDayPassArrivals, weekendPassArrivals);
+    	numberOfCars=getNumberOfCars(weekDayPassArrivals, weekendPassArrivals, 1);
         addArrivingCars(numberOfCars, PASS);    	
     }
 
@@ -428,55 +428,143 @@ public class Model extends AbstractModel implements Runnable {
     	}	
     }
     
-    private int getNumberOfCars(int weekDay, int weekend){
-        Random random = new Random();
+    private int getNumberOfCars(int weekDay, int weekend, int typeCar){
+        Random random = new Random();        
+        
         // Get the average number of cars that arrive per hour.
         int averageNumberOfCarsPerHour = day < 5
                 ? weekDay
                 : weekend;
-
-        //Calculate the number of cars that arrive this minute.
-        /*switch(day) {
-	    	case 0:{
+        
+        switch(day) {
+	    	case 0:
 	    		if(hour < 8 || hour > 18) { 
-		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 1);
+	    			switch(typeCar) {
+    				case 0:
+    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+    					break;
+    				case 1:
+    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
+    					break;
+	    			}
 		        }
-	    	}
-	    	case 1:{
+	    		break;
+	    	case 1:
 	    		if(hour < 8 || hour > 18) { 
-		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+	    			switch(typeCar) {
+    				case 0:
+    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+    					break;
+    				case 1:
+    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
+    					break;
+	    			}
 		        }
-	    	}
-	    	case 2:{
+	    		break;
+	    	case 2:
 	    		if(hour < 8 || hour > 18) { 
-		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+	    			switch(typeCar) {
+    				case 0:
+    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+    					break;
+    				case 1:
+    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
+    					break;
+	    			}
 		        }
-	    	}
-	    	case 3:{
-	    		if(hour < 8 || hour > 23) { 
-		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
-		        }
-	    		else if(hour > 18) {
-	    			averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 1.25);
+	    		break;
+	    	case 3:
+	    		if(hour < 8 || hour >= 21) { 
+	    			switch(typeCar) {
+    				case 0:
+    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+    					break;
+    				case 1:
+    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
+    					break;
+	    			}
 	    		}
-	    	}
-	    	case 4:{
-	    		if(hour < 8 || hour > 18) { 
-		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+	    		else if(hour > 18) {
+	    			switch(typeCar) {
+	    				case 0:
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 1.25);
+	    					break;
+	    				case 1:
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
+	    					break;
+	    			}
+	    			
+	    		}
+	    		break;
+	    	case 4:
+	    		if(hour < 8 || hour > 23) { 
+	    			switch(typeCar) {
+	    				case 0:
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+	    					break;
+	    				case 1:
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
+	    					break;
+		    			}
 		        }
-	    	}
-	    	case 5:{
+	    		else if(hour >= 18) {
+	    			switch(typeCar) {
+	    				case 0:
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 4);
+	    					break;
+	    				case 1:
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
+	    					break;
+		    		}
+	    		}
+	    		break;
+	    	case 5:
 	    		if(hour < 8 || hour > 18) { 
-		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+	    			switch(typeCar) {
+    				case 0:
+    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+    					break;
+    				case 1:
+    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
+    					break;
+	    			}
 		        }
-	    	}
-	    	case 6:{
+	    		else if(hour >= 18) {
+	    			switch(typeCar) {
+	    				case 0:
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 2);
+	    					break;
+	    				case 1:
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
+	    					break;
+		    		}
+	    		}
+	    		break;
+	    	case 6:
 	    		if(hour < 8 || hour > 18) { 
-		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+	    			switch(typeCar) {
+    				case 0:
+    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+    					break;
+    				case 1:
+    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
+    					break;
+	    			}
 		        }
-	    	}
+	    		else if(hour >= 12) {
+	    			switch(typeCar) {
+	    				case 0:
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 4);
+	    					break;
+	    				case 1:
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 1);
+	    					break;
+		    		}
+	    		}
+	    		break;
         }
-        */
+        
+        //Calculate the number of cars that arrive this minute.
         double standardDeviation = averageNumberOfCarsPerHour * 0.3;
         double numberOfCarsPerHour = averageNumberOfCarsPerHour + random.nextGaussian() * standardDeviation;
         double numberOfCarsPerMinute = numberOfCarsPerHour / 60;

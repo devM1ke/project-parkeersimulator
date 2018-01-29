@@ -17,6 +17,7 @@ import view.SimulatorView;
 import view.BarView;
 import view.CarParkView;
 import view.JFrame;
+import view.LegendView;
 import view.MenuBarView;
 import view.PieView;
 import view.SettingsView;
@@ -30,6 +31,7 @@ public class Simulator{
 	private Controller controller;
 	private MenuBarView menubarview;
 	private ManagementView managementview;
+	private LegendView legendview;
 	
 	public Simulator() {
 		model = new Model();
@@ -44,11 +46,12 @@ public class Simulator{
 		controller = new Controller(model);
 		carparkview = new CarParkView(model);
 		managementview = new ManagementView(model);
+		legendview = new LegendView(model);
+		//legendview.setBackground(Color.BLACK);
 		
 		BarView chart = new BarView(model);
 
 		
-		//carparkview.setBackground(Color.black);
 		JSlider slider = new JSlider();
 		slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
@@ -63,13 +66,17 @@ public class Simulator{
 		screen.getContentPane().add(controller);
 		screen.getContentPane().add(carparkview);
 		screen.getContentPane().add(chart);
+		screen.getContentPane().add(legendview);
 		
-		slider.setBounds(700, 650, 100, 20);
+		
+		slider.setBounds(1050, 600, 100, 20);
 		managementview.setBounds(1000, 20, 150, 200);
 		carparkview.setBounds(150, 20, 800, 400);
 		pieview.setBounds(20, 470, 200, 200);
-		controller.setBounds(20, 20, 100, 200);
+		controller.setBounds(20, 20, 100, 150);
 		chart.setBounds(250, 470, 150, 150);
+		legendview.setBounds(0, 200, 150, 50);
+		
 		
 		
 		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
