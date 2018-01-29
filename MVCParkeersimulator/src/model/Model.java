@@ -109,6 +109,7 @@ public class Model extends AbstractModel implements Runnable {
     	handleExit();
     	notifyViews();
     	handleEntrance();
+    	getTypeCar();
     	
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -628,15 +629,15 @@ public class Model extends AbstractModel implements Runnable {
                 	if(color==Color.orange ){
                 		oranje = oranje + 1;
                 	}
-                	if(color==Color.white ){
-                		wit = wit + 1;
-                	}
+                	
                 }
             }
     	}
+    	
 		color[0] = blauw;
 		color[1] = rood;
 		color[2] = oranje;
-		color[3] = wit;
+		color[3] = getNumberOfOpenSpots();
+		
     }
 }

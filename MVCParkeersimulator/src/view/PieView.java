@@ -22,7 +22,7 @@ public class PieView extends AbstractView{
 		//amount of empty spots
 		super.paintComponent(g);
 
-		model.getTypeCar();
+
 		double totalSpots = getModel().getTotalParkingSpots();
 
 		double blueSpots = model.color[0];
