@@ -49,7 +49,8 @@ public class Model extends AbstractModel implements Runnable {
     int weekendArrivals = 200; // average number of arriving cars per hour
     int weekDayPassArrivals= 50; // average number of arriving cars per hour
     int weekendPassArrivals = 5; // average number of arriving cars per hour
-
+    double number = 0;
+    
     int enterSpeed = 20; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
     int exitSpeed = 5; // number of cars that can leave per minute
@@ -428,22 +429,68 @@ public class Model extends AbstractModel implements Runnable {
     
     private int getNumberOfCars(int weekDay, int weekend){
         Random random = new Random();
-
         // Get the average number of cars that arrive per hour.
         int averageNumberOfCarsPerHour = day < 5
                 ? weekDay
                 : weekend;
 
-        // Calculate the number of cars that arrive this minute.
-        /*
-         * if(hour < 8 || hour > 18) {
-         
-        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour / 10);
+        //Calculate the number of cars that arrive this minute.
+        switch(day) {
+	    	case 0:{
+	    		if(hour < 8 || hour > 18) { 
+		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+		        }
+	    	}
+	    	case 1:{
+	    		if(hour < 8 || hour > 18) { 
+		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+		        }
+	    	}
+	    	case 2:{
+	    		if(hour < 8 || hour > 18) { 
+		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+		        }
+	    	}
+	    	case 3:{
+	    		if(hour < 8 || hour > 23) { 
+		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+		        }
+	    		else if(hour > 18) {
+	    			averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 1.25);
+	    		}
+	    	}
+	    	case 4:{
+	    		if(hour < 8 || hour > 18) { 
+		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+		        }
+	    	}
+	    	case 5:{
+	    		if(hour < 8 || hour > 18) { 
+		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+		        }
+	    	}
+	    	case 6:{
+	    		if(hour < 8 || hour > 18) { 
+		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+		        }
+	    	}
         }
-        */
         double standardDeviation = averageNumberOfCarsPerHour * 0.3;
         double numberOfCarsPerHour = averageNumberOfCarsPerHour + random.nextGaussian() * standardDeviation;
-        return (int)Math.round(numberOfCarsPerHour / 60);	
+        double numberOfCarsPerMinute = numberOfCarsPerHour / 60;
+        int roundNumberOfCarsPerMinute = (int)Math.round(numberOfCarsPerMinute);
+        if(roundNumberOfCarsPerMinute == 0) {
+        	number = number + numberOfCarsPerMinute;
+        	if(number > 1) {
+        		int carNumber = 1;
+        		number = 0;
+        		return carNumber;
+        	}
+        	else return roundNumberOfCarsPerMinute;
+        }
+        else {
+        	return roundNumberOfCarsPerMinute;
+        }        
     }
     
     private void addArrivingCars(int numberOfCars, String type){
