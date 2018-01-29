@@ -435,6 +435,11 @@ public class Model extends AbstractModel implements Runnable {
                 ? weekDay
                 : weekend;
         
+        /*
+        change the number of incoming cars based on the day and time of day
+        day 0 is monday, day 1 is tuesday, day 2 is wednesday, day 3 is thursday,
+        day 4 is friday, day 5 is saturday, day 6 is sunday.
+        */
         switch(day) {
 	    	case 0:
 	    		if(hour < 8 || hour > 18) { 
@@ -512,13 +517,13 @@ public class Model extends AbstractModel implements Runnable {
 	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 4);
 	    					break;
 	    				case 1:
-	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.2);
 	    					break;
 		    		}
 	    		}
 	    		break;
 	    	case 5:
-	    		if(hour < 8 || hour > 18) { 
+	    		if(hour < 8 || hour > 23) { 
 	    			switch(typeCar) {
     				case 0:
     					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
@@ -534,7 +539,7 @@ public class Model extends AbstractModel implements Runnable {
 	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 2);
 	    					break;
 	    				case 1:
-	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 2);
 	    					break;
 		    		}
 	    		}
@@ -553,17 +558,17 @@ public class Model extends AbstractModel implements Runnable {
 	    		else if(hour >= 12) {
 	    			switch(typeCar) {
 	    				case 0:
-	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 4);
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 2);
 	    					break;
 	    				case 1:
-	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 1);
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 2);
 	    					break;
 		    		}
 	    		}
 	    		break;
         }
         
-        //Calculate the number of cars that arrive this minute.
+        //Calculate the number of cars that arrive per minute.
         double standardDeviation = averageNumberOfCarsPerHour * 0.3;
         double numberOfCarsPerHour = averageNumberOfCarsPerHour + random.nextGaussian() * standardDeviation;
         double numberOfCarsPerMinute = numberOfCarsPerHour / 60;
