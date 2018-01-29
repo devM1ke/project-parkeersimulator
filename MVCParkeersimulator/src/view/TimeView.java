@@ -15,8 +15,9 @@ import java.awt.*;
  */
 public class TimeView extends AbstractView {
 
-    private TimeController timeController;
-    private JLabel month,week,day,time;
+    
+	private TimeController timeController;
+    private JLabel day,time;
     private JPanel Time;
 
     /**
@@ -24,30 +25,22 @@ public class TimeView extends AbstractView {
      */
     public TimeView(Model model){
     	super(model);
-
+    	timeController = new TimeController(model);
         // Getting the current Day, Week and Month
-        String dayString = "Day: "+timeController.getDay();
-        String weekString = "Week: "+timeController.getWeek();
-        String monthString = "Month: "+timeController.getMonth();
+        String dayString = "Day: "+model.getDay();
 
 
         setSize(250, 50);
-        setLayout(new GridLayout(1,3));
 
         //Creating the Time panel and the date/time JLabels
-        Time = new JPanel(new GridLayout(1,4));
-        month = new JLabel(monthString);
-        week = new JLabel(weekString);
         day = new JLabel(dayString);
         time = new JLabel(timeController.getTime());
+        
 
         //Adding the date/time labels to the Time panel
-        Time.add(month);
-        Time.add(week);
-        Time.add(day);
-        Time.add(time);
-        
-        add(Time);
+
+        add(day);
+        add(time);
 
 
         setVisible(true);
@@ -56,12 +49,11 @@ public class TimeView extends AbstractView {
     /**
      * Updating the date/time view
      */
-    public void updateView(){
+    public void paintComponent(Graphics g){
         //Updating the date/time with every tick()
-        day.setText("Day: " + timeController.getDay());
-        week.setText("Week: " + timeController.getWeek());
-        month.setText("Month: " + timeController.getMonth());
+        day.setText("Day: " + model.getDay());
         time.setText("Hour: " + timeController.getTime());
+        System.out.println(timeController.getTime());
         repaint();
     }
 
