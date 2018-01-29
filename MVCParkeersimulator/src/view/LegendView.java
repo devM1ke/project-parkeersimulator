@@ -25,7 +25,7 @@ public class LegendView extends AbstractView{
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		drawLabel(g, "Lege plekken: ", Color.WHITE);
-		drawLabel(g, "non-abbo bezet: ", Color.RED);
+		drawLabel(g, "non-abbo bezet: ", Color.WHITE);
 	}
 	private void drawLabel(Graphics g, String label, Color color) {
 		JLabel carLabel = new JLabel(label);

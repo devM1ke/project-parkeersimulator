@@ -33,7 +33,7 @@ public class BarView extends AbstractView{
 		orangeBar = Math.round(orangeBar);
 		blueBar = Math.round(blueBar);
 		whiteBar = Math.round(whiteBar);
-		System.out.println(whiteBar);
+		//System.out.println(whiteBar);
 		bars.put(Color.red, (int)redBar);
 		bars.put(Color.orange, (int)orangeBar);
 		bars.put(Color.blue, (int)blueBar);
@@ -51,6 +51,8 @@ public class BarView extends AbstractView{
 		for (Color color : bars.keySet()){
 			int value = bars.get(color);
 			int height = (int)((getHeight()) * ((double)value / max));
+			//System.out.println(value);
+			height = value;
 			g.setColor(color);
 			g.fillRect(x, getHeight() - height, width, height);
 			g.setColor(Color.black);
