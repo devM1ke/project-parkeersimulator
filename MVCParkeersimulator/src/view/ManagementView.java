@@ -16,11 +16,13 @@ public class ManagementView extends AbstractView{
         verwachtOmzetLabel = new JLabel("Verwachte omzet");
 
         add(dagOmzetLabel);
+        setBounds(0, 10, 200, 10);
         add(verwachtOmzetLabel);
 
         for (int i = 0; i < model.howmanydays; i++){
         	this.dagLabel[i] = new JLabel();
         	add(dagLabel[i]);
+        	dagLabel[i].setBounds(0, 100, 200, 10);
         }
         
         //add(verwachtOmzetLabel);

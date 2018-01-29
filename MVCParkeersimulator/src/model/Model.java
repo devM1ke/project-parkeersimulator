@@ -129,6 +129,46 @@ public class Model extends AbstractModel implements Runnable {
     	this.numberOfPlaces = numberOfPlaces;
     }
     
+    public int getWeekDayArrivals()
+    {
+    	return this.weekDayArrivals;
+    }
+    
+    public void setWeekDayArrivals(int weekDayArrivals)
+    {
+    	this.weekDayArrivals = weekDayArrivals;
+    }
+    
+    public int getWeekendArrivals()
+    {
+    	return this.weekendArrivals;
+    }
+    
+    public void setWeekendArrivals(int weekendArrivals)
+    {
+    	this.weekendArrivals = weekendArrivals;
+    }
+    
+    public int getWeekDayPassArrivals()
+    {
+    	return this.weekDayPassArrivals;
+    }
+    
+    public void setWeekDayPassArrivals(int weekDayPassArrivals)
+    {
+    	this.weekDayPassArrivals = weekDayPassArrivals;
+    }
+    
+    public int getWeekendPassArrivals()
+    {
+    	return this.weekendPassArrivals;
+    }
+    
+    public void setWeekendPassArrivals(int weekendPassArrivals)
+    {
+    	this.weekendPassArrivals = weekendPassArrivals;
+    }
+    
     public int getTickPause()
     {
         return this.tickPause;
@@ -182,6 +222,11 @@ public class Model extends AbstractModel implements Runnable {
 	
 	public int stillToBeEarned(){
 		return (getTotalParkingSpots()-getNumberOfOpenSpots())*price;
+	}
+	
+	public int getPrice() {
+		
+		return this.price;
 	}
 	
 	public void setPrice(int price){

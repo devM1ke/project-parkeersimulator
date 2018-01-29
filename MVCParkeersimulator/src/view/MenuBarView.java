@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.*;
 
+import view.SettingsView;
 import model.Model;
 
 import java.awt.event.ActionEvent;
@@ -37,7 +38,7 @@ public class MenuBarView extends AbstractView {
     }
 
 
-    private JMenuItem settings()
+   /* private JMenuItem settings()
     {
         JMenuItem settings = new JMenuItem("Settings");
         settings.addActionListener(new ActionListener() {
@@ -47,13 +48,23 @@ public class MenuBarView extends AbstractView {
             }
         });
         return settings;
-    }
-
+    }*/
+    
+    private JMenuItem settings()
+    {
+        JMenuItem settings = new JMenuItem("Settings");
+        settings.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SettingsView(model);
+            }
+        });
+        return settings;
+  }
+}
    /* private JMenuItem reset()
     {
    
       return reset();
     }*/
 
-
-}
