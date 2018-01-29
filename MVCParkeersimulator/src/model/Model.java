@@ -389,6 +389,12 @@ public class Model extends AbstractModel implements Runnable {
                 : weekend;
 
         // Calculate the number of cars that arrive this minute.
+        /*
+         * if(hour < 8 || hour > 18) {
+         
+        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour / 10);
+        }
+        */
         double standardDeviation = averageNumberOfCarsPerHour * 0.3;
         double numberOfCarsPerHour = averageNumberOfCarsPerHour + random.nextGaussian() * standardDeviation;
         return (int)Math.round(numberOfCarsPerHour / 60);	
