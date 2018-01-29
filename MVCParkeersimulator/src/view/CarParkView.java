@@ -18,7 +18,7 @@ public class CarParkView extends AbstractView {
 		this.model = model;
 		
 		size = new Dimension(0,0);
-		//setSize(800,500);
+		setSize(800,400);
 		setVisible(true);
 	 }
 /**
