@@ -46,10 +46,7 @@ public class Simulator{
 		managementview = new ManagementView(model);
 		
 		BarView chart = new BarView(model);
-		chart.addBar(Color.red, 100);
-		chart.addBar(Color.green, 8);
-		chart.addBar(Color.blue, 54);
-		chart.addBar(Color.black, 23);  
+
 		
 		//carparkview.setBackground(Color.black);
 		JSlider slider = new JSlider();
