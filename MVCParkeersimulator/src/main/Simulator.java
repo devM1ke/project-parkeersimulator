@@ -81,8 +81,13 @@ public class Simulator{
 		pieview.setBounds(20, 470, 200, 200);
 		controller.setBounds(20, 20, 100, 150);
 		chart.setBounds(250, 470, 150, 150);
+<<<<<<< HEAD
 		legendview.setBounds(0, 200, 150, 50);
 		timeview.setBounds(550, 0, 150,50);
+=======
+		legendview.setBounds(0, 200, 150, 90);
+		//timeview.setBounds(600, 10, 150,50);
+>>>>>>> 174cb91640be2ae03029ebbd639026572a51113d
 		
 		
 		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
