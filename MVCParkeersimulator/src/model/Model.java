@@ -20,6 +20,7 @@ public class Model extends AbstractModel implements Runnable {
 	public int howmanydays = 7;
 	public int[] dailyearningdays;
 	public int dailyearnings = 0;
+	public int[] color = new int[4];
 	
 	private int numberOfFloors = 3;
     private int numberOfRows = 6;
@@ -389,6 +390,12 @@ public class Model extends AbstractModel implements Runnable {
                 : weekend;
 
         // Calculate the number of cars that arrive this minute.
+        /*
+         * if(hour < 8 || hour > 18) {
+         
+        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour / 10);
+        }
+        */
         double standardDeviation = averageNumberOfCarsPerHour * 0.3;
         double numberOfCarsPerHour = averageNumberOfCarsPerHour + random.nextGaussian() * standardDeviation;
         return (int)Math.round(numberOfCarsPerHour / 60);	
@@ -413,5 +420,37 @@ public class Model extends AbstractModel implements Runnable {
     private void carLeavesSpot(Car car){
     	removeCarAt(car.getLocation());
         exitCarQueue.addCar(car);
+    }
+
+    public void getTypeCar(){
+    	int blauw = 0;
+    	int wit = 0;
+    	int rood = 0;
+    	int oranje = 0;
+    for(int floor = 0; floor < getNumberOfFloors(); floor++) {	
+        for(int row = 0; row < getNumberOfRows(); row++) {
+            for(int place = 0; place < getNumberOfPlaces(); place++) {
+                Location location = getLocationManager().getLocation(floor, row, place);
+                Car car = getCarAt(location);
+                Color color = car == null ? Color.white : car.getColor();
+                	if(color==Color.blue ){
+                		blauw = blauw + 1;
+                	}
+                	if(color==Color.red ){
+                		rood = rood + 1;
+                	}
+                	if(color==Color.orange ){
+                		oranje = oranje + 1;
+                	}
+                	if(color==Color.white ){
+                		wit = wit + 1;
+                	}
+                }
+            }
+    	}
+		color[0] = blauw;
+		color[1] = rood;
+		color[2] = oranje;
+		color[3] = wit;
     }
 }
