@@ -21,6 +21,7 @@ import view.JFrame;
 import view.LegendView;
 import view.MenuBarView;
 import view.PieView;
+import view.QueueView;
 import view.SettingsView;
 import view.ManagementView; 
 
@@ -33,7 +34,11 @@ public class Simulator{
 	private MenuBarView menubarview;
 	private ManagementView managementview;
 	private LegendView legendview;
-	//private TimeView timeview;
+
+	private QueueView queueview;
+
+	private TimeView timeview;
+
 	
 	public Simulator() {
 		model = new Model();
@@ -49,7 +54,10 @@ public class Simulator{
 		carparkview = new CarParkView(model);
 		managementview = new ManagementView(model);
 		legendview = new LegendView(model);
-		//timeview = new TimeView(model); 
+		queueview = new QueueView(model);
+
+		timeview = new TimeView(model); 
+
 		//legendview.setBackground(Color.BLACK);
 		
 		BarView chart = new BarView(model);
@@ -59,10 +67,12 @@ public class Simulator{
 		slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				JSlider source = (JSlider)e.getSource();
-				model.setTickPause(source.getValue());
+				int i = source.getValue();
+				i = i * -1 + 100;
+				model.setTickPause(i);
 			}
 		});
-		slider.setValue(100);
+		slider.setValue(1);
 		screen.getContentPane().add(slider);
 		screen.getContentPane().add(managementview);
 		screen.getContentPane().add(pieview);
@@ -70,17 +80,22 @@ public class Simulator{
 		screen.getContentPane().add(carparkview);
 		screen.getContentPane().add(chart);
 		screen.getContentPane().add(legendview);
-		//screen.getContentPane().add(timeview);
+
+		screen.getContentPane().add(queueview);
+		screen.getContentPane().add(timeview);
+
 		
-		
+		queueview.setBounds(1000, 300, 175, 210);
 		slider.setBounds(1050, 600, 100, 20);
 		managementview.setBounds(1000, 20, 175, 210);
 		carparkview.setBounds(150, 20, 800, 400);
 		pieview.setBounds(20, 470, 200, 200);
 		controller.setBounds(20, 20, 100, 150);
 		chart.setBounds(250, 470, 150, 150);
-		legendview.setBounds(0, 200, 150, 50);
-		//timeview.setBounds(600, 10, 150,50);
+		legendview.setBounds(0, 200, 150, 90);
+		timeview.setBounds(550, 0, 150,50);
+
+
 		
 		
 		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

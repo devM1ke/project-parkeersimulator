@@ -39,9 +39,9 @@ public class Model extends AbstractModel implements Runnable {
     private SimulatorView simulatorView;
     private LocationManager locationManager;
 
-    private int day = 0;
-    private int hour = 0;
-    private int minute = 0;
+    public int day = 0;
+    public int hour = 0;
+    public int minute = 0;
 
     private int tickPause = 100;
 
@@ -640,4 +640,17 @@ public class Model extends AbstractModel implements Runnable {
 		color[3] = getNumberOfOpenSpots();
 		
     }
+    public int getSizeEntranceCarQueue(){
+    	return entranceCarQueue.carsInQueue();
+    }
+    public int getSizeEntrancePassQueue(){
+    	return entrancePassQueue.carsInQueue();
+    }
+    public int getSizeExitCarQueue(){
+    	return exitCarQueue.carsInQueue();
+    }
+    public int getSizePaymentCarQueue(){
+    	return paymentCarQueue.carsInQueue();
+    }
+
 }

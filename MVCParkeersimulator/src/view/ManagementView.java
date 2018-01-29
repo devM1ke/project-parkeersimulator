@@ -16,6 +16,7 @@ public class ManagementView extends AbstractView{
         verwachtOmzetLabel = new JLabel("Verwachte omzet");
         weekOmzetLabel = new JLabel("Huidige weekomzet:");
 
+
         add(dagOmzetLabel);
         setBounds(0, 10, 200, 10);
         add(verwachtOmzetLabel);
