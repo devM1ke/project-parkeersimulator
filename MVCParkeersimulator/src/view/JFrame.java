@@ -15,6 +15,7 @@ import javax.swing.JSlider;
 import javax.swing.JToolBar;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import javax.swing.SwingConstants;
 
 public class JFrame extends javax.swing.JFrame {
 

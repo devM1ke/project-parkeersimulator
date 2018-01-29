@@ -35,12 +35,12 @@ public class Controller extends AbstractController implements ActionListener {
 		add(start);
 		add(stop);
 		
-		buttonTick1.setBounds(510,550,100,30);
-		buttonTick100.setBounds(710,550,100,30);
-		start.setBounds(110,550,100,30);
-		stop.setBounds(310,550,100,30);
+		buttonTick1.setBounds(0,0,100,30);
+		buttonTick100.setBounds(100,0,100,30);
+		start.setBounds(200,0,100,30);
+		stop.setBounds(300,0,100,30);
 
-		//setVisible(true);
+		setVisible(true);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
