@@ -435,10 +435,10 @@ public class Model extends AbstractModel implements Runnable {
                 : weekend;
 
         //Calculate the number of cars that arrive this minute.
-        switch(day) {
+        /*switch(day) {
 	    	case 0:{
 	    		if(hour < 8 || hour > 18) { 
-		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 1);
 		        }
 	    	}
 	    	case 1:{
@@ -475,6 +475,7 @@ public class Model extends AbstractModel implements Runnable {
 		        }
 	    	}
         }
+        */
         double standardDeviation = averageNumberOfCarsPerHour * 0.3;
         double numberOfCarsPerHour = averageNumberOfCarsPerHour + random.nextGaussian() * standardDeviation;
         double numberOfCarsPerMinute = numberOfCarsPerHour / 60;
