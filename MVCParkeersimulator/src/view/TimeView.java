@@ -24,7 +24,7 @@ public class TimeView extends AbstractView {
      */
     public TimeView(Model model){
     	super(model);
-
+    	timeController = new TimeController(model);
         // Getting the current Day, Week and Month
         String dayString = "Day: "+timeController.getDay();
         String weekString = "Week: "+timeController.getWeek();
@@ -32,10 +32,10 @@ public class TimeView extends AbstractView {
 
 
         setSize(250, 50);
-        setLayout(new GridLayout(1,3));
+        setLayout(new GridLayout(1,4));
 
         //Creating the Time panel and the date/time JLabels
-        Time = new JPanel(new GridLayout(1,4));
+        Time = new JPanel(new GridLayout(5,1));
         month = new JLabel(monthString);
         week = new JLabel(weekString);
         day = new JLabel(dayString);
