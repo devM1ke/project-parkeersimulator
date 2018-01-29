@@ -435,8 +435,45 @@ public class Model extends AbstractModel implements Runnable {
                 : weekend;
 
         //Calculate the number of cars that arrive this minute.
-        if(hour < 8 || hour > 18) { 
-        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+        switch(day) {
+	    	case 0:{
+	    		if(hour < 8 || hour > 18) { 
+		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+		        }
+	    	}
+	    	case 1:{
+	    		if(hour < 8 || hour > 18) { 
+		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+		        }
+	    	}
+	    	case 2:{
+	    		if(hour < 8 || hour > 18) { 
+		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+		        }
+	    	}
+	    	case 3:{
+	    		if(hour < 8 || hour > 23) { 
+		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+		        }
+	    		else if(hour > 18) {
+	    			averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 1.25);
+	    		}
+	    	}
+	    	case 4:{
+	    		if(hour < 8 || hour > 18) { 
+		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+		        }
+	    	}
+	    	case 5:{
+	    		if(hour < 8 || hour > 18) { 
+		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+		        }
+	    	}
+	    	case 6:{
+	    		if(hour < 8 || hour > 18) { 
+		        	averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
+		        }
+	    	}
         }
         double standardDeviation = averageNumberOfCarsPerHour * 0.3;
         double numberOfCarsPerHour = averageNumberOfCarsPerHour + random.nextGaussian() * standardDeviation;
