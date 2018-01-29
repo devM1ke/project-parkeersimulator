@@ -127,6 +127,24 @@ public class Model extends AbstractModel implements Runnable {
     	this.numberOfPlaces = numberOfPlaces;
     }
     
+    public int getWeekDayArrivals()
+    {
+    	return this.weekDayArrivals;
+    }
+    
+    public int getWeekendArrivals()
+    {
+    	return this.weekendArrivals;
+    }
+    
+    public int getWeekDayPassArrivals()
+    {
+    	return this.weekDayPassArrivals;
+    }
+    public int getWeekendPassArrivals()
+    {
+    	return this.weekendPassArrivals;
+    }
     public int getTickPause()
     {
         return this.tickPause;
