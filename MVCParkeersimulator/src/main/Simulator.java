@@ -60,12 +60,10 @@ public class Simulator{
 		slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				JSlider source = (JSlider)e.getSource();
-				int i = source.getValue();
-				i = i * -1 + 100;
-				model.setTickPause(i);
+				model.setTickPause(source.getValue());
 			}
 		});
-		slider.setValue(1);
+		slider.setValue(100);
 		screen.getContentPane().add(slider);
 		screen.getContentPane().add(managementview);
 		screen.getContentPane().add(pieview);
