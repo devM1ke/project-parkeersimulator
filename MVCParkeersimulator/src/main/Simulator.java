@@ -21,6 +21,7 @@ import view.JFrame;
 import view.LegendView;
 import view.MenuBarView;
 import view.PieView;
+import view.QueueView;
 import view.SettingsView;
 import view.ManagementView; 
 
@@ -33,6 +34,7 @@ public class Simulator{
 	private MenuBarView menubarview;
 	private ManagementView managementview;
 	private LegendView legendview;
+	private QueueView queueview;
 	//private TimeView timeview;
 	
 	public Simulator() {
@@ -49,6 +51,7 @@ public class Simulator{
 		carparkview = new CarParkView(model);
 		managementview = new ManagementView(model);
 		legendview = new LegendView(model);
+		queueview = new QueueView(model);
 		//timeview = new TimeView(model); 
 		//legendview.setBackground(Color.BLACK);
 		
@@ -72,9 +75,10 @@ public class Simulator{
 		screen.getContentPane().add(carparkview);
 		screen.getContentPane().add(chart);
 		screen.getContentPane().add(legendview);
+		screen.getContentPane().add(queueview);
 		//screen.getContentPane().add(timeview);
 		
-		
+		queueview.setBounds(1000, 300, 175, 210);
 		slider.setBounds(1050, 600, 100, 20);
 		managementview.setBounds(1000, 20, 175, 210);
 		carparkview.setBounds(150, 20, 800, 400);

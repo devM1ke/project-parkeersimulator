@@ -640,4 +640,17 @@ public class Model extends AbstractModel implements Runnable {
 		color[3] = getNumberOfOpenSpots();
 		
     }
+    public int getSizeEntranceCarQueue(){
+    	return entranceCarQueue.carsInQueue();
+    }
+    public int getSizeEntrancePassQueue(){
+    	return entrancePassQueue.carsInQueue();
+    }
+    public int getSizeExitCarQueue(){
+    	return exitCarQueue.carsInQueue();
+    }
+    public int getSizePaymentCarQueue(){
+    	return paymentCarQueue.carsInQueue();
+    }
+
 }
