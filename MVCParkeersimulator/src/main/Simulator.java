@@ -13,6 +13,7 @@ import javax.swing.event.ChangeListener;
 
 import controller.Controller;
 import view.SimulatorView;
+import view.BarView;
 import view.CarParkView;
 import view.JFrame;
 import view.MenuBarView;
@@ -68,6 +69,12 @@ public class Simulator{
 		
 		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		screen.setVisible(true);
+		BarView chart = new BarView(model);
+		chart.addBar(Color.red, 100);
+		chart.addBar(Color.green, 8);
+		chart.addBar(Color.blue, 54);
+		chart.addBar(Color.black, 23);     
+		screen.getContentPane().add(chart);
 		//screen = new JFrame();
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		setBounds(100, 100, 1500, 600);
