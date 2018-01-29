@@ -59,7 +59,9 @@ public class Simulator{
 		slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				JSlider source = (JSlider)e.getSource();
-				model.setTickPause(source.getValue());
+				int i = source.getValue();
+				i = i * -1 + 100;
+				model.setTickPause(i);
 			}
 		});
 		slider.setValue(100);
