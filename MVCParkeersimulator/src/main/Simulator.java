@@ -81,7 +81,7 @@ public class Simulator{
 		pieview.setBounds(20, 470, 200, 200);
 		controller.setBounds(20, 20, 100, 150);
 		chart.setBounds(250, 470, 150, 150);
-		legendview.setBounds(0, 200, 150, 100);
+		legendview.setBounds(0, 200, 150, 90);
 		//timeview.setBounds(600, 10, 150,50);
 		
 		
