@@ -9,7 +9,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+/**
+ * Opties om gegevens te wijzigen
+ * 
+ * @author Mike
+ * @version 1
+ * @since 29-01-2018
+ */
 public class SettingsView extends AbstractView{
 
     private JFrame settingsFrame;

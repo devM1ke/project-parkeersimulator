@@ -14,6 +14,7 @@ import javax.swing.event.ChangeListener;
 
 import controller.Controller;
 import view.SimulatorView;
+import view.TimeView;
 import view.BarView;
 import view.CarParkView;
 import view.JFrame;
@@ -32,6 +33,7 @@ public class Simulator{
 	private MenuBarView menubarview;
 	private ManagementView managementview;
 	private LegendView legendview;
+	//private TimeView timeview;
 	
 	public Simulator() {
 		model = new Model();
@@ -47,6 +49,7 @@ public class Simulator{
 		carparkview = new CarParkView(model);
 		managementview = new ManagementView(model);
 		legendview = new LegendView(model);
+		//timeview = new TimeView(model); 
 		//legendview.setBackground(Color.BLACK);
 		
 		BarView chart = new BarView(model);
@@ -67,6 +70,7 @@ public class Simulator{
 		screen.getContentPane().add(carparkview);
 		screen.getContentPane().add(chart);
 		screen.getContentPane().add(legendview);
+		//screen.getContentPane().add(timeview);
 		
 		
 		slider.setBounds(1050, 600, 100, 20);
@@ -76,7 +80,7 @@ public class Simulator{
 		controller.setBounds(20, 20, 100, 150);
 		chart.setBounds(250, 470, 150, 150);
 		legendview.setBounds(0, 200, 150, 50);
-		
+		//timeview.setBounds(600, 10, 150,50);
 		
 		
 		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
