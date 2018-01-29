@@ -71,6 +71,7 @@ public class SettingsView extends AbstractView{
 
         return content;
     }
+    
 
     public JButton cancelButton()
     {
@@ -94,12 +95,17 @@ public class SettingsView extends AbstractView{
             public void actionPerformed(ActionEvent e) {
                 try
                 {
-
-                    String speed = carsWeektext.getText();
-                    //Model.setTickPause(Integer.parseInt(speed));
-
-                    //AbstractView.updateView();
-                    settingsFrame.dispose();
+                	String weekSpots = carsWeektext.getText();
+                	model.setWeekDayArrivals(Integer.parseInt(weekSpots));
+                 
+                	String weekendSpots = carsWeekendtext.getText();
+                	model.setWeekendArrivals(Integer.parseInt(weekendSpots));
+                	
+                	String weekPassSpots = passCarsWeektext.getText();
+                	model.setWeekDayPassArrivals(Integer.parseInt(weekPassSpots));
+                	
+                	String weekendPassSpots = passCarsWeekendtext.getText();
+                	model.setWeekendPassArrivals(Integer.parseInt(weekendPassSpots));
                 }
                 catch(Exception ex)
                 {
