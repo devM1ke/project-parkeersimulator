@@ -63,7 +63,7 @@ public class Simulator{
 				model.setTickPause(source.getValue());
 			}
 		});
-		slider.setValue(1);
+		slider.setValue(100);
 		screen.getContentPane().add(slider);
 		screen.getContentPane().add(managementview);
 		screen.getContentPane().add(pieview);
