@@ -17,6 +17,7 @@ public class SettingsView extends AbstractView{
     private JTextField carsWeekendtext;
     private JTextField passCarsWeektext;
     private JTextField passCarsWeekendtext;
+    private JTextField pricetext;
 
     public SettingsView(Model model)
     {
@@ -39,7 +40,7 @@ public class SettingsView extends AbstractView{
     
     public JPanel CreatePanel()
     {
-        JPanel content = new JPanel(new GridLayout(5,1));
+        JPanel content = new JPanel(new GridLayout(6,1));
         
         JLabel carsWeeklabel = new JLabel("Auto's per uur week");
         carsWeektext = new JTextField(String.valueOf(model.getWeekDayArrivals()+"") ,5);
@@ -53,6 +54,9 @@ public class SettingsView extends AbstractView{
         JLabel passCarsWeekendlabel = new JLabel("Abbonees per uur weekend");
         passCarsWeekendtext = new JTextField(String.valueOf(model.getWeekendPassArrivals()+"") ,11);
         
+        JLabel priceLabel = new JLabel("Prijs");
+        pricetext = new JTextField(String.valueOf(model.getPrice()+""),13);
+        
         content.add(carsWeeklabel);
         content.add(carsWeektext);
         
@@ -64,8 +68,10 @@ public class SettingsView extends AbstractView{
         
         content.add(passCarsWeekendlabel);
         content.add(passCarsWeekendtext);
-
-
+        
+        content.add(priceLabel);
+        content.add(pricetext);
+        
         content.add(updateButton());
         content.add(cancelButton());
 
@@ -106,6 +112,9 @@ public class SettingsView extends AbstractView{
                 	
                 	String weekendPassSpots = passCarsWeekendtext.getText();
                 	model.setWeekendPassArrivals(Integer.parseInt(weekendPassSpots));
+                	
+                	String price = pricetext.getText();
+                	model.setPrice(Integer.parseInt(price));
                 }
                 catch(Exception ex)
                 {

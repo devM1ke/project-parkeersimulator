@@ -223,6 +223,11 @@ public class Model extends AbstractModel implements Runnable {
 		return (getTotalParkingSpots()-getNumberOfOpenSpots())*price;
 	}
 	
+	public int getPrice() {
+		
+		return this.price;
+	}
+	
 	public void setPrice(int price){
 		this.price = price;
 	}
