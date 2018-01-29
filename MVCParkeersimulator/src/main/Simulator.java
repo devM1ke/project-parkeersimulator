@@ -61,7 +61,7 @@ public class Simulator extends JFrame{
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, pieview, -10, SpringLayout.SOUTH, contentPane);
 		contentPane.add(pieview);
 		
-		JLabel lblGereserveerdePlaatsen = new JLabel("Gereserveerde plaatsen");
+		JLabel lblGereserveerdePlaatsen = new JLabel("Reserveringen");
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblGereserveerdePlaatsen, 10, SpringLayout.WEST, contentPane);
 		contentPane.add(lblGereserveerdePlaatsen);
 		
@@ -70,20 +70,15 @@ public class Simulator extends JFrame{
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblBezettePlaatsen, -6, SpringLayout.NORTH, lblGereserveerdePlaatsen);
 		contentPane.add(lblBezettePlaatsen);
 		
-		JLabel lblAbboneePlaatsen = new JLabel("Abbonee plaatsen");
+		JLabel lblAbboneePlaatsen = new JLabel("Abbonees");
 		sl_contentPane.putConstraint(SpringLayout.NORTH, lblAbboneePlaatsen, 113, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblAbboneePlaatsen, 10, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblGereserveerdePlaatsen, -6, SpringLayout.NORTH, lblAbboneePlaatsen);
 		contentPane.add(lblAbboneePlaatsen);
 		
-		JLabel lblBezetteAbboneePlaatsen = new JLabel("Bezette abbonee plaatsen");
-		sl_contentPane.putConstraint(SpringLayout.WEST, carparkview, 19, SpringLayout.EAST, lblBezetteAbboneePlaatsen);
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblBezetteAbboneePlaatsen, 6, SpringLayout.SOUTH, lblAbboneePlaatsen);
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblBezetteAbboneePlaatsen, 10, SpringLayout.WEST, contentPane);
-		contentPane.add(lblBezetteAbboneePlaatsen);
-		
 		JLabel lblLegePlekken = new JLabel("Lege plekken");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblLegePlekken, 6, SpringLayout.SOUTH, lblBezetteAbboneePlaatsen);
+		sl_contentPane.putConstraint(SpringLayout.WEST, carparkview, 19, SpringLayout.EAST, lblAbboneePlaatsen);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblLegePlekken, 6, SpringLayout.SOUTH, lblAbboneePlaatsen);
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblLegePlekken, 10, SpringLayout.WEST, contentPane);
 		contentPane.add(lblLegePlekken);
 		
