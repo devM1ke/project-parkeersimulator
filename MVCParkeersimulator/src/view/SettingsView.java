@@ -66,10 +66,10 @@ public class SettingsView extends AbstractView{
         JLabel priceLabel = new JLabel("Prijs");
         pricetext = new JTextField(String.valueOf(model.getPrice()+""),13);
         
-        JLabel subscriptionLabel = new JLabel("Abbonee plaatsen");
+        JLabel subscriptionLabel = new JLabel("Abbonement plaatsen");
         subscriptiontext = new JTextField(String.valueOf(model.getNumberOfLocationManagerPlaces() +""),15);
         
-        JLabel numberStartLabel = new JLabel("Start plaats abbonee plaatsen");
+        JLabel numberStartLabel = new JLabel("Start plaats abbonement plaatsen");
         startnumbertext = new JTextField(String.valueOf(model.getPlaceNumberStartLocationManager() +""),17);
         
         content.add(carsWeeklabel);
