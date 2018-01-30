@@ -11,10 +11,6 @@ import model.Model;
  */
 public class TimeController extends AbstractController{
 
-    private int hour = model.hour;
-    private int minute = model.minute;
-    private int day = model.day;
-    private String time;
 
     public TimeController(Model model) {
     	super(model);
@@ -48,6 +44,5 @@ public class TimeController extends AbstractController{
         
     }
 }
-
 
 

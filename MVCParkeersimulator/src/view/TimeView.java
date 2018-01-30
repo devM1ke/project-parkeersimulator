@@ -18,7 +18,6 @@ public class TimeView extends AbstractView {
     
 	private TimeController timeController;
     private JLabel day,time;
-    private int numberDay = model.day;
 
 
     /**
@@ -29,7 +28,6 @@ public class TimeView extends AbstractView {
     	timeController = new TimeController(model);
         // Getting the current Day, Week and Month
         String dayString = "Dag: "+ model.getDay();
-
 
         setSize(250, 50);
 
@@ -47,8 +45,9 @@ public class TimeView extends AbstractView {
         setVisible(true);
     }
 
-    public String getDay(int numberDay) {
+    public String getDay() {
     	String typeOfDay;
+        int numberDay = model.getDay();
     	switch(numberDay) {
     	case 0:
     		typeOfDay = "Maandag";
@@ -92,9 +91,8 @@ public class TimeView extends AbstractView {
     	super.paintComponent(g);
         //Updating the date/time with every tick()
 
-        day.setText("Dag: " + getDay(numberDay));
+        day.setText("Dag: " + getDay());
         time.setText("Tijd: " + timeController.getTime());
-        System.out.println(timeController.getTime());
 
 
         repaint();
