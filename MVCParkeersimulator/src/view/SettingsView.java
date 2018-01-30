@@ -26,7 +26,7 @@ public class SettingsView extends AbstractView{
     private JTextField passCarsWeekendtext;
     private JTextField pricetext;
     private JTextField subscriptiontext;
-    private LocationManager locationmanager;
+    private JTextField startnumbertext;
 
     public SettingsView(Model model)
     {
@@ -49,7 +49,7 @@ public class SettingsView extends AbstractView{
     
     public JPanel CreatePanel()
     {
-        JPanel content = new JPanel(new GridLayout(7,1));
+        JPanel content = new JPanel(new GridLayout(8,1));
         
         JLabel carsWeeklabel = new JLabel("Auto's per uur week");
         carsWeektext = new JTextField(String.valueOf(model.getWeekDayArrivals()+"") ,5);
@@ -69,6 +69,9 @@ public class SettingsView extends AbstractView{
         JLabel subscriptionLabel = new JLabel("Abbonee plaatsen");
         subscriptiontext = new JTextField(String.valueOf(model.getNumberOfLocationManagerPlaces() +""),15);
         
+        JLabel numberStartLabel = new JLabel("Start plaats abbonee plaatsen");
+        startnumbertext = new JTextField(String.valueOf(model.getPlaceNumberStartLocationManager() +""),17);
+        
         content.add(carsWeeklabel);
         content.add(carsWeektext);
         
@@ -86,6 +89,9 @@ public class SettingsView extends AbstractView{
         
         content.add(subscriptionLabel);
         content.add(subscriptiontext);
+        
+        content.add(numberStartLabel);
+        content.add(startnumbertext);
         
         content.add(updateButton());
         content.add(cancelButton());
@@ -133,6 +139,9 @@ public class SettingsView extends AbstractView{
                 	
                 	String numberOfPlaces = subscriptiontext.getText();
                 	model.setNumberOfLocationManagerPlaces(Integer.parseInt(numberOfPlaces));
+                	
+                	String numberStart = startnumbertext.getText();
+                	model.setNumberOfLocationManagerPlaces(Integer.parseInt(numberStart));
                 }
                 catch(Exception ex)
                 {
