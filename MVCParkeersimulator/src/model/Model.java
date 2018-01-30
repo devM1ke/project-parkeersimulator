@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JMenuBar;
@@ -12,6 +13,7 @@ import model.CarQueue;
 import model.Location;
 import model.ParkingPassCar;
 import model.LocationManager;
+import model.ReservationManager;
 import view.SimulatorView;
 import java.awt.*;
 
@@ -31,6 +33,7 @@ public class Model extends AbstractModel implements Runnable {
     
 	private static final String AD_HOC = "1";
 	private static final String PASS = "2";
+	private static final String RESERVATION = "3";
 	
 	private CarQueue entranceCarQueue;
     private CarQueue entrancePassQueue;
@@ -38,6 +41,7 @@ public class Model extends AbstractModel implements Runnable {
     private CarQueue exitCarQueue;
     private SimulatorView simulatorView;
     private LocationManager locationManager;
+    private ReservationManager reservationManager;
 
     public int day = 0;
     public int hour = 0;
@@ -49,6 +53,8 @@ public class Model extends AbstractModel implements Runnable {
     int weekendArrivals = 200; // average number of arriving cars per hour
     int weekDayPassArrivals= 50; // average number of arriving cars per hour
     int weekendPassArrivals = 5; // average number of arriving cars per hour
+    int weekDayReservations = 0;
+    int weekendReservations = 0;
     double number = 0;
     
     int enterSpeed = 20; // number of cars that can enter per minute
@@ -64,7 +70,7 @@ public class Model extends AbstractModel implements Runnable {
         exitCarQueue = new CarQueue();
         dailyearningdays = new int[howmanydays];
         locationManager = new LocationManager(numberOfFloors, numberOfRows, numberOfPlaces);
-
+        reservationManager = new ReservationManager();
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         this.runner = new Thread(this);
@@ -298,6 +304,44 @@ public class Model extends AbstractModel implements Runnable {
     }
 
     public Location getFirstFreeLocation(Color color) {
+    	ArrayList<Reservation> reservations = reservationManager.getReservations();
+    	int reservationMinute = minute;
+    	int reservationHour = hour;
+    	int reservationDay = day;
+    	
+    	for(int i = 0; i < reservations.size(); i++) {
+    		for(int teller = 0; teller <= 15; teller++) {
+    			reservationMinute++;
+		        while (reservationMinute > 59) {
+		        	reservationMinute -= 60;
+		        	reservationHour++;
+		        }
+		        while (reservationHour > 23) {
+		        	reservationHour -= 24;           
+		        	reservationDay++;
+		        }
+		        while (reservationDay > 6) {
+		        	reservationDay -= 7;
+		        }
+			}
+    		if(reservations.get(i).getReservationDay() == reservationDay && 
+    				reservations.get(i).getReservationHour() == reservationHour && 
+    						reservations.get(i).getReservationMinute() == reservationMinute) {
+    			for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+                    for (int row = 0; row < getNumberOfRows(); row++) {
+                        for (int place = 0; place < getNumberOfPlaces(); place++) {
+                        	Location location = getLocationManager().getLocation(floor, row, place);
+    	                    if (getCarAt(location) == null && location.getType() == 0) {
+    	                    	locationManager.changeType2(2, floor, row, place);
+    	                    	location.setNumberPlate(reservations.get(i).getReservationNumberPlate());
+    	                    	break;
+    	                    }
+                    	}
+                    }
+                }
+    		}
+    	}
+    	
     	if(color == Color.blue) {
     		for (int floor = 0; floor < getNumberOfFloors(); floor++) {
                 for (int row = 0; row < getNumberOfRows(); row++) {
@@ -329,6 +373,21 @@ public class Model extends AbstractModel implements Runnable {
         }
         return null;
     }
+    
+    public Location getReservationLocation(int numberPlate) {
+    	
+    	for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                	Location location = getLocationManager().getLocation(floor, row, place);
+                	if(location.getType() == 2 && location.getNumberPlate() == numberPlate) {
+                		return location;
+                	}
+                }
+            }
+    	}
+		return null;
+    }
 
     public Car getFirstLeavingCar() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
@@ -357,8 +416,10 @@ public class Model extends AbstractModel implements Runnable {
     
     private void handleEntrance(){
     	carsArriving();
+    	int numberOfCars=getNumberOfCars(weekDayReservations, weekendReservations, 2);
+    	addReservations(numberOfCars);
     	carsEntering(entrancePassQueue);
-    	carsEntering(entranceCarQueue);  	
+    	carsEntering(entranceCarQueue);
     }
     
     private void handleExit(){
@@ -368,10 +429,20 @@ public class Model extends AbstractModel implements Runnable {
     }
     
     private void carsArriving(){
+    	ArrayList<ReservationCar> reservationCars;
+    	reservationCars = reservationManager.getReservationCars();
+    	
     	int numberOfCars=getNumberOfCars(weekDayArrivals, weekendArrivals, 0);
         addArrivingCars(numberOfCars, AD_HOC);    	
-    	numberOfCars=getNumberOfCars(weekDayPassArrivals, weekendPassArrivals, 1);
-        addArrivingCars(numberOfCars, PASS);    	
+        numberOfCars=getNumberOfCars(weekDayPassArrivals, weekendPassArrivals, 1);
+        addArrivingCars(numberOfCars, PASS);
+        for(int i = 0; i < reservationCars.size();) {
+        	if(reservationCars.get(i).getArriveDay() == day &&
+        			reservationCars.get(i).getArriveHour() == hour &&
+        				reservationCars.get(i).getArriveMinute() == minute) {
+        		addReservationCar(reservationCars.get(i), reservationCars.get(i).getNumberPlate());
+        	}
+        }
     }
 
     private void carsEntering(CarQueue queue){
@@ -381,6 +452,14 @@ public class Model extends AbstractModel implements Runnable {
     			getNumberOfOpenSpots()>0 && 
     			i<enterSpeed) {
     		Car car = queue.getRef();
+    		if(car.getColor() == Color.orange) {
+    			Location freeLocation = getReservationLocation(car.getNumberPlate());
+                if(freeLocation != null) {
+    	            setCarAt(freeLocation, car);
+    	            i++;
+    	            car = queue.removeCar();
+                }
+    		}
             Location freeLocation = getFirstFreeLocation(car.getColor());
             if(freeLocation != null) {
 	            setCarAt(freeLocation, car);
@@ -602,6 +681,16 @@ public class Model extends AbstractModel implements Runnable {
             }
             break;	            
     	}
+    }
+    
+    private void addReservationCar(ReservationCar car, int numberPlate) {
+    	entranceCarQueue.addCar(car);
+    }
+    
+    private void addReservations(int numberOfCars) {
+    	for (int i = 0; i < numberOfCars; i++) {
+        	reservationManager.addNewReservation(day, hour, minute);
+        }
     }
     
     private void carLeavesSpot(Car car){
