@@ -63,4 +63,6 @@ public abstract class Car {
     }
     
     public abstract Color getColor();
+    
+    public abstract int getNumberPlate();
 }

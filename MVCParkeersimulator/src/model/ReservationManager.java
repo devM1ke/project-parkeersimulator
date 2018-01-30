@@ -1,16 +1,27 @@
 package model;
+import java.util.ArrayList;
 
-public class ReservationManager {
-	private Reservation[] reservations;
+public class ReservationManager extends AbstractModel {
+	private ArrayList<Reservation> reservations;
+	private ArrayList<ReservationCar> reservationCars;
 	int numberPlate = 0;
-	int reservationId= 0;
 	
-	ReservationManager(int day, int hour, int minute){
-		reservations = new Reservation[reservationId];
-		reservations[reservationId] = new Reservation(day, hour, minute, numberPlate);
-		// plek om reserveringsauto's aan te maken.
-		reservationId++;
+	ReservationManager(){
+		reservations = new ArrayList<Reservation>(numberPlate);
+		reservationCars = new ArrayList<ReservationCar>(numberPlate);
+	}
+	
+	public ArrayList<Reservation> getReservations() {
+		return reservations;
+	}
+	
+	public ArrayList<ReservationCar> getReservationCars() {
+		return reservationCars;
+	}
+	
+	public void addNewReservation(int day, int hour, int minute) {
+		reservations.add(new Reservation(day, hour, minute, numberPlate));
+		reservationCars.add(new ReservationCar(reservations.get(numberPlate).getReservationDay(), reservations.get(numberPlate).getReservationHour(), reservations.get(numberPlate).getReservationMinute(), numberPlate));
 		numberPlate++;
-	
 	}
 }

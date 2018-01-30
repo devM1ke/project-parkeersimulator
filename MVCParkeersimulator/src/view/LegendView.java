@@ -8,7 +8,9 @@ import java.util.Map;
 
 import javax.swing.JLabel;
 
+import model.AdHocCar;
 import model.Model;
+import model.ParkingPassCar;
 
 public class LegendView extends AbstractView{
 	
@@ -25,16 +27,18 @@ public class LegendView extends AbstractView{
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		drawLabel(g, "Lege plekken: ", Color.WHITE, 0);
-		drawLabel(g, "non-abbo bezet: ", Color.RED, 20);
-		drawLabel(g, "abbo plekken: ", Color.cyan, 40);
-		drawLabel(g, "abbo plekken bezet: ", Color.BLUE, 60);
+		drawLabel(g, "Lege parkeerplekken: ", Color.WHITE, 0);
+		drawLabel(g, "Normale auto's: ", new AdHocCar().getColor(), 20);
+		drawLabel(g, "Abonnement plekken leeg: ", Color.CYAN, 40);
+		drawLabel(g, "Abonnement auto's: ", new ParkingPassCar().getColor(), 60);
+		drawLabel(g, "Gereserveerde plekken leeg: ", new ParkingPassCar().getColor(), 80);
+		drawLabel(g, "Gereserveerde plekken bezet: ", Color.ORANGE, 100);
 	}
 	private void drawLabel(Graphics g, String label, Color color, int posX) {
 		JLabel carLabel = new JLabel(label);
 		add(carLabel);
 		g.setColor(color);
-	    g.fillRect(135, posX+10, 20, 10);
+	    g.fillRect(203, posX+12, 30, 15);
 	    repaint();
 	}
 

@@ -21,6 +21,7 @@ import view.JFrame;
 import view.LegendView;
 import view.MenuBarView;
 import view.PieView;
+import view.QueueListView;
 import view.QueueView;
 import view.SettingsView;
 import view.ManagementView; 
@@ -38,12 +39,12 @@ public class Simulator{
 	private QueueView queueview;
 
 	private TimeView timeview;
-
+	private QueueListView queuelistview;
 	
 	public Simulator() {
 		model = new Model();
 		screen=new JFrame();
-		screen.setSize(1200, 700);
+		screen.setSize(1300, 700);
 		//never set this to true!!! or else it will break
 		screen.setResizable(false);
 		screen.setLayout(null);
@@ -57,6 +58,7 @@ public class Simulator{
 		queueview = new QueueView(model);
 
 		timeview = new TimeView(model); 
+		queuelistview = new QueueListView(model);
 
 		//legendview.setBackground(Color.BLACK);
 		
@@ -83,17 +85,19 @@ public class Simulator{
 
 		screen.getContentPane().add(queueview);
 		screen.getContentPane().add(timeview);
+		screen.getContentPane().add(queuelistview);
 
 		
-		queueview.setBounds(1000, 300, 175, 210);
-		slider.setBounds(1050, 600, 100, 20);
-		managementview.setBounds(1000, 20, 175, 210);
-		carparkview.setBounds(150, 20, 800, 400);
+		queueview.setBounds(1100, 300, 175, 210);
+		slider.setBounds(1150, 600, 100, 20);
+		managementview.setBounds(1100, 20, 175, 210);
+		carparkview.setBounds(250, 20, 800, 400);
 		pieview.setBounds(20, 470, 200, 200);
-		controller.setBounds(20, 90, 100, 150);
+		controller.setBounds(45, 90, 100, 150);
 		chart.setBounds(250, 470, 150, 150);
-		legendview.setBounds(0, 280, 150, 90);
-		timeview.setBounds(500, 0, 200,50);
+		legendview.setBounds(20, 280, 220, 135);
+		timeview.setBounds(600, 0, 200,50);
+		queuelistview.setBounds(400, 450, 500, 50);
 
 
 		
