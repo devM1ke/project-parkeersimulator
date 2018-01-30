@@ -57,8 +57,9 @@ public class BarView extends AbstractView{
 			g.fillRect(x, getHeight() - height, width, height);
 			g.setColor(Color.black);
 			g.drawRect(x, getHeight() - height, width, height);
-			x += (width + 2);
 			
+			g.drawString(height+"%", x+7, 40);
+			x += (width + 2);
 		}
 		repaint();
  

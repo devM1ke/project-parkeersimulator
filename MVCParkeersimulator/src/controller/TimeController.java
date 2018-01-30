@@ -11,11 +11,7 @@ import model.Model;
  */
 public class TimeController extends AbstractController{
 
-    private String resetTime = "23:59";
-    private int hour = model.hour;
-    private int minute = model.minute;
-    private int day = model.day;
-    private String time;
+
     public TimeController(Model model) {
     	super(model);
     }
@@ -28,24 +24,25 @@ public class TimeController extends AbstractController{
      * @return return the value of hour+minute
      */
     public String getTime() {
+        String time;
+        int hour = model.hour;
+        int minute = model.minute;
         if (hour < 10 && minute < 10) {
             time = "0" + hour + ":0" + minute;
+            return time;
         } else if (hour < 10 && minute > 10) {
             time = "0" + hour + ":" + minute;
+            return time;
         } else if (hour > 10 && minute < 10 ) {
             time = hour + ":0" + minute;
+            return time;
         } else {
             time = hour + ":" + minute;
+            return time;
         }
-        return time;
-    }
-    
-
-    public void resetTime()
-    {
-        minute = 0;
-        hour = 0;
-        day = 1;
-
+        
+        
     }
 }
+
+

@@ -13,7 +13,6 @@ public class AdHocCar extends Car {
         this.setMinutesLeft(stayMinutes);
         this.setHasToPay(true);
     }
-    
     public Color getColor(){
     	return COLOR;
     }

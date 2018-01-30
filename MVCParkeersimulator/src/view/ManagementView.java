@@ -8,6 +8,7 @@ import model.Model;
 public class ManagementView extends AbstractView{
 	private JLabel dagOmzetLabel, verwachtOmzetLabel, weekOmzetLabel;
 	private JLabel dagLabel[]= new JLabel[model.howmanydays];
+	private String dag;
 	
 	public ManagementView(Model model){
 		super(model);
@@ -47,7 +48,43 @@ public class ManagementView extends AbstractView{
 	 
 	        dagOmzetLabel.setText("Dagomzet: "+dagOmzet );
 	        for (int i = 0; i < model.howmanydays; i++){
-	        dagLabel[i].setText("Omzet dag "+ (i+1) + ": "+dagOmzetdag[i]);
+	        	
+	        	if(i > 6){
+	        		int j = i % 7;
+	        		if(j==0){
+	        			this.dag = "Maandag";
+	        		}else if(j==1){
+	        			this.dag = "Dinsdag";
+	        		}else if(j==2){
+	        			this.dag = "Woensdag";
+	        		}else if(j==3){
+	        			this.dag = "Donderdag";
+	        		}else if(j==4){
+	        			this.dag = "Vrijdag";
+	        		}else if(j==5){
+	        			this.dag = "Zaterdag";
+	        		}else if(j==6){
+	        			this.dag = "Zondag";
+	        		}
+	        	} else {
+	        		if(i==0){
+	        			this.dag = "Maandag";
+	        		}else if(i==1){
+	        			this.dag = "Dinsdag";
+	        		}else if(i==2){
+	        			this.dag = "Woensdag";
+	        		}else if(i==3){
+	        			this.dag = "Donderdag";
+	        		}else if(i==4){
+	        			this.dag = "Vrijdag";
+	        		}else if(i==5){
+	        			this.dag = "Zaterdag";
+	        		}else if(i==6){
+	        			this.dag = "Zondag";
+	        		}
+	        		
+	        	}
+	        dagLabel[i].setText("Omzet dag "+ dag + ": "+dagOmzetdag[i]);
 	        }
 	        verwachtOmzetLabel.setText("Nog niet betaald: "+VerwachteOmzet);
 	        weekOmzetLabel.setText("Huidige weekomzet: " + huidigeWeekOmzet);
