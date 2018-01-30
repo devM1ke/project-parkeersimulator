@@ -90,9 +90,9 @@ public class Simulator{
 		managementview.setBounds(1000, 20, 175, 210);
 		carparkview.setBounds(150, 20, 800, 400);
 		pieview.setBounds(20, 470, 200, 200);
-		controller.setBounds(20, 20, 100, 150);
+		controller.setBounds(20, 90, 100, 150);
 		chart.setBounds(250, 470, 150, 150);
-		legendview.setBounds(0, 200, 150, 90);
+		legendview.setBounds(0, 280, 150, 90);
 		timeview.setBounds(500, 0, 200,50);
 
 
