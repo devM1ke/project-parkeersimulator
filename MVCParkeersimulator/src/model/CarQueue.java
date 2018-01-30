@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Color;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -24,9 +25,10 @@ public class CarQueue {
     }
     public int getPassInQueue(){
     	int pass = 0;
-    	for(int i=0; i < this.carsInQueue();i++){
-        	if(queue.element().getColor() == Color.blue){
-        		System.out.println(queue.element().getColor());
+    	 Iterator<Car> it = queue.iterator();
+    	    while(it.hasNext()) {
+    	    	Car c = it.next();
+        	if(c.getColor() == Color.blue){
         		pass++;
         	}
         }
@@ -34,8 +36,10 @@ public class CarQueue {
     }
     public int getReservedInQueue(){
     	int reserved = 0;
-    	for(int i=0; i < this.carsInQueue();i++){
-        	if(queue.element().getColor() == Color.orange){
+    	 Iterator<Car> it = queue.iterator();
+ 	    while(it.hasNext()) {
+ 	    	Car c = it.next();
+        	if(c.getColor() == Color.orange){
         		reserved++;
         	}
         }
