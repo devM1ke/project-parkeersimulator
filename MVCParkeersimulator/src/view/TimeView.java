@@ -18,7 +18,6 @@ public class TimeView extends AbstractView {
     
 	private TimeController timeController;
     private JLabel day,time;
-    private JPanel Time;
 
     /**
      * Creating the date/time panel
@@ -54,7 +53,7 @@ public class TimeView extends AbstractView {
         //Updating the date/time with every tick()
         day.setText("Day: " + model.getDay());
         time.setText("Hour: " + timeController.getTime());
-        System.out.println(timeController.getTime());
+        //System.out.println(timeController.getTime());
         repaint();
     }
 
