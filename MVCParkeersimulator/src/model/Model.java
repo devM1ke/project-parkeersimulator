@@ -600,7 +600,7 @@ public class Model extends AbstractModel implements Runnable {
             for (int i = 0; i < numberOfCars; i++) {
             	entrancePassQueue.addCar(new ParkingPassCar());
             }
-            break;	            
+            break;	
     	}
     }
     

@@ -21,6 +21,7 @@ import view.JFrame;
 import view.LegendView;
 import view.MenuBarView;
 import view.PieView;
+import view.QueueListView;
 import view.QueueView;
 import view.SettingsView;
 import view.ManagementView; 
@@ -38,12 +39,12 @@ public class Simulator{
 	private QueueView queueview;
 
 	private TimeView timeview;
-
+	private QueueListView queuelistview;
 	
 	public Simulator() {
 		model = new Model();
 		screen=new JFrame();
-		screen.setSize(1200, 700);
+		screen.setSize(1300, 700);
 		//never set this to true!!! or else it will break
 		screen.setResizable(false);
 		screen.setLayout(null);
@@ -57,6 +58,7 @@ public class Simulator{
 		queueview = new QueueView(model);
 
 		timeview = new TimeView(model); 
+		queuelistview = new QueueListView(model);
 
 		//legendview.setBackground(Color.BLACK);
 		
@@ -83,6 +85,7 @@ public class Simulator{
 
 		screen.getContentPane().add(queueview);
 		screen.getContentPane().add(timeview);
+		screen.getContentPane().add(queuelistview);
 
 		
 		queueview.setBounds(1000, 300, 175, 210);
@@ -92,8 +95,9 @@ public class Simulator{
 		pieview.setBounds(20, 470, 200, 200);
 		controller.setBounds(20, 90, 100, 150);
 		chart.setBounds(250, 470, 150, 150);
-		legendview.setBounds(0, 280, 150, 90);
+		legendview.setBounds(0, 280, 170, 150);
 		timeview.setBounds(500, 0, 200,50);
+		queuelistview.setBounds(300, 450, 500, 50);
 
 
 		
