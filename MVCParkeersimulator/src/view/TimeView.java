@@ -18,7 +18,7 @@ public class TimeView extends AbstractView {
     
 	private TimeController timeController;
     private JLabel day,time;
-    private JPanel Time;
+    private int numberDay = model.day;
 
     /**
      * Creating the date/time panel
@@ -27,7 +27,7 @@ public class TimeView extends AbstractView {
     	super(model);
     	timeController = new TimeController(model);
         // Getting the current Day, Week and Month
-        String dayString = "Day: "+model.getDay();
+        String dayString = "Dag: "+ model.getDay();
 
 
         setSize(250, 50);
@@ -46,14 +46,52 @@ public class TimeView extends AbstractView {
         setVisible(true);
     }
 
+    public String getDay(int numberDay) {
+    	String typeOfDay;
+    	switch(numberDay) {
+    	case 0:
+    		typeOfDay = "Maandag";
+    		break;
+    		
+    	case 1:
+    		typeOfDay = "Dinsdag";
+    		break;
+    		
+    	case 2:
+    		typeOfDay = "Woensdag";
+    		break;
+    		
+    	case 3:
+    		typeOfDay = "Donderdag";
+    		break;
+    		
+    	case 4:
+    		typeOfDay = "Vrijdag";
+    		break;
+    		
+    	case 5:
+    		typeOfDay = "Zaterdag";
+    		break;
+    		
+    	case 6:
+    		typeOfDay = "Zondag";
+    		break;
+    		
+    	default:
+    		throw new IllegalArgumentException("Invalid day of the week: " + numberDay);
+    	
+    	}
+    	
+    	return typeOfDay;
+    }
     /**
      * Updating the date/time view
      */
     public void paintComponent(Graphics g){ 
     	super.paintComponent(g);
         //Updating the date/time with every tick()
-        day.setText("Day: " + model.getDay());
-        time.setText("Hour: " + timeController.getTime());
+        day.setText("Dag: " + getDay(numberDay));
+        time.setText("Tijd: " + timeController.getTime());
         System.out.println(timeController.getTime());
         repaint();
     }

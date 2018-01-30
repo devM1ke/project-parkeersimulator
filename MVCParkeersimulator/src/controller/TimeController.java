@@ -11,7 +11,6 @@ import model.Model;
  */
 public class TimeController extends AbstractController{
 
-    private String resetTime = "23:59";
     private int hour = model.hour;
     private int minute = model.minute;
     private int day = model.day;
@@ -39,13 +38,5 @@ public class TimeController extends AbstractController{
         }
         return time;
     }
-    
-
-    public void resetTime()
-    {
-        minute = 0;
-        hour = 0;
-        day = 1;
-
-    }
 }
+
