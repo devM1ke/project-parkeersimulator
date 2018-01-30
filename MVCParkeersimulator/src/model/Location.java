@@ -6,6 +6,7 @@ public class Location {
     private int floor;
     private int row;
     private int place;
+    private int numberPlate;
 
     /**
      * Constructor for objects of class Location
@@ -77,6 +78,14 @@ public class Location {
      */
     public int getPlace() {
         return place;
+    }
+    
+    public void setNumberPlate(int numberPlate) {
+    	this.numberPlate = numberPlate;
+    }
+    
+    public int getNumberPlate() {
+    	return numberPlate;
     }
     
 }

@@ -7,6 +7,7 @@ public class Reservation extends AbstractModel {
 	private int reservationHour;
 	private int reservationMinute;
 	private int reservationNumberPlate;
+	private boolean isSet = false;
 	Random rand = new Random();
 	
 	public Reservation(int day, int hour, int minute, int numberPlate) {
@@ -46,5 +47,4 @@ public class Reservation extends AbstractModel {
 	public int getReservationNumberPlate(){
 		return reservationNumberPlate;
 	}
-	
 }
