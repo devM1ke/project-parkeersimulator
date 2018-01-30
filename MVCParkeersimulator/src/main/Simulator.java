@@ -93,7 +93,7 @@ public class Simulator{
 		controller.setBounds(20, 20, 100, 150);
 		chart.setBounds(250, 470, 150, 150);
 		legendview.setBounds(0, 200, 150, 90);
-		timeview.setBounds(550, 0, 150,50);
+		timeview.setBounds(500, 0, 200,50);
 
 
 		
