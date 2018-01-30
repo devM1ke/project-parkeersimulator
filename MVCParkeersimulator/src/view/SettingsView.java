@@ -3,6 +3,7 @@ package view;
 import javax.swing.*;
 import javax.swing.JFrame;
 
+import model.LocationManager;
 import model.Model;
 
 import java.awt.*;
@@ -24,6 +25,8 @@ public class SettingsView extends AbstractView{
     private JTextField passCarsWeektext;
     private JTextField passCarsWeekendtext;
     private JTextField pricetext;
+    private JTextField subscriptiontext;
+    private JTextField startnumbertext;
 
     public SettingsView(Model model)
     {
@@ -46,7 +49,7 @@ public class SettingsView extends AbstractView{
     
     public JPanel CreatePanel()
     {
-        JPanel content = new JPanel(new GridLayout(6,1));
+        JPanel content = new JPanel(new GridLayout(8,1));
         
         JLabel carsWeeklabel = new JLabel("Auto's per uur week");
         carsWeektext = new JTextField(String.valueOf(model.getWeekDayArrivals()+"") ,5);
@@ -63,6 +66,12 @@ public class SettingsView extends AbstractView{
         JLabel priceLabel = new JLabel("Prijs");
         pricetext = new JTextField(String.valueOf(model.getPrice()+""),13);
         
+        JLabel subscriptionLabel = new JLabel("Abbonement plaatsen");
+        subscriptiontext = new JTextField(String.valueOf(model.getNumberOfLocationManagerPlaces() +""),15);
+        
+        JLabel numberStartLabel = new JLabel("Start plaats abbonement plaatsen");
+        startnumbertext = new JTextField(String.valueOf(model.getPlaceNumberStartLocationManager() +""),17);
+        
         content.add(carsWeeklabel);
         content.add(carsWeektext);
         
@@ -77,6 +86,12 @@ public class SettingsView extends AbstractView{
         
         content.add(priceLabel);
         content.add(pricetext);
+        
+        content.add(subscriptionLabel);
+        content.add(subscriptiontext);
+        
+        content.add(numberStartLabel);
+        content.add(startnumbertext);
         
         content.add(updateButton());
         content.add(cancelButton());
@@ -121,6 +136,12 @@ public class SettingsView extends AbstractView{
                 	
                 	String price = pricetext.getText();
                 	model.setPrice(Integer.parseInt(price));
+                	
+                	String numberOfPlaces = subscriptiontext.getText();
+                	model.setNumberOfLocationManagerPlaces(Integer.parseInt(numberOfPlaces));
+                	
+                	String numberStart = startnumbertext.getText();
+                	model.setNumberOfLocationManagerPlaces(Integer.parseInt(numberStart));
                 }
                 catch(Exception ex)
                 {

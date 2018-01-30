@@ -32,7 +32,7 @@ private JLabel wachtrijLabel, gewoneIngangLabel, abonneesWachtrij, reserveringWa
 		wachtrijLabel.setText("Wachtrijen: ");
 		gewoneIngangLabel.setText("Normale auto's in de rij: " + model.getSizeEntranceCarQueue());
 		abonneesWachtrij.setText("Abonnees in de rij: " + model.getSizeEntrancePassQueue());
-		reserveringWachtrij.setText("Reserveringen in de rij: Poep!");
+		reserveringWachtrij.setText("Reserveringen in de rij: " + model.getSizeReservedQueue());
 		betalingsrijLabel.setText("Huidige betalingsrij: " + model.getSizePaymentCarQueue());
 		uitgangsLabel.setText("Uitgang wachtrij: " + model.getSizeExitCarQueue());
 		vertrokkenLabel.setText("Vertrokken uit de rij: Poepie!");

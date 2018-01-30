@@ -268,7 +268,22 @@ public class Model extends AbstractModel implements Runnable {
         }
         return cars[location.getFloor()][location.getRow()][location.getPlace()];
     }
-
+    public int getNumberOfLocationManagerPlaces() {
+    	return locationManager.getNumberOfPlaces();
+    }
+    
+    public void setNumberOfLocationManagerPlaces(int NumberOfPlaces) {
+    	locationManager.setNumberOfPlaces(NumberOfPlaces);
+    }
+	public int getPlaceNumberStartLocationManager() {
+		return locationManager.getPlaceNumberStart();
+		
+	}
+	
+	public void setPlaceNumberStartLocationManager(int placeNumberStart) {
+		locationManager.setPlaceNumberStart(placeNumberStart);
+		
+	}
     public boolean setCarAt(Location location, Car car) {
         if (!locationIsValid(location)) {
             return false;
@@ -611,7 +626,6 @@ public class Model extends AbstractModel implements Runnable {
 
     public void getTypeCar(){
     	int blauw = 0;
-    	int wit = 0;
     	int rood = 0;
     	int oranje = 0;
     for(int floor = 0; floor < getNumberOfFloors(); floor++) {	
@@ -644,13 +658,16 @@ public class Model extends AbstractModel implements Runnable {
     	return entranceCarQueue.carsInQueue();
     }
     public int getSizeEntrancePassQueue(){
-    	return entrancePassQueue.carsInQueue();
+    	return entrancePassQueue.getPassInQueue();
     }
     public int getSizeExitCarQueue(){
     	return exitCarQueue.carsInQueue();
     }
     public int getSizePaymentCarQueue(){
     	return paymentCarQueue.carsInQueue();
+    }
+    public int getSizeReservedQueue(){
+    	return entrancePassQueue.getReservedInQueue();
     }
 
 }
