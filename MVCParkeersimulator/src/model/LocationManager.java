@@ -80,5 +80,14 @@ public class LocationManager extends AbstractModel {
 			locations[locationArray[0]][locationArray[1]][locationArray[2]].setType(type);
 		}
 	}
+	public int getNumberOfPlaces() {
+		return this.numberOfPlaces;
+		
+	}
+	
+	public void setNumberOfPlaces(int numberOfPlaces) {
+		this.numberOfPlaces = numberOfPlaces;
+		
+	}
 	
 }
