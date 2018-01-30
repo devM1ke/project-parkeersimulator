@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.*;
+import java.util.Random;
 
 public abstract class Car {
 
@@ -8,12 +9,14 @@ public abstract class Car {
     private int minutesLeft;
     private boolean isPaying;
     private boolean hasToPay;
+    public int timeWillingToWait;
 
     /**
      * Constructor for objects of class Car
      */
     public Car() {
-
+    	Random random = new Random();
+    	timeWillingToWait = (int)(random.nextInt(200)+100)/100*5;
     }
 
     public Location getLocation() {
@@ -50,6 +53,13 @@ public abstract class Car {
 
     public void tick() {
         minutesLeft--;
+    }
+
+    public int getTimeWillingToWait(){
+    	return timeWillingToWait;
+    }
+    public void setTimeWillingToWait(int time){
+    	time=timeWillingToWait;
     }
     
     public abstract Color getColor();

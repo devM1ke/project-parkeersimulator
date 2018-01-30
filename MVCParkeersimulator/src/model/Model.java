@@ -22,6 +22,9 @@ public class Model extends AbstractModel implements Runnable {
 	public int dailyearnings = 0;
 	public int[] color = new int[4];
 	
+	public int queueNormalSize = 30;
+	public int queuePassSize = 30;
+	
 	private int numberOfFloors = 3;
     private int numberOfRows = 6;
     private int numberOfPlaces = 30;
@@ -364,9 +367,12 @@ public class Model extends AbstractModel implements Runnable {
     
     private void handleEntrance(){
     	carsArriving();
+    	entrancePassQueue.advanceWaitingTime();
+    	entranceCarQueue.advanceWaitingTime();
     	carsEntering(entrancePassQueue);
     	carsEntering(entranceCarQueue);  	
     }
+ 
     
     private void handleExit(){
         carsReadyToLeave();
@@ -376,9 +382,13 @@ public class Model extends AbstractModel implements Runnable {
     
     private void carsArriving(){
     	int numberOfCars=getNumberOfCars(weekDayArrivals, weekendArrivals, 0);
-        addArrivingCars(numberOfCars, AD_HOC);    	
+        if(entranceCarQueue.carsInQueue() <= queueNormalSize){
+    	addArrivingCars(numberOfCars, AD_HOC);    	
+        }
     	numberOfCars=getNumberOfCars(weekDayPassArrivals, weekendPassArrivals, 1);
-        addArrivingCars(numberOfCars, PASS);    	
+    	 if(entrancePassQueue.carsInQueue() <= queuePassSize){
+    	addArrivingCars(numberOfCars, PASS);  
+    	 }
     }
 
     private void carsEntering(CarQueue queue){
