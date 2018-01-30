@@ -611,7 +611,6 @@ public class Model extends AbstractModel implements Runnable {
 
     public void getTypeCar(){
     	int blauw = 0;
-    	int wit = 0;
     	int rood = 0;
     	int oranje = 0;
     for(int floor = 0; floor < getNumberOfFloors(); floor++) {	
@@ -644,13 +643,16 @@ public class Model extends AbstractModel implements Runnable {
     	return entranceCarQueue.carsInQueue();
     }
     public int getSizeEntrancePassQueue(){
-    	return entrancePassQueue.carsInQueue();
+    	return entrancePassQueue.getPassInQueue();
     }
     public int getSizeExitCarQueue(){
     	return exitCarQueue.carsInQueue();
     }
     public int getSizePaymentCarQueue(){
     	return paymentCarQueue.carsInQueue();
+    }
+    public int getSizeReservedQueue(){
+    	return entrancePassQueue.getReservedInQueue();
     }
 
 }
