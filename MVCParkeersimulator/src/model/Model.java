@@ -461,14 +461,13 @@ public class Model extends AbstractModel implements Runnable {
     	 if(entrancePassQueue.carsInQueue() <= queuePassSize){
     	addArrivingCars(numberOfCars, PASS);  
     	 }
-        addArrivingCars(numberOfCars, AD_HOC);    	
-        numberOfCars=getNumberOfCars(weekDayPassArrivals, weekendPassArrivals, 1);
-        addArrivingCars(numberOfCars, PASS);
         for(int i = 0; i < reservationCars.size();) {
         	if(reservationCars.get(i).getArriveDay() == day &&
         			reservationCars.get(i).getArriveHour() == hour &&
         				reservationCars.get(i).getArriveMinute() == minute) {
+        		 if(entrancePassQueue.carsInQueue() <= queuePassSize){
         		addReservationCar(reservationCars.get(i), reservationCars.get(i).getNumberPlate());
+        		 }
         	}
         }
     }
