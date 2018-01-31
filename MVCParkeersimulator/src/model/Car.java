@@ -17,6 +17,7 @@ public abstract class Car {
     public Car() {
     	Random random = new Random();
     	timeWillingToWait = (int)(random.nextInt(200)+100)/100*5;
+    	//timeWillingToWait = 5;
     }
 
     public Location getLocation() {
@@ -60,6 +61,12 @@ public abstract class Car {
     }
     public void setTimeWillingToWait(int time){
     	time=timeWillingToWait;
+    }
+    public void tickTimeWillingToWait(){
+    	timeWillingToWait--;
+    }
+    public void setTimeWillingToWaitNull(){
+    	timeWillingToWait = 100;
     }
     
     public abstract Color getColor();

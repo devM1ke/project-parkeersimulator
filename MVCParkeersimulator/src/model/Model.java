@@ -420,8 +420,8 @@ public class Model extends AbstractModel implements Runnable {
     
     private void handleEntrance(){
     	carsArriving();
-    	entrancePassQueue.advanceWaitingTime();
-    	entranceCarQueue.advanceWaitingTime();
+    	left = left + entrancePassQueue.advanceWaitingTime();
+    	left = left + entranceCarQueue.advanceWaitingTime();
     	int numberOfCars=getNumberOfCars(weekDayReservations, weekendReservations, 2);
     	addReservations(numberOfCars);
     	carsEntering(entrancePassQueue);
@@ -685,6 +685,7 @@ public class Model extends AbstractModel implements Runnable {
                 if(entranceCarQueue.carsInQueue() >= queueNormalSize){
                 Car c = entranceCarQueue.getLastCar();
                 	entranceCarQueue.removeSpecificCar(c);
+                	System.out.println("poep");
                 	left++;
                 }
             }
