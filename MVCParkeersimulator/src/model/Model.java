@@ -786,7 +786,7 @@ public class Model extends AbstractModel implements Runnable {
     	return entranceCarQueue.carsInQueue();
     }
     public int getSizeEntrancePassQueue(){
-    	return entrancePassQueue.getPassInQueue();
+    	return entrancePassQueue.getPassInQueue().size();
     }
     public int getSizeExitCarQueue(){
     	return exitCarQueue.carsInQueue();
@@ -795,7 +795,7 @@ public class Model extends AbstractModel implements Runnable {
     	return paymentCarQueue.carsInQueue();
     }
     public int getSizeReservedQueue(){
-    	return entrancePassQueue.getReservedInQueue();
+    	return entrancePassQueue.getReservedInQueue().size();
     }
     public int getLeft(){
     	return left;
