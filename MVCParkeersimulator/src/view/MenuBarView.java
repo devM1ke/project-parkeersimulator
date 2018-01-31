@@ -28,7 +28,7 @@ public class MenuBarView extends AbstractView {
 
     private JMenu options()
     {
-        JMenu menu = new JMenu("Options");
+        JMenu menu = new JMenu("Opties");
         JMenuItem settings = settings();
         //JMenuItem reset = reset();
 
@@ -52,7 +52,7 @@ public class MenuBarView extends AbstractView {
     
     private JMenuItem settings()
     {
-        JMenuItem settings = new JMenuItem("Settings");
+        JMenuItem settings = new JMenuItem("Instellingen");
         settings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
