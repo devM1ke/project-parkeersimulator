@@ -56,8 +56,8 @@ public class Model extends AbstractModel implements Runnable {
     int weekendArrivals = 200; // average number of arriving cars per hour
     int weekDayPassArrivals= 50; // average number of arriving cars per hour
     int weekendPassArrivals = 5; // average number of arriving cars per hour
-    int weekDayReservations = 0;
-    int weekendReservations = 0;
+    int weekDayReservations = 50;
+    int weekendReservations = 50;
     double number = 0;
     
     int enterSpeed = 20; // number of cars that can enter per minute
@@ -461,7 +461,7 @@ public class Model extends AbstractModel implements Runnable {
     	 if(entrancePassQueue.carsInQueue() <= queuePassSize){
     	addArrivingCars(numberOfCars, PASS);  
     	 }
-        for(int i = 0; i < reservationCars.size();) {
+        for(int i = 0; i < reservationCars.size(); i++) {
         	if(reservationCars.get(i).getArriveDay() == day &&
         			reservationCars.get(i).getArriveHour() == hour &&
         				reservationCars.get(i).getArriveMinute() == minute) {
@@ -481,7 +481,7 @@ public class Model extends AbstractModel implements Runnable {
     		Car car = queue.getRef();
     		if(car.getColor() == Color.orange) {
     			Location freeLocation = getReservationLocation(car.getNumberPlate());
-                if(freeLocation != null) {
+                if(freeLocation != null && freeLocation.getNumberPlate() == car.getNumberPlate()) {
     	            setCarAt(freeLocation, car);
     	            i++;
     	            car = queue.removeCar();

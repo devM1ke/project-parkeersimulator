@@ -47,4 +47,11 @@ public class Reservation extends AbstractModel {
 	public int getReservationNumberPlate(){
 		return reservationNumberPlate;
 	}
+	
+	public void isSet() {
+		isSet = true;
+	}
+	public boolean getIsSet() {
+		return isSet;
+	}
 }
