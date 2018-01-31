@@ -11,7 +11,7 @@ public class LocationManager extends AbstractModel {
 	private int numberOfRows;
 	private int numberOfPlaces;
 	private Location[][][] locations;
-	int placeNumberStart = 3; 
+	int placeNumberStart = 1; 
 	
 	/*
 	 * LocationManager creates the locations and puts them into the array locations
