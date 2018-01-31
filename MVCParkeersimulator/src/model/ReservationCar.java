@@ -21,7 +21,7 @@ public class ReservationCar extends Car {
 	        this.setMinutesLeft(stayMinutes);
 	        this.setHasToPay(true);
 	        int timeDifference = random.nextInt(44) + 1;
-			for(int i = -15; i <= timeDifference; i++) {
+			for(int i = 0; i < timeDifference; i++) {
 				arriveMinute++;
 		        while (arriveMinute > 59) {
 		        	arriveMinute -= 60;

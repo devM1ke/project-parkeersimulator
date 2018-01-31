@@ -99,10 +99,5 @@ public class LocationManager extends AbstractModel {
 		this.placeNumberStart = placeNumberStart;
 		
 	}
-
 	
-	public void changeType2(int type, int floor, int row, int place) {
-		locations[floor][row][place].setType(type);
 	}
-	
-}

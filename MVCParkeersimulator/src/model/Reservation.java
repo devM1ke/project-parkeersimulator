@@ -16,7 +16,7 @@ public class Reservation extends AbstractModel {
 		reservationMinute = minute;
 		reservationNumberPlate = numberPlate;
 		int time = rand.nextInt(75) + 20;
-		for(int i = 0; i <= time; i++) {
+		for(int i = 0; i < time; i++) {
 			reservationMinute++;
 	        while (reservationMinute > 59) {
 	        	reservationMinute -= 60;
@@ -48,7 +48,7 @@ public class Reservation extends AbstractModel {
 		return reservationNumberPlate;
 	}
 	
-	public void isSet() {
+	public void setIsSet() {
 		isSet = true;
 	}
 	public boolean getIsSet() {

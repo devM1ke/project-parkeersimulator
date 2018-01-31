@@ -4,9 +4,9 @@ import java.util.ArrayList;
 public class ReservationManager extends AbstractModel {
 	private ArrayList<Reservation> reservations;
 	private ArrayList<ReservationCar> reservationCars;
-	int numberPlate = 0;
+	private int numberPlate = 0;
 	
-	ReservationManager(){
+	public ReservationManager(){
 		reservations = new ArrayList<Reservation>(numberPlate);
 		reservationCars = new ArrayList<ReservationCar>(numberPlate);
 	}
