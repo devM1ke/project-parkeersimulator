@@ -694,7 +694,6 @@ public class Model extends AbstractModel implements Runnable {
                 if(entranceCarQueue.carsInQueue() >= queueNormalSize){
                 Car c = entranceCarQueue.getLastCar();
                 	entranceCarQueue.removeSpecificCar(c);
-                	System.out.println("poep");
                 	left++;
                 }
             }
