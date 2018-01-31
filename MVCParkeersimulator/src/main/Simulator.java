@@ -17,7 +17,6 @@ import view.SimulatorView;
 import view.TimeView;
 import view.BarView;
 import view.CarParkView;
-import view.JFrame;
 import view.LegendView;
 import view.MenuBarView;
 import view.PieView;
