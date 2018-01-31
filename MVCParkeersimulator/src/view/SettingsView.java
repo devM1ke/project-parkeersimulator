@@ -70,7 +70,7 @@ public class SettingsView extends AbstractView{
         startnumbertext = new JTextField(String.valueOf(model.getLocationManager().getPlaceNumberStart() +""),15);
         
         JLabel subscriptionLabel = new JLabel("Abbonement plaatsen");
-        subscriptiontext = new JTextField(String.valueOf(model.getLocationManager().getNumberOfPlaces() +""),17);
+        subscriptiontext = new JTextField(String.valueOf(model.getLocationManager().getPlaceNumberAmount() +""),17);
         
         content.add(carsWeeklabel);
         content.add(carsWeektext);
@@ -139,8 +139,13 @@ public class SettingsView extends AbstractView{
 
                 	String numberStart = startnumbertext.getText();
                 	String numberOfPlaces = subscriptiontext.getText();
-                	model.getLocationManager().changeType(0, 1, 540);
+                    
+                	int am = model.getNumberOfFloors() * model.getNumberOfRows() * model.getNumberOfPlaces();
+                	model.getLocationManager().changeTypeTo(1, 0, 1, am);
+                	model.getLocationManager().setPlaceNumberStart(Integer.parseInt(numberStart));
+                	model.getLocationManager().setPlaceNumberAmount(Integer.parseInt(numberOfPlaces));
                 	model.getLocationManager().changeType(1, Integer.parseInt(numberStart), Integer.parseInt(numberOfPlaces));
+                	model.notifyViews();
                 }
                 catch(Exception ex)
                 {
@@ -151,7 +156,6 @@ public class SettingsView extends AbstractView{
                 }
             }
         });
-
         return update;
     }
 
