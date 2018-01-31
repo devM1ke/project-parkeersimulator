@@ -15,6 +15,12 @@ public class CarQueue {
     public Car removeCar() {
         return queue.poll();
     }
+    public Car getLastCar(){
+    	return((LinkedList<Car>) queue).getLast();
+    }
+    public void removeSpecificCar(Car c){
+    	queue.remove(c);
+    }
     
     public Car getRef() {
     	return queue.element();
@@ -25,7 +31,13 @@ public class CarQueue {
     }
     public int getPassInQueue(){
     	int pass = 0;
-    	 Iterator<Car> it = queue.iterator();
+    	Queue<Car> clone = new LinkedList<>();
+    	Iterator<Car> itr = queue.iterator();
+    	while(itr.hasNext()){
+    		Car c = itr.next();
+    		clone.add(c);
+    	}
+    	 Iterator<Car> it = clone.iterator();
     	    while(it.hasNext()) {
     	    	Car c = it.next();
         	if(c.getColor() == Color.blue){
@@ -36,7 +48,13 @@ public class CarQueue {
     }
     public int getReservedInQueue(){
     	int reserved = 0;
-    	 Iterator<Car> it = queue.iterator();
+    	Queue<Car> clone = new LinkedList<>();
+    	Iterator<Car> itr = queue.iterator();
+    	while(itr.hasNext()){
+    		Car c = itr.next();
+    		clone.add(c);
+    	}
+    	 Iterator<Car> it = clone.iterator();
  	    while(it.hasNext()) {
  	    	Car c = it.next();
         	if(c.getColor() == Color.orange){
