@@ -28,15 +28,21 @@ public class BarView extends AbstractView{
 		double redBar = model.color[1]/totalSpots*100;
 		double orangeBar = model.color[2]/totalSpots*100;
 		double blueBar = model.color[0]/totalSpots*100;
-		double whiteBar = model.getNumberOfOpenSpots()/totalSpots*100;
+		double whiteBar = model.color[3]/totalSpots*100;
+		double yellowBar = model.color[4]/totalSpots*100;
+		double cyanBar = model.color[5]/totalSpots*100;
 		redBar = Math.round(redBar);
 		orangeBar = Math.round(orangeBar);
 		blueBar = Math.round(blueBar);
 		whiteBar = Math.round(whiteBar);
+		yellowBar = Math.round(yellowBar);
+		cyanBar = Math.round(cyanBar);
 		//System.out.println(whiteBar);
 		bars.put(Color.red, (int)redBar);
-		bars.put(Color.orange, (int)orangeBar);
 		bars.put(Color.blue, (int)blueBar);
+		bars.put(Color.cyan, (int)cyanBar);
+		bars.put(Color.orange, (int)orangeBar);
+		bars.put(Color.yellow, (int)yellowBar);
 		bars.put(Color.white, (int)whiteBar); 
 		//System.out.println(model.getNumberOfOpenSpots());
 		// determine longest bar

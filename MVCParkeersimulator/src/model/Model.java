@@ -22,7 +22,7 @@ public class Model extends AbstractModel implements Runnable {
 	public int howmanydays = 7;
 	public int[] dailyearningdays;
 	public int dailyearnings = 0;
-	public int[] color = new int[4];
+	public int[] color = new int[6];
 	
 	public int queueNormalSize = 30;
 	public int queuePassSize = 30;
@@ -743,13 +743,25 @@ public class Model extends AbstractModel implements Runnable {
     }
 
     public void getTypeCar(){
+    	int lichtblauw = 0;
+    	int geel = 0;
     	int blauw = 0;
     	int rood = 0;
     	int oranje = 0;
+    	int wit = 0;
     for(int floor = 0; floor < getNumberOfFloors(); floor++) {	
         for(int row = 0; row < getNumberOfRows(); row++) {
             for(int place = 0; place < getNumberOfPlaces(); place++) {
                 Location location = getLocationManager().getLocation(floor, row, place);
+                if(location.getType()== 0 && getCarAt(location) == null){
+                	wit = wit +1;
+                }
+                if(location.getType()== 1 && getCarAt(location) == null){
+                	lichtblauw = lichtblauw +1;
+                }
+                if(location.getType()== 2 && getCarAt(location) == null){
+                	geel = geel +1;
+                }
                 Car car = getCarAt(location);
                 Color color = car == null ? Color.white : car.getColor();
                 	if(color==Color.blue ){
@@ -769,8 +781,9 @@ public class Model extends AbstractModel implements Runnable {
 		color[0] = blauw;
 		color[1] = rood;
 		color[2] = oranje;
-		color[3] = getNumberOfOpenSpots();
-		
+		color[3] = wit;
+		color[4] = geel;
+		color[5] = lichtblauw;
     }
     
     public void setReservation() {

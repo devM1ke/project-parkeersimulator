@@ -29,30 +29,38 @@ public class PieView extends AbstractView{
 		double redSpots = model.color[1];
 		double orangeSpots = model.color[2];
 		double whiteSpots = model.color[3];
+		double yellowSpots = model.color[4];
+		double lightblueSpots = model.color[5];
 		
 		
 		blueSpots = (blueSpots * 360 / totalSpots);
 		redSpots = (redSpots * 360 / totalSpots);
 		orangeSpots = (orangeSpots * 360 / totalSpots);
 		whiteSpots = (whiteSpots * 360 / totalSpots);
+		yellowSpots = (yellowSpots * 360 / totalSpots);
+		lightblueSpots = (lightblueSpots * 360 / totalSpots);
 		
 
 		blueSpots =Math.round(blueSpots);
 		redSpots = Math.round(redSpots);
 		orangeSpots =Math.round(orangeSpots);
 		whiteSpots = Math.round(whiteSpots);
+		yellowSpots = Math.round(yellowSpots);
+		lightblueSpots = Math.round(lightblueSpots);
+
 		
-		//System.out.println("empty: " + whiteSpots + " | Abonnees: " + blueSpots+ " | Reserveringen: " + orangeSpots+ " | Normale: " + redSpots);
-		//g.drawString("PieView", 10, 10);
 		g.setColor(Color.RED);
 		g.fillArc(0, 0, 160, 160, 90, (int) redSpots);
 		g.setColor(Color.ORANGE);
 		g.fillArc(0, 0, 160, 160, (int) redSpots + 90, (int) orangeSpots);
 		g.setColor(Color.BLUE);
 		g.fillArc(0, 0, 160, 160, (int) redSpots + (int) orangeSpots + 90, (int) blueSpots);
-		g.setColor(Color.WHITE);
-		g.fillArc(0, 0, 160, 160, (int) redSpots + (int) orangeSpots + (int) blueSpots + 90, (int) whiteSpots);
-		
+		g.setColor(Color.yellow);
+		g.fillArc(0, 0, 160, 160, (int) redSpots + (int) orangeSpots + (int) blueSpots + 90, (int) yellowSpots);
+		g.setColor(Color.cyan);
+		g.fillArc(0, 0, 160, 160, (int) redSpots + (int) orangeSpots + (int) blueSpots + (int)yellowSpots + 90, (int) lightblueSpots);
+		g.setColor(Color.white);
+		g.fillArc(0, 0, 160, 160, (int) redSpots + (int) orangeSpots + (int) blueSpots + (int)yellowSpots + (int) lightblueSpots + 90, (int) whiteSpots);
 		//g.fillArc(10, 510, 180, 180, 90, 90);
 		
 		repaint();
