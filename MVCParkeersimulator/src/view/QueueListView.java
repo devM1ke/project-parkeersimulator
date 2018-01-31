@@ -22,9 +22,9 @@ public class QueueListView extends AbstractView {
 		super.paintComponent(g);
 		int x = 1;
 		double total = model.getTotalParkingSpots();
-		cars.put(Color.red, model.getSizeEntranceCarQueue());
+		//cars.put(Color.red, model.getSizeEntranceCarQueue());
 		//cars.put(Color.orange, (int) (model.color[2]/total*100));
-		cars.put(Color.blue, model.getSizeEntrancePassQueue());
+		//cars.put(Color.blue, model.getSizeEntrancePassQueue());
 		//cars.put(Color.WHITE, (int) (model.getTotalParkingSpots()/total*100));
 		int lastPosX = 0;
 		g.setColor(Color.WHITE);

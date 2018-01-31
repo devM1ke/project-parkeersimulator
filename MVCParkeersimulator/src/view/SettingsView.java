@@ -102,7 +102,7 @@ public class SettingsView extends AbstractView{
 
     public JButton cancelButton()
     {
-        JButton cancel = new JButton("Cancel");
+        JButton cancel = new JButton("Annuleren");
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
