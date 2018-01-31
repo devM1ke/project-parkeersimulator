@@ -102,6 +102,7 @@ public class Model extends AbstractModel implements Runnable {
 	
 	@Override
 	public void run() {
+        minute--;
         tick();
 		while(true) {
 			if(run) {
@@ -246,10 +247,6 @@ public class Model extends AbstractModel implements Runnable {
 	public void setPrice(int price){
 		this.price = price;
 	}
-	
-    public void updateViews() {
-    	simulatorView.updateView();
-    }
     
 	public int getNumberOfFloors() {
         return numberOfFloors;

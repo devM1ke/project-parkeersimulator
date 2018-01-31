@@ -139,8 +139,11 @@ public class SettingsView extends AbstractView{
 
                 	String numberStart = startnumbertext.getText();
                 	String numberOfPlaces = subscriptiontext.getText();
-                	model.getLocationManager().changeType(0, 1, 540);
+                    
+                	int am = model.getNumberOfFloors() * model.getNumberOfRows() * model.getNumberOfPlaces();
+                	model.getLocationManager().changeTypeTo(1, 0, 1, am);
                 	model.getLocationManager().changeType(1, Integer.parseInt(numberStart), Integer.parseInt(numberOfPlaces));
+                	model.notifyViews();
                 }
                 catch(Exception ex)
                 {
@@ -151,7 +154,6 @@ public class SettingsView extends AbstractView{
                 }
             }
         });
-
         return update;
     }
 
