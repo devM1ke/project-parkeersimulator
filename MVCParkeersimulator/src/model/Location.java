@@ -7,6 +7,7 @@ public class Location {
     private int row;
     private int place;
     private int numberPlate;
+    private int timer;
 
     /**
      * Constructor for objects of class Location
@@ -88,4 +89,15 @@ public class Location {
     	return numberPlate;
     }
     
+    public int getTimer() {
+    	return timer;
+    }
+    
+    public void setTimer() {
+    	this.timer = 45;
+    }
+    
+    public void tick() {
+    	this.timer--;
+    }
 }

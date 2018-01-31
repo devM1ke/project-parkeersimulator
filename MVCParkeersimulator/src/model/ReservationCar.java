@@ -14,7 +14,7 @@ public class ReservationCar extends Car {
 		public ReservationCar(int day, int hour, int minute, int numberPlate) {
 			arriveDay = day;
 			arriveHour = hour;
-			arriveMinute = minute;
+			arriveMinute = minute -15;
 			this.numberPlate = numberPlate;
 			Random random = new Random();
 	    	int stayMinutes = (int) (15 + random.nextFloat() * 3 * 60);

@@ -3,10 +3,14 @@ package model;
 import java.util.Random;
 
 public class Reservation extends AbstractModel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5338343337563772550L;
 	private int reservationDay;
 	private int reservationHour;
 	private int reservationMinute;
-	private int reservationNumberPlate;
+	private int numberPlate;
 	private boolean isSet = false;
 	Random rand = new Random();
 	
@@ -14,7 +18,7 @@ public class Reservation extends AbstractModel {
 		reservationDay = day;
 		reservationHour = hour;
 		reservationMinute = minute;
-		reservationNumberPlate = numberPlate;
+		this.numberPlate = numberPlate;
 		int time = rand.nextInt(75) + 20;
 		for(int i = 0; i < time; i++) {
 			reservationMinute++;
@@ -45,13 +49,15 @@ public class Reservation extends AbstractModel {
 	}
 	
 	public int getReservationNumberPlate(){
-		return reservationNumberPlate;
+		return numberPlate;
 	}
 	
 	public void setIsSet() {
 		isSet = true;
 	}
+	
 	public boolean getIsSet() {
 		return isSet;
 	}
+	
 }
