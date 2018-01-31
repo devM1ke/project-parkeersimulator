@@ -379,7 +379,7 @@ public class Model extends AbstractModel implements Runnable {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
                 	Location location = getLocationManager().getLocation(floor, row, place);
-                    if (location.getTimer() == 0) {
+                    if (location.getTimer() == 0 && location.getType() == 2) {
                         location.setType(0);
                     }
                 }
