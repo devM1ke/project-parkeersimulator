@@ -277,22 +277,7 @@ public class Model extends AbstractModel implements Runnable {
         }
         return cars[location.getFloor()][location.getRow()][location.getPlace()];
     }
-    public int getNumberOfLocationManagerPlaces() {
-    	return locationManager.getNumberOfPlaces();
-    }
     
-    public void setNumberOfLocationManagerPlaces(int NumberOfPlaces) {
-    	locationManager.setNumberOfPlaces(NumberOfPlaces);
-    }
-	public int getPlaceNumberStartLocationManager() {
-		return locationManager.getPlaceNumberStart();
-		
-	}
-	
-	public void setPlaceNumberStartLocationManager(int placeNumberStart) {
-		locationManager.setPlaceNumberStart(placeNumberStart);
-		
-	}
     public boolean setCarAt(Location location, Car car) {
         if (!locationIsValid(location)) {
             return false;

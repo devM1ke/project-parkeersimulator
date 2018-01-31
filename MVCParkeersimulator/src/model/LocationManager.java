@@ -83,21 +83,19 @@ public class LocationManager extends AbstractModel {
 	}
 	public int getNumberOfPlaces() {
 		return this.numberOfPlaces;
-		
 	}
 	
 	public void setNumberOfPlaces(int numberOfPlaces) {
 		this.numberOfPlaces = numberOfPlaces;
 		
 	}
+	
 	public int getPlaceNumberStart() {
 		return this.placeNumberStart;
-		
 	}
 	
 	public void setPlaceNumberStart(int placeNumberStart) {
 		this.placeNumberStart = placeNumberStart;
-		
 	}
 
 	

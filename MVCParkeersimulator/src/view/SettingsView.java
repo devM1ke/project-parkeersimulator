@@ -66,11 +66,11 @@ public class SettingsView extends AbstractView{
         JLabel priceLabel = new JLabel("Prijs");
         pricetext = new JTextField(String.valueOf(model.getPrice()+""),13);
         
-        JLabel subscriptionLabel = new JLabel("Abbonement plaatsen");
-        subscriptiontext = new JTextField(String.valueOf(model.getNumberOfLocationManagerPlaces() +""),15);
-        
         JLabel numberStartLabel = new JLabel("Start plaats abbonement plaatsen");
-        startnumbertext = new JTextField(String.valueOf(model.getPlaceNumberStartLocationManager() +""),17);
+        startnumbertext = new JTextField(String.valueOf(model.getLocationManager().getPlaceNumberStart() +""),15);
+        
+        JLabel subscriptionLabel = new JLabel("Abbonement plaatsen");
+        subscriptiontext = new JTextField(String.valueOf(model.getLocationManager().getNumberOfPlaces() +""),17);
         
         content.add(carsWeeklabel);
         content.add(carsWeektext);
@@ -87,11 +87,11 @@ public class SettingsView extends AbstractView{
         content.add(priceLabel);
         content.add(pricetext);
         
-        content.add(subscriptionLabel);
-        content.add(subscriptiontext);
-        
         content.add(numberStartLabel);
         content.add(startnumbertext);
+        
+        content.add(subscriptionLabel);
+        content.add(subscriptiontext);
         
         content.add(updateButton());
         content.add(cancelButton());
@@ -136,12 +136,11 @@ public class SettingsView extends AbstractView{
                 	
                 	String price = pricetext.getText();
                 	model.setPrice(Integer.parseInt(price));
-                	
-                	String numberOfPlaces = subscriptiontext.getText();
-                	model.setNumberOfLocationManagerPlaces(Integer.parseInt(numberOfPlaces));
-                	
+
                 	String numberStart = startnumbertext.getText();
-                	model.setNumberOfLocationManagerPlaces(Integer.parseInt(numberStart));
+                	String numberOfPlaces = subscriptiontext.getText();
+                	model.getLocationManager().changeType(0, 1, 540);
+                	model.getLocationManager().changeType(1, Integer.parseInt(numberStart), Integer.parseInt(numberOfPlaces));
                 }
                 catch(Exception ex)
                 {
