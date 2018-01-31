@@ -31,7 +31,7 @@ public class LegendView extends AbstractView{
 		drawLabel(g, "Normale auto's: ", new AdHocCar().getColor(), 20);
 		drawLabel(g, "Abonnement plekken leeg: ", Color.CYAN, 40);
 		drawLabel(g, "Abonnement auto's: ", new ParkingPassCar().getColor(), 60);
-		drawLabel(g, "Gereserveerde plekken leeg: ", new ParkingPassCar().getColor(), 80);
+		drawLabel(g, "Gereserveerde plekken leeg: ", Color.YELLOW, 80);
 		drawLabel(g, "Gereserveerde plekken bezet: ", Color.ORANGE, 100);
 	}
 	private void drawLabel(Graphics g, String label, Color color, int posX) {

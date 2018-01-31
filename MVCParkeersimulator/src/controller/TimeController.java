@@ -20,8 +20,8 @@ public class TimeController extends AbstractController{
     
     
     /**
-     * Setting the time in a HH:MM format
-     * @return return the value of hour+minute
+     * Converting the time in a HH:MM format
+     * @return return the time in a HH:MM format
      */
     public String getTime() {
         String time;

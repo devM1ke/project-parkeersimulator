@@ -63,19 +63,18 @@ public class CarQueue {
         }
     	return reserved;
     }
-    public void advanceWaitingTime(){
+    public int advanceWaitingTime(){
+    	int aantal = 0;
     	 Iterator<Car> it = queue.iterator();
  	    while(it.hasNext()) {
  	    	Car c = it.next();
- 	    	
  	    	if(c.getTimeWillingToWait()==0){
- 	    		
- 	    		queue.remove(c);
+ 	    		it.remove();
+ 	    		aantal = 1;
  	    	}else if(c.getTimeWillingToWait() > 0) {
- 	    		int time = c.getTimeWillingToWait();
- 	    		time = time - 1;
- 	    		c.setTimeWillingToWait(time);
+ 	    		c.tickTimeWillingToWait();
+ 	    		aantal = 0;
  	    	}
- 	    }
+ 	    }return aantal;
     }
 }
