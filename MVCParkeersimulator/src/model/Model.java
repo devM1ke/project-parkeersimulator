@@ -57,8 +57,8 @@ public class Model extends AbstractModel implements Runnable {
     int weekendArrivals = 200; // average number of arriving cars per hour
     int weekDayPassArrivals= 50; // average number of arriving cars per hour
     int weekendPassArrivals = 5; // average number of arriving cars per hour
-    int weekDayReservations = 50;
-    int weekendReservations = 50;
+    int weekDayReservations = 75;
+    int weekendReservations = 100;
     double number = 0;
     
     int enterSpeed = 20; // number of cars that can enter per minute
@@ -116,8 +116,8 @@ public class Model extends AbstractModel implements Runnable {
 		} catch (Exception e) {}
 		
     	advanceTime();
-    	setReservation();
     	handleExit();
+    	setReservation();
     	notifyViews();
     	handleEntrance();
     	getTypeCar();
@@ -320,28 +320,32 @@ public class Model extends AbstractModel implements Runnable {
 	                    if (getCarAt(location) == null && location.getType() == 1) {
 	                        return location;
 	                    }
-                	}
-                }
-            }
-		}
-    	
-    	for (int floor = 0; floor < getNumberOfFloors(); floor++) {
-            for (int row = 0; row < getNumberOfRows(); row++) {
-                for (int place = 0; place < getNumberOfPlaces(); place++) {
-                	Location location = getLocationManager().getLocation(floor, row, place);
-                	if(color == Color.blue) {
-	                    if (getCarAt(location) == null) {
-	                        return location;
-	                    }
-                	} else {
-	                    if (getCarAt(location) == null && location.getType() == 0) {
-	                        return location;
-	                    }
-                	}
-                }
-            }
-        }
-        return null;
+	                    else if(getCarAt(location) == null && location.getType() == 0) {
+	                    	return location;
+	                	}
+	                }
+	            }
+			}return null;	
+    	}
+    	else {
+	    	for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+	            for (int row = 0; row < getNumberOfRows(); row++) {
+	                for (int place = 0; place < getNumberOfPlaces(); place++) {
+	                	Location location = getLocationManager().getLocation(floor, row, place);
+	                	if(color == Color.blue) {
+		                    if (getCarAt(location) == null) {
+		                        return location;
+		                    }
+	                	} else {
+		                    if (getCarAt(location) == null && location.getType() == 0) {
+		                        return location;
+		                    }
+	                	}
+	                }
+	            }
+	        }
+	        return null;
+	    }
     }
     
     public Location getReservationLocation(int numberPlate) {
@@ -527,6 +531,9 @@ public class Model extends AbstractModel implements Runnable {
     				case 1:
     					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
     					break;
+    				case 2:
+    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0);
+    					break;
 	    			}
 		        }
 	    		break;
@@ -539,6 +546,9 @@ public class Model extends AbstractModel implements Runnable {
     				case 1:
     					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
     					break;
+    				case 2:
+    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0);
+    					break;	    			
 	    			}
 		        }
 	    		break;
@@ -551,6 +561,9 @@ public class Model extends AbstractModel implements Runnable {
     				case 1:
     					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
     					break;
+    				case 2:
+    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0);
+    					break;	    			
 	    			}
 		        }
 	    		break;
@@ -563,6 +576,9 @@ public class Model extends AbstractModel implements Runnable {
     				case 1:
     					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
     					break;
+    				case 2:
+    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0);
+    					break;	    			
 	    			}
 	    		}
 	    		else if(hour > 18) {
@@ -573,7 +589,10 @@ public class Model extends AbstractModel implements Runnable {
 	    				case 1:
 	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
 	    					break;
-	    			}
+	    				case 2:
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 1.25);
+	    					break;
+		    		}
 	    			
 	    		}
 	    		break;
@@ -586,15 +605,21 @@ public class Model extends AbstractModel implements Runnable {
 	    				case 1:
 	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
 	    					break;
+	    				case 2:
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0);
+	    					break;
 		    			}
 		        }
 	    		else if(hour >= 18) {
 	    			switch(typeCar) {
 	    				case 0:
-	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 4);
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 3);
 	    					break;
 	    				case 1:
 	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.2);
+	    					break;
+	    				case 2:
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 1.5);
 	    					break;
 		    		}
 	    		}
@@ -608,16 +633,22 @@ public class Model extends AbstractModel implements Runnable {
     				case 1:
     					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
     					break;
+    				case 2:
+    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0);
+    					break;	    			
 	    			}
 		        }
 	    		else if(hour >= 18) {
 	    			switch(typeCar) {
 	    				case 0:
-	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 2);
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 1.5);
 	    					break;
 	    				case 1:
 	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 2);
 	    					break;
+	    				case 2:
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 1);
+	    					break;		    			
 		    		}
 	    		}
 	    		break;
@@ -630,16 +661,22 @@ public class Model extends AbstractModel implements Runnable {
     				case 1:
     					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
     					break;
+    				case 2:
+    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
+    					break;	    			
 	    			}
 		        }
 	    		else if(hour >= 12) {
 	    			switch(typeCar) {
 	    				case 0:
-	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 2);
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 1.5);
 	    					break;
 	    				case 1:
 	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 2);
 	    					break;
+	    				case 2:
+	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 1);
+	    					break;		    			
 		    		}
 	    		}
 	    		break;
