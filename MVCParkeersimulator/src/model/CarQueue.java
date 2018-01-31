@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -29,38 +30,21 @@ public class CarQueue {
     public int carsInQueue(){
     	return queue.size();
     }
-    public int getPassInQueue(){
-    	int pass = 0;
-    	Queue<Car> clone = new LinkedList<>();
-    	Iterator<Car> itr = queue.iterator();
-    	while(itr.hasNext()){
-    		Car c = itr.next();
-    		clone.add(c);
-    	}
-    	 Iterator<Car> it = clone.iterator();
-    	    while(it.hasNext()) {
-    	    	Car c = it.next();
-        	if(c.getColor() == Color.blue){
-        		pass++;
-        	}
-        }
+
+    public ArrayList<Car> getPassInQueue(){
+    	ArrayList<Car> pass = new ArrayList<Car>();
+    	queue.forEach(c -> {
+    		if (c instanceof ParkingPassCar) pass.add(c);
+    	});
+    	
     	return pass;
     }
-    public int getReservedInQueue(){
-    	int reserved = 0;
-    	Queue<Car> clone = new LinkedList<>();
-    	Iterator<Car> itr = queue.iterator();
-    	while(itr.hasNext()){
-    		Car c = itr.next();
-    		clone.add(c);
-    	}
-    	 Iterator<Car> it = clone.iterator();
- 	    while(it.hasNext()) {
- 	    	Car c = it.next();
-        	if(c.getColor() == Color.orange){
-        		reserved++;
-        	}
-        }
+    public ArrayList<Car> getReservedInQueue(){
+    	ArrayList<Car> reserved = new ArrayList<Car>();
+    	queue.forEach(c -> {
+    		if (c instanceof ReservationCar) reserved.add(c);
+    	});
+    	
     	return reserved;
     }
     public int advanceWaitingTime(){

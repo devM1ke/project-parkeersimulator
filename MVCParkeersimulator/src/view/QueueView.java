@@ -31,8 +31,10 @@ private JLabel wachtrijLabel, gewoneIngangLabel, abonneesWachtrij, reserveringWa
 		super.paintComponent(g);
 		wachtrijLabel.setText("Wachtrijen: ");
 		gewoneIngangLabel.setText("Normale auto's in de rij: " + model.getSizeEntranceCarQueue());
-		abonneesWachtrij.setText("Abonnees in de rij: " + model.getSizeEntrancePassQueue());
-		reserveringWachtrij.setText("Reserveringen in de rij: " + model.getSizeReservedQueue());
+		try {abonneesWachtrij.setText("Abonnees in de rij: " + model.getSizeEntrancePassQueue());
+		} catch (Exception ex) {}
+		try {reserveringWachtrij.setText("Reserveringen in de rij: " + model.getSizeReservedQueue());
+		}catch (Exception ex) {}
 		betalingsrijLabel.setText("Huidige betalingsrij: " + model.getSizePaymentCarQueue());
 		uitgangsLabel.setText("Uitgang wachtrij: " + model.getSizeExitCarQueue());
 		vertrokkenLabel.setText("Vertrokken uit de rij: " +model.getLeft());

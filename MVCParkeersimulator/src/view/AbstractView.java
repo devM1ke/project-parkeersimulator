@@ -21,4 +21,5 @@ public abstract class AbstractView extends JPanel {
 	public void updateView() {
 		repaint();
 	}
+	
 }
