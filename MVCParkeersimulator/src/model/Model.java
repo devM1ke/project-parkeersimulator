@@ -26,6 +26,7 @@ public class Model extends AbstractModel implements Runnable {
 	
 	public int queueNormalSize = 30;
 	public int queuePassSize = 30;
+	public int left;
 	
 	private int numberOfFloors = 3;
     private int numberOfRows = 6;
@@ -454,13 +455,9 @@ public class Model extends AbstractModel implements Runnable {
     	reservationCars = reservationManager.getReservationCars();
     	
     	int numberOfCars=getNumberOfCars(weekDayArrivals, weekendArrivals, 0);
-        if(entranceCarQueue.carsInQueue() <= queueNormalSize){
     	addArrivingCars(numberOfCars, AD_HOC);    	
-        }
     	numberOfCars=getNumberOfCars(weekDayPassArrivals, weekendPassArrivals, 1);
-    	 if(entrancePassQueue.carsInQueue() <= queuePassSize){
     	addArrivingCars(numberOfCars, PASS);  
-    	 }
         for(int i = 0; i < reservationCars.size(); i++) {
         	if(reservationCars.get(i).getArriveDay() == day &&
         			reservationCars.get(i).getArriveHour() == hour &&
@@ -700,18 +697,33 @@ public class Model extends AbstractModel implements Runnable {
     	case AD_HOC: 
             for (int i = 0; i < numberOfCars; i++) {
             	entranceCarQueue.addCar(new AdHocCar());
+                if(entranceCarQueue.carsInQueue() >= queueNormalSize){
+                Car c = entranceCarQueue.getLastCar();
+                	entranceCarQueue.removeSpecificCar(c);
+                	left++;
+                }
             }
             break;
     	case PASS:
             for (int i = 0; i < numberOfCars; i++) {
             	entrancePassQueue.addCar(new ParkingPassCar());
+                if(entrancePassQueue.carsInQueue() >= queuePassSize){
+            	  Car c = entrancePassQueue.getLastCar();
+            	  entrancePassQueue.removeSpecificCar(c);
+              	left++;
+                }
             }
             break;	
     	}
     }
     
     private void addReservationCar(ReservationCar car, int numberPlate) {
-    	entranceCarQueue.addCar(car);
+    	entrancePassQueue.addCar(car);
+        if(entrancePassQueue.carsInQueue() >= queuePassSize){
+    	Car c = entrancePassQueue.getLastCar();
+  	  	entrancePassQueue.removeSpecificCar(c);
+    	left++;
+        }
     }
     
     private void addReservations(int numberOfCars) {
@@ -770,5 +782,7 @@ public class Model extends AbstractModel implements Runnable {
     public int getSizeReservedQueue(){
     	return entrancePassQueue.getReservedInQueue();
     }
-
+    public int getLeft(){
+    	return left;
+    }
 }

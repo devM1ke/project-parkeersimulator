@@ -35,6 +35,6 @@ private JLabel wachtrijLabel, gewoneIngangLabel, abonneesWachtrij, reserveringWa
 		reserveringWachtrij.setText("Reserveringen in de rij: " + model.getSizeReservedQueue());
 		betalingsrijLabel.setText("Huidige betalingsrij: " + model.getSizePaymentCarQueue());
 		uitgangsLabel.setText("Uitgang wachtrij: " + model.getSizeExitCarQueue());
-		vertrokkenLabel.setText("Vertrokken uit de rij: Poepie!");
+		vertrokkenLabel.setText("Vertrokken uit de rij: " +model.getLeft());
 	}
 }
