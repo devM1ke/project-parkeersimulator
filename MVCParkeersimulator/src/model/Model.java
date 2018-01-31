@@ -54,11 +54,11 @@ public class Model extends AbstractModel implements Runnable {
     private int tickPause = 100;
 
     int weekDayArrivals= 100; // average number of arriving cars per hour
-    int weekendArrivals = 200; // average number of arriving cars per hour
+    int weekendArrivals = 175; // average number of arriving cars per hour
     int weekDayPassArrivals= 50; // average number of arriving cars per hour
     int weekendPassArrivals = 5; // average number of arriving cars per hour
-    int weekDayReservations = 75;
-    int weekendReservations = 100;
+    int weekDayReservations = 50;
+    int weekendReservations = 75;
     double number = 0;
     
     int enterSpeed = 20; // number of cars that can enter per minute
@@ -828,7 +828,6 @@ public class Model extends AbstractModel implements Runnable {
                     }
                 }
     		}
-    	
     	}
     }
     
