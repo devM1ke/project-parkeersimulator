@@ -18,6 +18,7 @@ import view.TimeView;
 import view.BarView;
 import view.CarParkView;
 import view.LegendView;
+//import view.LineChartView;
 import view.MenuBarView;
 import view.PieView;
 import view.QueueListView;
@@ -39,6 +40,8 @@ public class Simulator{
 
 	private TimeView timeview;
 	private QueueListView queuelistview;
+	private BarView barview;
+	//private LineChartView linechartview;
 	
 	public Simulator() {
 		model = new Model();
@@ -55,13 +58,14 @@ public class Simulator{
 		managementview = new ManagementView(model);
 		legendview = new LegendView(model);
 		queueview = new QueueView(model);
-
+		barview = new BarView(model);
 		timeview = new TimeView(model); 
 		queuelistview = new QueueListView(model);
+		//linechartview = new LineChartView(model);
 
 		//legendview.setBackground(Color.BLACK);
 		
-		BarView chart = new BarView(model);
+
 
 		
 		JSlider slider = new JSlider();
@@ -79,12 +83,13 @@ public class Simulator{
 		screen.getContentPane().add(pieview);
 		screen.getContentPane().add(controller);
 		screen.getContentPane().add(carparkview);
-		screen.getContentPane().add(chart);
+		screen.getContentPane().add(barview);
 		screen.getContentPane().add(legendview);
 
 		screen.getContentPane().add(queueview);
 		screen.getContentPane().add(timeview);
 		screen.getContentPane().add(queuelistview);
+		//screen.getContentPane().add(linechartview);
 
 		
 		queueview.setBounds(1100, 300, 175, 210);
@@ -93,11 +98,11 @@ public class Simulator{
 		carparkview.setBounds(250, 20, 800, 400);
 		pieview.setBounds(20, 470, 200, 200);
 		controller.setBounds(45, 90, 100, 150);
-		chart.setBounds(250, 470, 150, 150);
+		barview.setBounds(250, 470, 200, 150);
 		legendview.setBounds(20, 280, 220, 135);
 		timeview.setBounds(600, 0, 200,50);
 		queuelistview.setBounds(400, 450, 500, 50);
-
+		//linechartview.setBounds(500,0,200,200);
 
 		
 		

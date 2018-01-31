@@ -14,13 +14,13 @@ public class ReservationCar extends Car {
 		public ReservationCar(int day, int hour, int minute, int numberPlate) {
 			arriveDay = day;
 			arriveHour = hour;
-			arriveMinute = minute -15;
+			arriveMinute = minute -20;
 			this.numberPlate = numberPlate;
 			Random random = new Random();
 	    	int stayMinutes = (int) (15 + random.nextFloat() * 3 * 60);
 	        this.setMinutesLeft(stayMinutes);
 	        this.setHasToPay(true);
-	        int timeDifference = random.nextInt(44) + 1;
+	        int timeDifference = random.nextInt(60);
 			for(int i = 0; i < timeDifference; i++) {
 				arriveMinute++;
 		        while (arriveMinute > 59) {
