@@ -11,7 +11,7 @@ public class LocationManager extends AbstractModel {
 	private int numberOfRows;
 	private int numberOfPlaces;
 	private Location[][][] locations;
-	int placeNumberStart = 3; 
+	int placeNumberStart = 1; 
 	
 	/*
 	 * LocationManager creates the locations and puts them into the array locations
@@ -83,21 +83,19 @@ public class LocationManager extends AbstractModel {
 	}
 	public int getNumberOfPlaces() {
 		return this.numberOfPlaces;
-		
 	}
 	
 	public void setNumberOfPlaces(int numberOfPlaces) {
 		this.numberOfPlaces = numberOfPlaces;
 		
 	}
+	
 	public int getPlaceNumberStart() {
 		return this.placeNumberStart;
-		
 	}
 	
 	public void setPlaceNumberStart(int placeNumberStart) {
 		this.placeNumberStart = placeNumberStart;
-		
 	}
 
 	
