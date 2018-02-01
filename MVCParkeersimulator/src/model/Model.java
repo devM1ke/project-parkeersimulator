@@ -231,6 +231,9 @@ public class Model extends AbstractModel implements Runnable {
     public ArrayList getEarnings() {
     	return linediagram.getEarnings();
     }
+    public int getMax() {
+    	return linediagram.getMax();
+    }
     
     private void advanceTime(){
         // Advance the time by one minute.
