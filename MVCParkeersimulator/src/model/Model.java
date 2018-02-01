@@ -57,9 +57,11 @@ public class Model extends AbstractModel implements Runnable {
     int weekendArrivals = 175; // average number of arriving cars per hour
     int weekDayPassArrivals= 50; // average number of arriving cars per hour
     int weekendPassArrivals = 5; // average number of arriving cars per hour
-    int weekDayReservations = 50;
+    int weekDayReservations = 200;
     int weekendReservations = 75;
+    
     int maxNumberofPassCars = 75;
+    
     double number = 0;
     
     int enterSpeed = 20; // number of cars that can enter per minute
@@ -145,6 +147,14 @@ public class Model extends AbstractModel implements Runnable {
     	this.numberOfPlaces = numberOfPlaces;
     }
     
+    public int getMaxNumberofPassCars() {
+    	return this.maxNumberofPassCars;
+    }
+    
+    public void setMaxNumberofPassCars(int c) {
+    	this.maxNumberofPassCars = c;
+    }
+    
     public int getQueueNormalSize() {
     	return this.queueNormalSize;
     }
@@ -163,7 +173,21 @@ public class Model extends AbstractModel implements Runnable {
     	this.queuePassSize = queuePassSize;
     }
     
+    public int getWeekdayReserveArrivals() {
+    	return this.weekDayReservations;
+    }
     
+    public void setWeekdayReserveArrivals(int c) {
+    	this.weekDayReservations = c;
+    }
+    
+    public int getWeekendReserveArrivals() {
+    	return this.weekendReservations;
+    }
+    
+    public void setWeekendReserveArrivals(int c) {
+    	this.weekendReservations = c;
+    }
     
     public int getWeekDayArrivals()
     {
@@ -884,11 +908,11 @@ public class Model extends AbstractModel implements Runnable {
                 }
             }
     	}
-    	if(numberOfPassCars + newCars < maxNumberofPassCars) {
+    	if(numberOfPassCars + getSizeEntrancePassQueue() + newCars < maxNumberofPassCars) {
     		return newCars;
     	}
     	else {
-    		int difference = maxNumberofPassCars - numberOfPassCars;
+    		int difference = maxNumberofPassCars - getSizeEntrancePassQueue() - numberOfPassCars;
     		if(difference > 0) {
     			return difference;
     		}
