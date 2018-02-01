@@ -97,6 +97,10 @@ public class Location {
     	this.timer = 45;
     }
     
+    public void setTimerToZero() {
+    	this.timer = 0;
+    }
+    
     public void tick() {
     	this.timer--;
     }

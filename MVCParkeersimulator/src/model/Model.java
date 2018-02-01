@@ -488,6 +488,7 @@ public class Model extends AbstractModel implements Runnable {
     	            car = queue.removeCar();
     	            freeLocation.setType(0);
     	            freeLocation.setNumberPlate(-1);
+    	            freeLocation.setTimerToZero();
     	            break;
                 }
                 else {
@@ -637,7 +638,7 @@ public class Model extends AbstractModel implements Runnable {
 	    		}
 	    		break;
 	    	case 4:
-	    		if(hour < 8 || hour > 22) { 
+	    		if(hour < 8 || hour > 21) { 
 	    			switch(typeCar) {
 	    				case 0:
 	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
@@ -650,7 +651,7 @@ public class Model extends AbstractModel implements Runnable {
 	    					break;
 		    			}
 		        }
-	    		else if(hour >= 18) {
+	    		else if(hour > 18) {
 	    			switch(typeCar) {
 	    				case 0:
 	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 3);
