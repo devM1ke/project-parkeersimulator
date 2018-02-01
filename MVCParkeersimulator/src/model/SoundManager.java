@@ -22,8 +22,8 @@ public class SoundManager implements LineListener{
 	public SoundManager(){
 
 	}
-	public void play(String audioFilePath) {
-        File audioFile = new File(audioFilePath);
+	public void play() {
+        File audioFile = new File("Coin_Sound.wav");
  
         try {
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);

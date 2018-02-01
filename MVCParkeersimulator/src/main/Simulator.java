@@ -131,7 +131,7 @@ public class Simulator{
 		timeview.setBounds(600, 0, 200,50);
 		queuelistview.setBounds(400, 450, 500, 50);
 		linechartview.setBounds(600,470,400,200);
-		imageview.setBounds(20,5,250,80);
+		imageview.setBounds(15,5,250,80);
 
 		
 		

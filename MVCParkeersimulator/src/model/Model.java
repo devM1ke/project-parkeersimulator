@@ -251,7 +251,7 @@ public class Model extends AbstractModel implements Runnable {
             hour -= 24;
             //never move this bitch, and never put this "setDailyEarningZero" bitch above it!!!!!
             linediagram.addToEarning(dailyearnings, price);
-			soundmanager.play("Coin_Sound.wav");
+			soundmanager.play();
             
 			setDailyEarningZero();
             day++;
