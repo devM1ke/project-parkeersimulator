@@ -507,7 +507,11 @@ public class Model extends AbstractModel implements Runnable {
         while (car!=null) {
         	if (car.getHasToPay()){
 	            car.setIsPaying(true);
-	            dailyearnings = dailyearnings + price;
+	            if(car.getColor()==Color.orange){
+	            dailyearnings = (int) (dailyearnings + price*1.2);
+	            }else {
+	            	dailyearnings = dailyearnings + price;
+	            }
 	            paymentCarQueue.addCar(car);
         	}
         	else {
