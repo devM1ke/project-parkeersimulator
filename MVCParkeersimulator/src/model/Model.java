@@ -16,7 +16,6 @@ import model.ParkingPassCar;
 import model.LocationManager;
 import model.ReservationManager;
 import view.SimulatorView;
-import view.SoundView;
 
 import java.awt.*;
 
