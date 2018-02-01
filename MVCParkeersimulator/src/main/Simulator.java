@@ -17,7 +17,7 @@ import view.SimulatorView;
 import view.TimeView;
 import view.BarView;
 import view.CarParkView;
-import view.ImageView;
+//import view.ImageView;
 import view.LegendView;
 //import view.LineChartView;
 import view.MenuBarView;
