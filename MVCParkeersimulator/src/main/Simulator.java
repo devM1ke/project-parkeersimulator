@@ -14,10 +14,11 @@ import javax.swing.event.ChangeListener;
 
 import controller.Controller;
 import view.SimulatorView;
+import view.SoundView;
 import view.TimeView;
 import view.BarView;
 import view.CarParkView;
-//import view.ImageView;
+import view.ImageView;
 import view.LegendView;
 //import view.LineChartView;
 import view.MenuBarView;
@@ -42,7 +43,8 @@ public class Simulator{
 	private TimeView timeview;
 	private QueueListView queuelistview;
 	private BarView barview;
-	//private ImageView imageview;
+	private ImageView imageview;
+	private SoundView soundview;
 	//private LineChartView linechartview;
 	
 	public Simulator() {
@@ -63,7 +65,8 @@ public class Simulator{
 		barview = new BarView(model);
 		timeview = new TimeView(model); 
 		queuelistview = new QueueListView(model);
-		//imageview = new ImageView(model);
+		imageview = new ImageView(model);
+		soundview = new SoundView();
 		//linechartview = new LineChartView(model);
 
 		//legendview.setBackground(Color.BLACK);
@@ -92,7 +95,7 @@ public class Simulator{
 		screen.getContentPane().add(queueview);
 		screen.getContentPane().add(timeview);
 		screen.getContentPane().add(queuelistview);
-		//screen.getContentPane().add(imageview);
+		screen.getContentPane().add(imageview);
 		//screen.getContentPane().add(linechartview);
 
 		
@@ -101,12 +104,12 @@ public class Simulator{
 		managementview.setBounds(1100, 20, 175, 210);
 		carparkview.setBounds(250, 20, 800, 400);
 		pieview.setBounds(20, 470, 200, 200);
-		controller.setBounds(45, 90, 100, 150);
+		controller.setBounds(70, 100, 100, 140);
 		barview.setBounds(250, 470, 200, 150);
 		legendview.setBounds(20, 280, 220, 135);
 		timeview.setBounds(600, 0, 200,50);
 
-		//imageview.setBounds(20,10,100,20);
+		imageview.setBounds(20,5,250,80);
 
 		queuelistview.setBounds(400, 445, 500, 50);
 
