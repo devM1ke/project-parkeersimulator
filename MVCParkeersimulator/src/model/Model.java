@@ -55,8 +55,8 @@ public class Model extends AbstractModel implements Runnable {
 
     int weekDayArrivals= 100; // average number of arriving cars per hour
     int weekendArrivals = 175; // average number of arriving cars per hour
-    int weekDayPassArrivals= 500; // average number of arriving cars per hour
-    int weekendPassArrivals = 50; // average number of arriving cars per hour
+    int weekDayPassArrivals= 50; // average number of arriving cars per hour
+    int weekendPassArrivals = 5; // average number of arriving cars per hour
     int weekDayReservations = 50;
     int weekendReservations = 75;
     double number = 0;
