@@ -52,6 +52,7 @@ public class LineDiagramView extends AbstractView {
 	      }
 
 	      // create x and y axes 
+	      
 	      g2.drawLine(BORDER_GAP, getHeight() - BORDER_GAP, BORDER_GAP, BORDER_GAP);
 	      g2.drawLine(BORDER_GAP, getHeight() - BORDER_GAP, getWidth() - BORDER_GAP, getHeight() - BORDER_GAP);
 
@@ -74,14 +75,19 @@ public class LineDiagramView extends AbstractView {
 	      }
 
 	      Stroke oldStroke = g2.getStroke();
-	      g2.setColor(GRAPH_COLOR);
+	      //g2.setColor(GRAPH_COLOR);
 	      g2.setStroke(GRAPH_STROKE);
 	      for (int i = 0; i < graphPoints.size() - 1; i++) {
 	         int x1 = graphPoints.get(i).x;
 	         int y1 = graphPoints.get(i).y;
 	         int x2 = graphPoints.get(i + 1).x;
 	         int y2 = graphPoints.get(i + 1).y;
-	         g2.drawLine(x1, y1, x2, y2);         
+	         
+	         g2.setColor(GRAPH_COLOR);
+	         g2.drawLine(x1, y1, x2, y2);  
+//	         g2.setColor(Color.BLACK);
+//	         String test = scores.get(i).toString();
+//	         g2.drawString(test, x1, y1);
 	      }
 
 	      g2.setStroke(oldStroke);      
