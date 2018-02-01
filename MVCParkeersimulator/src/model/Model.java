@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.JMenuBar;
@@ -15,6 +16,7 @@ import model.ParkingPassCar;
 import model.LocationManager;
 import model.ReservationManager;
 import view.SimulatorView;
+
 import java.awt.*;
 
 public class Model extends AbstractModel implements Runnable {
@@ -46,6 +48,8 @@ public class Model extends AbstractModel implements Runnable {
     private SimulatorView simulatorView;
     private LocationManager locationManager;
     private ReservationManager reservationManager;
+    private SoundManager soundmanager;
+    private LineDiagram linediagram;
 
     public int day = 0;
     public int hour = 0;
@@ -78,6 +82,8 @@ public class Model extends AbstractModel implements Runnable {
         dailyearningdays = new int[howmanydays];
         locationManager = new LocationManager(numberOfFloors, numberOfRows, numberOfPlaces);
         reservationManager = new ReservationManager();
+        soundmanager = new SoundManager();
+        linediagram = new LineDiagram();
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         this.runner = new Thread(this);
@@ -126,7 +132,8 @@ public class Model extends AbstractModel implements Runnable {
     	handleEntrance();
     	getTypeCar();
     	removeReservations();
-    	
+
+
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
@@ -136,11 +143,11 @@ public class Model extends AbstractModel implements Runnable {
                         car.tick();
                     }
                     location.tick();
+                    
                 }
             }
         }
     }
-    
     public void setGarage(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
     	this.numberOfFloors = numberOfFloors;
     	this.numberOfRows = numberOfRows;
@@ -250,6 +257,12 @@ public class Model extends AbstractModel implements Runnable {
     public int getMinute(){
     	return minute;
     }
+    public ArrayList getEarnings() {
+    	return linediagram.getEarnings();
+    }
+    public int getMax() {
+    	return linediagram.getMax();
+    }
     
     private void advanceTime(){
         // Advance the time by one minute.
@@ -260,7 +273,11 @@ public class Model extends AbstractModel implements Runnable {
         }
         while (hour > 23) {
             hour -= 24;
-			setDailyEarningZero();            
+            //never move this bitch, and never put this "setDailyEarningZero" bitch above it!!!!!
+            linediagram.addToEarning(dailyearnings, price);
+			soundmanager.play();
+            
+			setDailyEarningZero();
             day++;
         }
         while (day > 6) {
@@ -580,7 +597,7 @@ public class Model extends AbstractModel implements Runnable {
         */
         switch(day) {
 	    	case 0:
-	    		if(hour < 8 || hour > 18) { 
+	    		if(hour < 8 || hour > 16) { 
 	    			switch(typeCar) {
     				case 0:
     					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
@@ -595,7 +612,7 @@ public class Model extends AbstractModel implements Runnable {
 		        }
 	    		break;
 	    	case 1:
-	    		if(hour < 8 || hour > 18) { 
+	    		if(hour < 8 || hour > 16) { 
 	    			switch(typeCar) {
     				case 0:
     					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
@@ -610,7 +627,7 @@ public class Model extends AbstractModel implements Runnable {
 		        }
 	    		break;
 	    	case 2:
-	    		if(hour < 8 || hour > 18) { 
+	    		if(hour < 8 || hour > 16) { 
 	    			switch(typeCar) {
     				case 0:
     					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
@@ -638,7 +655,7 @@ public class Model extends AbstractModel implements Runnable {
     					break;	    			
 	    			}
 	    		}
-	    		else if(hour > 18) {
+	    		else if(hour > 16) {
 	    			switch(typeCar) {
 	    				case 0:
 	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 1.25);
@@ -654,7 +671,7 @@ public class Model extends AbstractModel implements Runnable {
 	    		}
 	    		break;
 	    	case 4:
-	    		if(hour < 8 || hour > 23) { 
+	    		if(hour < 8 || hour > 22) { 
 	    			switch(typeCar) {
 	    				case 0:
 	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
@@ -682,7 +699,7 @@ public class Model extends AbstractModel implements Runnable {
 	    		}
 	    		break;
 	    	case 5:
-	    		if(hour < 8 || hour > 23) { 
+	    		if(hour < 8 || hour > 22) { 
 	    			switch(typeCar) {
     				case 0:
     					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
@@ -710,7 +727,7 @@ public class Model extends AbstractModel implements Runnable {
 	    		}
 	    		break;
 	    	case 6:
-	    		if(hour < 8 || hour > 18) { 
+	    		if(hour < 8 || hour > 17) { 
 	    			switch(typeCar) {
     				case 0:
     					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
@@ -719,7 +736,7 @@ public class Model extends AbstractModel implements Runnable {
     					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
     					break;
     				case 2:
-    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.15);
+    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0);
     					break;	    			
 	    			}
 		        }

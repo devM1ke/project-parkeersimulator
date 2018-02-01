@@ -99,7 +99,7 @@ public class LineChartView extends JPanel {
       List<Integer> scores = new ArrayList<Integer>();
       Random random = new Random();
       int maxDataPoints = 10;
-      int maxScore = 10;
+      int maxScore = 20;
       for (int i = 0; i < maxDataPoints ; i++) {
          scores.add(random.nextInt(maxScore));
       }
