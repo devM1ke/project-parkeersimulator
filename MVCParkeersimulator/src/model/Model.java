@@ -144,6 +144,26 @@ public class Model extends AbstractModel implements Runnable {
     	this.numberOfPlaces = numberOfPlaces;
     }
     
+    public int getQueueNormalSize() {
+    	return this.queueNormalSize;
+    }
+    
+    public void setQueueNormalSize(int queueNormalSize)
+    {
+    	this.queueNormalSize = queueNormalSize;
+    }
+    
+    public int getQueuePassSize() {
+    	return this.queuePassSize;
+    }
+    
+    public void setQueuePassSize(int queuePassSize)
+    {
+    	this.queuePassSize = queuePassSize;
+    }
+    
+    
+    
     public int getWeekDayArrivals()
     {
     	return this.weekDayArrivals;
