@@ -17,8 +17,10 @@ import view.SimulatorView;
 import view.TimeView;
 import view.BarView;
 import view.CarParkView;
-//import view.ImageView;
+import view.ImageView;
 import view.LegendView;
+import view.LineChartView;
+import view.LineDiagramView;
 //import view.LineChartView;
 import view.MenuBarView;
 import view.PieView;
@@ -42,8 +44,8 @@ public class Simulator{
 	private TimeView timeview;
 	private QueueListView queuelistview;
 	private BarView barview;
-	//private ImageView imageview;
-	//private LineChartView linechartview;
+	private ImageView imageview;
+	private LineDiagramView lineDiagramView;
 	
 	public Simulator() {
 		model = new Model();
@@ -63,8 +65,8 @@ public class Simulator{
 		barview = new BarView(model);
 		timeview = new TimeView(model); 
 		queuelistview = new QueueListView(model);
-		//imageview = new ImageView(model);
-		//linechartview = new LineChartView(model);
+		imageview = new ImageView(model);
+		lineDiagramView = new LineDiagramView(model);
 
 		//legendview.setBackground(Color.BLACK);
 		
@@ -92,8 +94,8 @@ public class Simulator{
 		screen.getContentPane().add(queueview);
 		screen.getContentPane().add(timeview);
 		screen.getContentPane().add(queuelistview);
-		//screen.getContentPane().add(imageview);
-		//screen.getContentPane().add(linechartview);
+		screen.getContentPane().add(imageview);
+		screen.getContentPane().add(lineDiagramView);
 
 		
 		queueview.setBounds(1100, 300, 175, 210);
@@ -105,15 +107,10 @@ public class Simulator{
 		barview.setBounds(250, 470, 200, 150);
 		legendview.setBounds(20, 280, 220, 135);
 		timeview.setBounds(600, 0, 200,50);
-
-		//imageview.setBounds(20,10,100,20);
-
+		imageview.setBounds(10,10,250,80);
 		queuelistview.setBounds(400, 445, 500, 50);
+		lineDiagramView.setBounds(500,470,400,200);
 
-		//linechartview.setBounds(500,0,200,200);
-
-		
-		
 		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		screen.setVisible(true);   
 		
