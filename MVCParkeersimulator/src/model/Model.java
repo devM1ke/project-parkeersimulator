@@ -23,7 +23,7 @@ public class Model extends AbstractModel implements Runnable {
 	public int howmanydays = 7;
 	public int[] dailyearningdays;
 	public int dailyearnings = 0;
-	public int[] color = new int[4];
+	public int[] color = new int[6];
 	
 	public int queueNormalSize = 30;
 	public int queuePassSize = 30;
@@ -56,11 +56,12 @@ public class Model extends AbstractModel implements Runnable {
     private int tickPause = 100;
 
     int weekDayArrivals= 100; // average number of arriving cars per hour
-    int weekendArrivals = 200; // average number of arriving cars per hour
+    int weekendArrivals = 175; // average number of arriving cars per hour
     int weekDayPassArrivals= 50; // average number of arriving cars per hour
     int weekendPassArrivals = 5; // average number of arriving cars per hour
-    int weekDayReservations = 75;
-    int weekendReservations = 100;
+    int weekDayReservations = 50;
+    int weekendReservations = 75;
+    int maxNumberofPassCars = 75;
     double number = 0;
     
     int enterSpeed = 20; // number of cars that can enter per minute
@@ -105,6 +106,7 @@ public class Model extends AbstractModel implements Runnable {
 	
 	@Override
 	public void run() {
+        minute--;
         tick();
 		while(true) {
 			if(run) {
@@ -144,6 +146,26 @@ public class Model extends AbstractModel implements Runnable {
     	this.numberOfRows = numberOfRows;
     	this.numberOfPlaces = numberOfPlaces;
     }
+    
+    public int getQueueNormalSize() {
+    	return this.queueNormalSize;
+    }
+    
+    public void setQueueNormalSize(int queueNormalSize)
+    {
+    	this.queueNormalSize = queueNormalSize;
+    }
+    
+    public int getQueuePassSize() {
+    	return this.queuePassSize;
+    }
+    
+    public void setQueuePassSize(int queuePassSize)
+    {
+    	this.queuePassSize = queuePassSize;
+    }
+    
+    
     
     public int getWeekDayArrivals()
     {
@@ -253,10 +275,6 @@ public class Model extends AbstractModel implements Runnable {
 	public void setPrice(int price){
 		this.price = price;
 	}
-	
-    public void updateViews() {
-    	simulatorView.updateView();
-    }
     
 	public int getNumberOfFloors() {
         return numberOfFloors;
@@ -327,12 +345,23 @@ public class Model extends AbstractModel implements Runnable {
 	                    if (getCarAt(location) == null && location.getType() == 1) {
 	                        return location;
 	                    }
-	                    else if(getCarAt(location) == null && location.getType() == 0) {
-	                    	return location;
-	                	}
+	                    
 	                }
 	            }
-			}return null;	
+			}
+    		if(color == Color.blue) {
+        		for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+                    for (int row = 0; row < getNumberOfRows(); row++) {
+                        for (int place = 0; place < getNumberOfPlaces(); place++) {
+                        	Location location = getLocationManager().getLocation(floor, row, place);
+    	                    if (getCarAt(location) == null && location.getType() == 0) {
+    	                        return location;
+    	                    }
+    	                    
+    	                }
+    	            }
+    			}
+        	}return null;	
     	}
     	else {
 	    	for (int floor = 0; floor < getNumberOfFloors(); floor++) {
@@ -485,7 +514,11 @@ public class Model extends AbstractModel implements Runnable {
         while (car!=null) {
         	if (car.getHasToPay()){
 	            car.setIsPaying(true);
-	            dailyearnings = dailyearnings + price;
+	            if(car.getColor()==Color.orange){
+	            dailyearnings = (int) (dailyearnings + price*1.2);
+	            }else {
+	            	dailyearnings = dailyearnings + price;
+	            }
 	            paymentCarQueue.addCar(car);
         	}
         	else {
@@ -722,13 +755,15 @@ public class Model extends AbstractModel implements Runnable {
             }
             break;
     	case PASS:
-            for (int i = 0; i < numberOfCars; i++) {
-            	entrancePassQueue.addCar(new ParkingPassCar());
-                if(entrancePassQueue.carsInQueue() >= queuePassSize){
-            	  Car c = entrancePassQueue.getLastCar();
-            	  entrancePassQueue.removeSpecificCar(c);
-              	left++;
-                }
+        	int newNumberOfCars =checkNumberOfPassCars(numberOfCars);
+            for (int i = 0; i < newNumberOfCars; i++) { 
+	            	entrancePassQueue.addCar(new ParkingPassCar());
+	                if(entrancePassQueue.carsInQueue() >= queuePassSize){
+	            	  Car c = entrancePassQueue.getLastCar();
+	            	  entrancePassQueue.removeSpecificCar(c);
+	              	left++;
+	                }
+            	
             }
             break;	
     	}
@@ -750,13 +785,25 @@ public class Model extends AbstractModel implements Runnable {
     }
 
     public void getTypeCar(){
+    	int lichtblauw = 0;
+    	int geel = 0;
     	int blauw = 0;
     	int rood = 0;
     	int oranje = 0;
+    	int wit = 0;
     for(int floor = 0; floor < getNumberOfFloors(); floor++) {	
         for(int row = 0; row < getNumberOfRows(); row++) {
             for(int place = 0; place < getNumberOfPlaces(); place++) {
                 Location location = getLocationManager().getLocation(floor, row, place);
+                if(location.getType()== 0 && getCarAt(location) == null){
+                	wit = wit +1;
+                }
+                if(location.getType()== 1 && getCarAt(location) == null){
+                	lichtblauw = lichtblauw +1;
+                }
+                if(location.getType()== 2 && getCarAt(location) == null){
+                	geel = geel +1;
+                }
                 Car car = getCarAt(location);
                 Color color = car == null ? Color.white : car.getColor();
                 	if(color==Color.blue ){
@@ -776,8 +823,9 @@ public class Model extends AbstractModel implements Runnable {
 		color[0] = blauw;
 		color[1] = rood;
 		color[2] = oranje;
-		color[3] = getNumberOfOpenSpots();
-		
+		color[3] = wit;
+		color[4] = geel;
+		color[5] = lichtblauw;
     }
     
     public void setReservation() {
@@ -822,7 +870,38 @@ public class Model extends AbstractModel implements Runnable {
                     }
                 }
     		}
-    	
+    	}
+    }
+    
+    public int checkNumberOfPassCars(int newCars) {
+    	if(newCars == 0) {
+    		return 0;
+    	}
+    	int numberOfPassCars;
+    	numberOfPassCars = 0;
+    	for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                	Location location = getLocationManager().getLocation(floor, row, place);
+                	Car car = getCarAt(location);
+                	Color color = car == null ? Color.white : car.getColor();
+                	if(color == Color.blue) {
+                		numberOfPassCars++;
+                	}
+                }
+            }
+    	}
+    	if(numberOfPassCars + newCars < maxNumberofPassCars) {
+    		return newCars;
+    	}
+    	else {
+    		int difference = maxNumberofPassCars - numberOfPassCars;
+    		if(difference > 0) {
+    			return difference;
+    		}
+    		else {
+    			return 0;
+    		}
     	}
     }
     
@@ -830,7 +909,7 @@ public class Model extends AbstractModel implements Runnable {
     	return entranceCarQueue.carsInQueue();
     }
     public int getSizeEntrancePassQueue(){
-    	return entrancePassQueue.getPassInQueue();
+    	return entrancePassQueue.getPassInQueue().size();
     }
     public int getSizeExitCarQueue(){
     	return exitCarQueue.carsInQueue();
@@ -839,9 +918,27 @@ public class Model extends AbstractModel implements Runnable {
     	return paymentCarQueue.carsInQueue();
     }
     public int getSizeReservedQueue(){
-    	return entrancePassQueue.getReservedInQueue();
+    	return entrancePassQueue.getReservedInQueue().size();
     }
     public int getLeft(){
     	return left;
+    }
+    public int getWeekendReservedArrivals()
+    {
+    	return this.weekendReservations;
+    }
+    
+    public void setWeekendReservedArrivals(int weekendReservations)
+    {
+    	this.weekendReservations = weekendReservations;
+    }
+    public int getWeekDayReservedArrivals()
+    {
+    	return this.weekDayReservations;
+    }
+    
+    public void setWeekDayReservedArrivals(int weekDayReservations)
+    {
+    	this.weekDayReservations = weekDayReservations;
     }
 }

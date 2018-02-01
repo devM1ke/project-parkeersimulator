@@ -12,6 +12,7 @@ public class LocationManager extends AbstractModel {
 	private int numberOfPlaces;
 	private Location[][][] locations;
 	int placeNumberStart = 1; 
+	int placeNumberAmount = 60;
 	
 	/*
 	 * LocationManager creates the locations and puts them into the array locations
@@ -27,18 +28,15 @@ public class LocationManager extends AbstractModel {
 	        for(int row = 0; row < numberOfRows; row++) {
 	            for(int place = 0; place < numberOfPlaces; place++) {
 	                locations[floor][row][place] = new Location(floor, row, place);
-	                
 	            }
 	        }
 		}
-		changeType(1, placeNumberStart, 60);
+		changeType(1, placeNumberStart, placeNumberAmount);
 	}
-
 	
 	public int getNumberOfOpenSpots(){
     	return numberOfOpenSpots;
     }
-	
 	
 	/* method for changing the location number in to the array location.
 	 * the placeNumber is the number of the location.
@@ -81,6 +79,18 @@ public class LocationManager extends AbstractModel {
 			locations[locationArray[0]][locationArray[1]][locationArray[2]].setType(type);
 		}
 	}
+	
+	public void changeTypeTo(int typeFrom, int typeTo, int placeNumberStart, int NumberOfPlaces) {
+		for(int i = 0; i <= NumberOfPlaces - 1; i++) {
+			int[] locationArray;
+			locationArray = new int[3];
+			locationArray = getLocationNumber(placeNumberStart + i);
+			if(locations[locationArray[0]][locationArray[1]][locationArray[2]].getType() == typeFrom) {
+				locations[locationArray[0]][locationArray[1]][locationArray[2]].setType(typeTo);
+			}
+		}
+	}
+	
 	public int getNumberOfPlaces() {
 		return this.numberOfPlaces;
 	}
@@ -94,8 +104,16 @@ public class LocationManager extends AbstractModel {
 		return this.placeNumberStart;
 	}
 	
+	public int getPlaceNumberAmount() {
+		return this.placeNumberAmount;
+	}
+	
 	public void setPlaceNumberStart(int placeNumberStart) {
 		this.placeNumberStart = placeNumberStart;
+	}
+	
+	public void setPlaceNumberAmount(int placeNumberAmount) {
+		this.placeNumberAmount= placeNumberAmount;
 	}
 	
 	}

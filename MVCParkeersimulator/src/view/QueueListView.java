@@ -10,6 +10,7 @@ import model.Model;
 
 public class QueueListView extends AbstractView {
 	private Map<Color, Integer> cars =	new LinkedHashMap<Color, Integer>();
+	private Map<Color, Integer> cars2 =	new LinkedHashMap<Color, Integer>();
 	public QueueListView(Model model) {
 		super(model);
 		this.model = model;
@@ -21,11 +22,8 @@ public class QueueListView extends AbstractView {
 		
 		super.paintComponent(g);
 		int x = 1;
-		double total = model.getTotalParkingSpots();
-		//cars.put(Color.red, model.getSizeEntranceCarQueue());
-		//cars.put(Color.orange, (int) (model.color[2]/total*100));
-		//cars.put(Color.blue, model.getSizeEntrancePassQueue());
-		//cars.put(Color.WHITE, (int) (model.getTotalParkingSpots()/total*100));
+		double total = 35;
+		try{cars.put(Color.red, (int)(model.getSizeEntranceCarQueue()*500/model.queueNormalSize));} catch (Exception ex) {}
 		int lastPosX = 0;
 		g.setColor(Color.WHITE);
 		g.fillRect(lastPosX, 0, 500, 10);
@@ -33,6 +31,17 @@ public class QueueListView extends AbstractView {
 			int value = cars.get(color);
 			g.setColor(color);
 			g.fillRect(lastPosX, 0, value, 10);
+			lastPosX = value;
+			x += (20+2);
+		}try{cars2.put(Color.orange, (int)(model.getSizeReservedQueue()*500/model.queuePassSize));} catch (Exception ex) {}
+		try{cars2.put(Color.blue, (int)(model.getSizeEntrancePassQueue()*500/model.queuePassSize));} catch (Exception ex) {}
+		lastPosX = 0;
+		g.setColor(Color.WHITE);
+		g.fillRect(lastPosX, 15, 500, 10);
+		for (Color color : cars2.keySet()){
+			int value = cars2.get(color);
+			g.setColor(color);
+			g.fillRect(lastPosX, 15, value, 10);
 			lastPosX = value;
 			x += (20+2);
 		}
