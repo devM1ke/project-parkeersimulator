@@ -15,6 +15,8 @@ import model.ParkingPassCar;
 import model.LocationManager;
 import model.ReservationManager;
 import view.SimulatorView;
+import view.SoundView;
+
 import java.awt.*;
 
 public class Model extends AbstractModel implements Runnable {
@@ -46,6 +48,7 @@ public class Model extends AbstractModel implements Runnable {
     private SimulatorView simulatorView;
     private LocationManager locationManager;
     private ReservationManager reservationManager;
+    private SoundManager soundmanager;
 
     public int day = 0;
     public int hour = 0;
@@ -76,6 +79,7 @@ public class Model extends AbstractModel implements Runnable {
         dailyearningdays = new int[howmanydays];
         locationManager = new LocationManager(numberOfFloors, numberOfRows, numberOfPlaces);
         reservationManager = new ReservationManager();
+        soundmanager = new SoundManager();
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         this.runner = new Thread(this);
@@ -124,6 +128,8 @@ public class Model extends AbstractModel implements Runnable {
     	handleEntrance();
     	getTypeCar();
     	removeReservations();
+
+
     	
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -134,6 +140,7 @@ public class Model extends AbstractModel implements Runnable {
                         car.tick();
                     }
                     location.tick();
+                    
                 }
             }
         }
@@ -236,7 +243,8 @@ public class Model extends AbstractModel implements Runnable {
         }
         while (hour > 23) {
             hour -= 24;
-			setDailyEarningZero();            
+			setDailyEarningZero();   
+			soundmanager.play("Coin_Sound.wav");
             day++;
         }
         while (day > 6) {
