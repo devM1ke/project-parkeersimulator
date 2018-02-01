@@ -30,7 +30,7 @@ public class Model extends AbstractModel implements Runnable {
 	public int queuePassSize = 30;
 	public int left;
 	
-	private int numberOfFloors = 3;
+	private int numberOfFloors = 6;
     private int numberOfRows = 6;
     private int numberOfPlaces = 30;
     private int numberOfOpenSpots;
@@ -61,8 +61,8 @@ public class Model extends AbstractModel implements Runnable {
     int weekendArrivals = 175; // average number of arriving cars per hour
     int weekDayPassArrivals= 50; // average number of arriving cars per hour
     int weekendPassArrivals = 5; // average number of arriving cars per hour
-    int weekDayReservations = 200;
-    int weekendReservations = 75;
+    int weekDayReservations = 50;
+    int weekendReservations = 50;
     
     int maxNumberofPassCars = 75;
     
