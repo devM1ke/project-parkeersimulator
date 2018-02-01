@@ -29,6 +29,13 @@ public class LineDiagram extends AbstractModel {
 			System.out.println("new record: " + dailyearnings + " old: " + highest);
 			highest = dailyearnings;
 			max = (int) (dailyearnings*120/100);
+			/*System.out.println("new max: " + max);
+			for(int i =0; i < earnings.size(); i++) {
+				int e = (int) oldearnings.get(i);
+				System.out.println("official: " + e);
+				earnings.set(i, e*100);
+				System.out.println("new: " + earnings.get(i));
+			}*/
 		}
 		earnings.add(dailyearnings);
 		oldearnings.add(dailyearnings);
