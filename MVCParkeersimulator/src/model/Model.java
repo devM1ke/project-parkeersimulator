@@ -103,6 +103,7 @@ public class Model extends AbstractModel implements Runnable {
 	
 	@Override
 	public void run() {
+        minute--;
         tick();
 		while(true) {
 			if(run) {
@@ -143,6 +144,26 @@ public class Model extends AbstractModel implements Runnable {
     	this.numberOfRows = numberOfRows;
     	this.numberOfPlaces = numberOfPlaces;
     }
+    
+    public int getQueueNormalSize() {
+    	return this.queueNormalSize;
+    }
+    
+    public void setQueueNormalSize(int queueNormalSize)
+    {
+    	this.queueNormalSize = queueNormalSize;
+    }
+    
+    public int getQueuePassSize() {
+    	return this.queuePassSize;
+    }
+    
+    public void setQueuePassSize(int queuePassSize)
+    {
+    	this.queuePassSize = queuePassSize;
+    }
+    
+    
     
     public int getWeekDayArrivals()
     {
@@ -247,10 +268,6 @@ public class Model extends AbstractModel implements Runnable {
 	public void setPrice(int price){
 		this.price = price;
 	}
-	
-    public void updateViews() {
-    	simulatorView.updateView();
-    }
     
 	public int getNumberOfFloors() {
         return numberOfFloors;
@@ -894,5 +911,23 @@ public class Model extends AbstractModel implements Runnable {
     }
     public int getLeft(){
     	return left;
+    }
+    public int getWeekendReservedArrivals()
+    {
+    	return this.weekendReservations;
+    }
+    
+    public void setWeekendReservedArrivals(int weekendReservations)
+    {
+    	this.weekendReservations = weekendReservations;
+    }
+    public int getWeekDayReservedArrivals()
+    {
+    	return this.weekDayReservations;
+    }
+    
+    public void setWeekDayReservedArrivals(int weekDayReservations)
+    {
+    	this.weekDayReservations = weekDayReservations;
     }
 }
