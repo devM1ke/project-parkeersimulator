@@ -22,7 +22,6 @@ public class PieView extends AbstractView{
 		//amount of empty spots
 		super.paintComponent(g);
 
-
 		double totalSpots = getModel().getTotalParkingSpots();
 
 		double blueSpots = model.color[0];
@@ -30,8 +29,7 @@ public class PieView extends AbstractView{
 		double orangeSpots = model.color[2];
 		double whiteSpots = model.color[3];
 		double yellowSpots = model.color[4];
-		double lightblueSpots = model.color[5];
-		
+		double lightblueSpots = model.color[5];		
 		
 		blueSpots = (blueSpots * 360 / totalSpots);
 		redSpots = (redSpots * 360 / totalSpots);
@@ -39,7 +37,6 @@ public class PieView extends AbstractView{
 		whiteSpots = (whiteSpots * 360 / totalSpots);
 		yellowSpots = (yellowSpots * 360 / totalSpots);
 		lightblueSpots = (lightblueSpots * 360 / totalSpots);
-		
 
 		blueSpots =Math.round(blueSpots);
 		redSpots = Math.round(redSpots);
@@ -48,7 +45,6 @@ public class PieView extends AbstractView{
 		yellowSpots = Math.round(yellowSpots);
 		lightblueSpots = Math.round(lightblueSpots);
 
-		
 		g.setColor(Color.RED);
 		g.fillArc(0, 0, 160, 160, 90, (int) redSpots);
 		g.setColor(Color.ORANGE);

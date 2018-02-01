@@ -10,7 +10,8 @@ public class Controller extends AbstractController implements ActionListener {
 	protected Model model;
 	
 	private JButton buttonTick1;
-	private JButton buttonTick100;
+	private JButton buttonTickHour;
+	private JButton buttonTickDay;
 	private JButton start;
 	private JButton stop;
 	
@@ -20,10 +21,12 @@ public class Controller extends AbstractController implements ActionListener {
 
 		//setSize(50, 50);
 		//initialize button with the actionlistener so it can peform somthing when the button is clicked
-		buttonTick1=new JButton("+1");
+		buttonTick1=new JButton("+1 minuut");
 		buttonTick1.addActionListener(this);
-		buttonTick100 = new JButton("+100");
-		buttonTick100.addActionListener(this);
+		buttonTickHour = new JButton("+1 uur");
+		buttonTickHour.addActionListener(this);
+		buttonTickDay = new JButton("+1 dag");
+		buttonTickDay.addActionListener(this);
 		start = new JButton("Start");
 		start.addActionListener(this);
 		stop = new JButton("Stop");
@@ -31,14 +34,16 @@ public class Controller extends AbstractController implements ActionListener {
 		this.setLayout(null);
 		
 		add(buttonTick1);
-		add(buttonTick100);
+		add(buttonTickHour);
+		add(buttonTickDay);
 		add(start);
 		add(stop);
 		
 		buttonTick1.setBounds(0,0,100,30);
-		buttonTick100.setBounds(0,35,100,30);
-		start.setBounds(0,70,100,30);
-		stop.setBounds(0,105,100,30);
+		buttonTickHour.setBounds(0,35,100,30);
+		buttonTickDay.setBounds(0,70,100,30);
+		start.setBounds(0,105,100,30);
+		stop.setBounds(0,140,100,30);
 
 		//setVisible(true);
 	}
@@ -48,10 +53,14 @@ public class Controller extends AbstractController implements ActionListener {
 			model.runFor(1);
 		}
 		
-		if(e.getSource() == buttonTick100) {
-			model.runFor(100);
+		if(e.getSource() == buttonTickHour) {
+			model.runFor(60);
 		} 
-	
+
+		if(e.getSource() == buttonTickDay) {
+			model.runFor(1440);
+		}
+		
 		if(e.getSource() == start) {
 			model.start();
 		} 

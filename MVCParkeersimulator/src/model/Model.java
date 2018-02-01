@@ -16,6 +16,7 @@ import model.ParkingPassCar;
 import model.LocationManager;
 import model.ReservationManager;
 import view.SimulatorView;
+
 import java.awt.*;
 
 public class Model extends AbstractModel implements Runnable {
@@ -47,6 +48,7 @@ public class Model extends AbstractModel implements Runnable {
     private SimulatorView simulatorView;
     private LocationManager locationManager;
     private ReservationManager reservationManager;
+    private SoundManager soundmanager;
     private LineDiagram linediagram;
 
     public int day = 0;
@@ -59,9 +61,11 @@ public class Model extends AbstractModel implements Runnable {
     int weekendArrivals = 175; // average number of arriving cars per hour
     int weekDayPassArrivals= 50; // average number of arriving cars per hour
     int weekendPassArrivals = 5; // average number of arriving cars per hour
-    int weekDayReservations = 50;
+    int weekDayReservations = 200;
     int weekendReservations = 75;
+    
     int maxNumberofPassCars = 75;
+    
     double number = 0;
     
     int enterSpeed = 20; // number of cars that can enter per minute
@@ -78,6 +82,7 @@ public class Model extends AbstractModel implements Runnable {
         dailyearningdays = new int[howmanydays];
         locationManager = new LocationManager(numberOfFloors, numberOfRows, numberOfPlaces);
         reservationManager = new ReservationManager();
+        soundmanager = new SoundManager();
         linediagram = new LineDiagram();
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
@@ -128,6 +133,7 @@ public class Model extends AbstractModel implements Runnable {
     	getTypeCar();
     	removeReservations();
 
+
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
@@ -137,6 +143,7 @@ public class Model extends AbstractModel implements Runnable {
                         car.tick();
                     }
                     location.tick();
+                    
                 }
             }
         }
@@ -145,6 +152,14 @@ public class Model extends AbstractModel implements Runnable {
     	this.numberOfFloors = numberOfFloors;
     	this.numberOfRows = numberOfRows;
     	this.numberOfPlaces = numberOfPlaces;
+    }
+    
+    public int getMaxNumberofPassCars() {
+    	return this.maxNumberofPassCars;
+    }
+    
+    public void setMaxNumberofPassCars(int c) {
+    	this.maxNumberofPassCars = c;
     }
     
     public int getQueueNormalSize() {
@@ -165,7 +180,21 @@ public class Model extends AbstractModel implements Runnable {
     	this.queuePassSize = queuePassSize;
     }
     
+    public int getWeekdayReserveArrivals() {
+    	return this.weekDayReservations;
+    }
     
+    public void setWeekdayReserveArrivals(int c) {
+    	this.weekDayReservations = c;
+    }
+    
+    public int getWeekendReserveArrivals() {
+    	return this.weekendReservations;
+    }
+    
+    public void setWeekendReserveArrivals(int c) {
+    	this.weekendReservations = c;
+    }
     
     public int getWeekDayArrivals()
     {
@@ -231,6 +260,9 @@ public class Model extends AbstractModel implements Runnable {
     public ArrayList getEarnings() {
     	return linediagram.getEarnings();
     }
+    public int getMax() {
+    	return linediagram.getMax();
+    }
     
     private void advanceTime(){
         // Advance the time by one minute.
@@ -241,9 +273,11 @@ public class Model extends AbstractModel implements Runnable {
         }
         while (hour > 23) {
             hour -= 24;
+            //never move this bitch, and never put this "setDailyEarningZero" bitch above it!!!!!
             linediagram.addToEarning(dailyearnings, price);
+			soundmanager.play();
+            
 			setDailyEarningZero();
-			
             day++;
         }
         while (day > 6) {
@@ -892,11 +926,11 @@ public class Model extends AbstractModel implements Runnable {
                 }
             }
     	}
-    	if(numberOfPassCars + newCars < maxNumberofPassCars) {
+    	if(numberOfPassCars + getSizeEntrancePassQueue() + newCars < maxNumberofPassCars) {
     		return newCars;
     	}
     	else {
-    		int difference = maxNumberofPassCars - numberOfPassCars;
+    		int difference = maxNumberofPassCars - getSizeEntrancePassQueue() - numberOfPassCars;
     		if(difference > 0) {
     			return difference;
     		}
