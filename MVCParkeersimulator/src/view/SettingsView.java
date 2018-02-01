@@ -27,7 +27,9 @@ public class SettingsView extends AbstractView{
     private JTextField pricetext;
     private JTextField subscriptiontext;
     private JTextField startnumbertext;
-
+    private JTextField queueNormalSizeText;
+    private JTextField queuePassSizeText;
+    
     public SettingsView(Model model)
     {
     	super(model);
@@ -49,7 +51,7 @@ public class SettingsView extends AbstractView{
     
     public JPanel CreatePanel()
     {
-        JPanel content = new JPanel(new GridLayout(8,1));
+        JPanel content = new JPanel(new GridLayout(10,1));
         
         JLabel carsWeeklabel = new JLabel("Auto's per uur week");
         carsWeektext = new JTextField(String.valueOf(model.getWeekDayArrivals()+"") ,5);
@@ -72,6 +74,12 @@ public class SettingsView extends AbstractView{
         JLabel subscriptionLabel = new JLabel("Abbonement plaatsen");
         subscriptiontext = new JTextField(String.valueOf(model.getLocationManager().getPlaceNumberAmount() +""),17);
         
+        JLabel queueNormalLabel = new JLabel("Max lengte normale rij");
+        queueNormalSizeText = new JTextField(String.valueOf(model.getQueueNormalSize() +""),19);
+        
+        JLabel queuePassLabel = new JLabel("Max lengte abbonements rij");
+        queuePassSizeText = new JTextField(String.valueOf(model.getQueuePassSize() +""),21);
+        
         content.add(carsWeeklabel);
         content.add(carsWeektext);
         
@@ -92,6 +100,12 @@ public class SettingsView extends AbstractView{
         
         content.add(subscriptionLabel);
         content.add(subscriptiontext);
+        
+        content.add(queueNormalLabel);
+        content.add(queueNormalSizeText);
+        
+        content.add(queuePassLabel);
+        content.add(queuePassSizeText);
         
         content.add(updateButton());
         content.add(cancelButton());
@@ -146,6 +160,12 @@ public class SettingsView extends AbstractView{
                 	model.getLocationManager().setPlaceNumberAmount(Integer.parseInt(numberOfPlaces));
                 	model.getLocationManager().changeType(1, Integer.parseInt(numberStart), Integer.parseInt(numberOfPlaces));
                 	model.notifyViews();
+                	
+                	String queueNormalSize = queueNormalSizeText.getText();
+                	model.setQueueNormalSize(Integer.parseInt(queueNormalSize));
+                	
+                	String queuePassSize = queuePassSizeText.getText();
+                	model.setQueuePassSize(Integer.parseInt(queuePassSize));
                 }
                 catch(Exception ex)
                 {
