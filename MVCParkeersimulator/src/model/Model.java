@@ -59,6 +59,7 @@ public class Model extends AbstractModel implements Runnable {
     int weekendPassArrivals = 5; // average number of arriving cars per hour
     int weekDayReservations = 50;
     int weekendReservations = 75;
+    int maxNumberofPassCars = 75;
     double number = 0;
     
     int enterSpeed = 20; // number of cars that can enter per minute
@@ -320,12 +321,23 @@ public class Model extends AbstractModel implements Runnable {
 	                    if (getCarAt(location) == null && location.getType() == 1) {
 	                        return location;
 	                    }
-	                    else if(getCarAt(location) == null && location.getType() == 0) {
-	                    	return location;
-	                	}
+	                    
 	                }
 	            }
-			}return null;	
+			}
+    		if(color == Color.blue) {
+        		for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+                    for (int row = 0; row < getNumberOfRows(); row++) {
+                        for (int place = 0; place < getNumberOfPlaces(); place++) {
+                        	Location location = getLocationManager().getLocation(floor, row, place);
+    	                    if (getCarAt(location) == null && location.getType() == 0) {
+    	                        return location;
+    	                    }
+    	                    
+    	                }
+    	            }
+    			}
+        	}return null;	
     	}
     	else {
 	    	for (int floor = 0; floor < getNumberOfFloors(); floor++) {
@@ -715,13 +727,15 @@ public class Model extends AbstractModel implements Runnable {
             }
             break;
     	case PASS:
-            for (int i = 0; i < numberOfCars; i++) {
-            	entrancePassQueue.addCar(new ParkingPassCar());
-                if(entrancePassQueue.carsInQueue() >= queuePassSize){
-            	  Car c = entrancePassQueue.getLastCar();
-            	  entrancePassQueue.removeSpecificCar(c);
-              	left++;
-                }
+        	int newNumberOfCars =checkNumberOfPassCars(numberOfCars);
+            for (int i = 0; i < newNumberOfCars; i++) { 
+	            	entrancePassQueue.addCar(new ParkingPassCar());
+	                if(entrancePassQueue.carsInQueue() >= queuePassSize){
+	            	  Car c = entrancePassQueue.getLastCar();
+	            	  entrancePassQueue.removeSpecificCar(c);
+	              	left++;
+	                }
+            	
             }
             break;	
     	}
@@ -827,6 +841,38 @@ public class Model extends AbstractModel implements Runnable {
                     	}
                     }
                 }
+    		}
+    	}
+    }
+    
+    public int checkNumberOfPassCars(int newCars) {
+    	if(newCars == 0) {
+    		return 0;
+    	}
+    	int numberOfPassCars;
+    	numberOfPassCars = 0;
+    	for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                	Location location = getLocationManager().getLocation(floor, row, place);
+                	Car car = getCarAt(location);
+                	Color color = car == null ? Color.white : car.getColor();
+                	if(color == Color.blue) {
+                		numberOfPassCars++;
+                	}
+                }
+            }
+    	}
+    	if(numberOfPassCars + newCars < maxNumberofPassCars) {
+    		return newCars;
+    	}
+    	else {
+    		int difference = maxNumberofPassCars - numberOfPassCars;
+    		if(difference > 0) {
+    			return difference;
+    		}
+    		else {
+    			return 0;
     		}
     	}
     }
