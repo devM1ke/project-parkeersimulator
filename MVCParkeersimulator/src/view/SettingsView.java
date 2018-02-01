@@ -61,10 +61,10 @@ public class SettingsView extends AbstractView{
         JLabel carsWeekendlabel = new JLabel("Auto's per uur weekend");
         carsWeekendtext = new JTextField(String.valueOf(model.getWeekendArrivals()+"") ,7);
         
-        JLabel passCarsWeeklabel = new JLabel("Abbonees per uur doordeweeks");
+        JLabel passCarsWeeklabel = new JLabel("Abonnees per uur doordeweeks");
         passCarsWeektext = new JTextField(String.valueOf(model.getWeekDayPassArrivals()+"") ,9);
         
-        JLabel passCarsWeekendlabel = new JLabel("Abbonees per uur weekend");
+        JLabel passCarsWeekendlabel = new JLabel("Abonnees per uur weekend");
         passCarsWeekendtext = new JTextField(String.valueOf(model.getWeekendPassArrivals()+"") ,11);
         
         JLabel reserveCarsWeeklabel = new JLabel("Reserveringen per uur doordeweeks");
@@ -80,10 +80,10 @@ public class SettingsView extends AbstractView{
 
     	JLabel whiteLine3 = new JLabel(""); JLabel whiteLine4 = new JLabel("");
         
-        JLabel numberStartLabel = new JLabel("Start plaats abbonement plaatsen");
+        JLabel numberStartLabel = new JLabel("Start plaats abonnements plaatsen");
         startnumbertext = new JTextField(String.valueOf(model.getLocationManager().getPlaceNumberStart() +""),19);
         
-        JLabel subscriptionLabel = new JLabel("Aantal abbonement plaatsen");
+        JLabel subscriptionLabel = new JLabel("Aantal abonnements plaatsen");
         subscriptiontext = new JTextField(String.valueOf(model.getLocationManager().getPlaceNumberAmount() +""),21);
 
     	JLabel whiteLine5 = new JLabel(""); JLabel whiteLine6 = new JLabel("");
@@ -91,10 +91,10 @@ public class SettingsView extends AbstractView{
         JLabel queueNormalLabel = new JLabel("Max lengte normale rij");
         queueNormalSizeText = new JTextField(String.valueOf(model.getQueueNormalSize() +""),23);
         
-        JLabel queuePassLabel = new JLabel("Max lengte abbonements rij");
+        JLabel queuePassLabel = new JLabel("Max lengte abonnements rij");
         queuePassSizeText = new JTextField(String.valueOf(model.getQueuePassSize() +""),25);
         
-        JLabel maxQueuePassLabel = new JLabel("Max aantal abbonees");
+        JLabel maxQueuePassLabel = new JLabel("Max aantal Abonnees");
         maxQueuePassSizeText = new JTextField(String.valueOf(model.getMaxNumberofPassCars() +""),27);
         
     	JLabel whiteLine11 = new JLabel(""); JLabel whiteLine12 = new JLabel("");
@@ -195,6 +195,9 @@ public class SettingsView extends AbstractView{
                 	model.setWeekendReserveArrivals(Integer.parseInt(weekendReserveSpots));
                 	
                 	String price = pricetext.getText();
+                	if(Integer.parseInt(price) < 1) {
+                		throw new Exception();
+                	}
                 	model.setPrice(Integer.parseInt(price));
 
                 	String numberStart = startnumbertext.getText();
