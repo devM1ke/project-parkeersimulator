@@ -105,8 +105,11 @@ public class Simulator{
 		barview.setBounds(250, 470, 200, 150);
 		legendview.setBounds(20, 280, 220, 135);
 		timeview.setBounds(600, 0, 200,50);
-		queuelistview.setBounds(400, 450, 500, 50);
+
 		//imageview.setBounds(20,10,100,20);
+
+		queuelistview.setBounds(400, 445, 500, 50);
+
 		//linechartview.setBounds(500,0,200,200);
 
 		
