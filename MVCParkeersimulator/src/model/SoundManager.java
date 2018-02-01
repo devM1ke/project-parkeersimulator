@@ -22,8 +22,8 @@ public class SoundManager implements LineListener{
 	public SoundManager(){
 
 	}
-	public void play() {
-        File audioFile = new File("Coin_Sound.wav");
+	public void play(String soundName) {
+        File audioFile = new File(soundName);
  
         try {
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
@@ -70,7 +70,41 @@ public class SoundManager implements LineListener{
         }
  
     }
-
+    public void itsfriday() {
+    	
+    	File audioFile = new File("thank-god-its-friday.wav");
+    	 
+        try {
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+            AudioFormat format = audioStream.getFormat();
+            DataLine.Info info = new DataLine.Info(Clip.class, format);
+            Clip audioClip = (Clip) AudioSystem.getLine(info);
+            audioClip.addLineListener(this);
+            audioClip.open(audioStream);
+            audioClip.start();
+             
+            while (!playCompleted) {
+                // wait for the playback completes
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+            }
+             
+            //audioClip.close();
+             
+        } catch (UnsupportedAudioFileException ex) {
+            System.out.println("The specified audio file is not supported.");
+            ex.printStackTrace();
+        } catch (LineUnavailableException ex) {
+            System.out.println("Audio line for playing back is unavailable.");
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            System.out.println("Error playing the audio file.");
+            ex.printStackTrace();
+        }
+    }
 		 
 
 

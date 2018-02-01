@@ -1,6 +1,8 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -35,7 +37,7 @@ public class LegendView extends AbstractView{
 		drawLabel(g, "Gereserveerde plekken bezet: ", Color.ORANGE, 100);
 	}
 	private void drawLabel(Graphics g, String label, Color color, int posX) {
-		JLabel carLabel = new JLabel(label);
+		JLabel carLabel = new JLabel(label, JLabel.RIGHT);
 		add(carLabel);
 		g.setColor(color);
 	    g.fillRect(203, posX+12, 30, 15);
