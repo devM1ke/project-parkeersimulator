@@ -270,13 +270,18 @@ public class Model extends AbstractModel implements Runnable {
         while (minute > 59) {
             minute -= 60;
             hour++;
+            soundmanager.play("bells004.wav");
         }
         while (hour > 23) {
             hour -= 24;
             //never move this bitch, and never put this "setDailyEarningZero" bitch above it!!!!!
             linediagram.addToEarning(dailyearnings, price);
 			soundmanager.play("Coin_Sound.wav");
-            
+			System.out.println(day);
+			if(day == 3) {
+				soundmanager.play("thank-god-its-friday.wav");
+			}
+			
 			setDailyEarningZero();
             day++;
         }
