@@ -18,6 +18,7 @@ import view.TimeView;
 import view.BarView;
 import view.CarParkView;
 import view.LegendView;
+import view.LineDiagramView;
 //import view.LineChartView;
 import view.MenuBarView;
 import view.PieView;
@@ -40,7 +41,7 @@ public class Simulator{
 
 	private TimeView timeview;
 	private QueueListView queuelistview;
-	//private LineChartView linechartview;
+	private LineDiagramView linechartview;
 	
 	public Simulator() {
 		model = new Model();
@@ -60,7 +61,7 @@ public class Simulator{
 
 		timeview = new TimeView(model); 
 		queuelistview = new QueueListView(model);
-		//linechartview = new LineChartView(model);
+		linechartview = new LineDiagramView(model);
 
 		//legendview.setBackground(Color.BLACK);
 		
@@ -88,7 +89,7 @@ public class Simulator{
 		screen.getContentPane().add(queueview);
 		screen.getContentPane().add(timeview);
 		screen.getContentPane().add(queuelistview);
-		//screen.getContentPane().add(linechartview);
+		screen.getContentPane().add(linechartview);
 
 		
 		queueview.setBounds(1100, 300, 175, 210);
@@ -101,8 +102,7 @@ public class Simulator{
 		legendview.setBounds(20, 280, 220, 135);
 		timeview.setBounds(600, 0, 200,50);
 		queuelistview.setBounds(400, 450, 500, 50);
-		//linechartview.setBounds(500,0,200,200);
-
+		linechartview.setBounds(600,470,400,200);
 		
 		
 		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
