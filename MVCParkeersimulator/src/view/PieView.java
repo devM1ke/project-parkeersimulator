@@ -14,6 +14,8 @@ public class PieView extends AbstractView{
 		
 		size = new Dimension(0,0);
 		//setSize(200, 200);
+		JLabel pietitle = new JLabel("Taart Diagram");
+		add(pietitle);
 	}
 	public Dimension getPreferredSize() {
 	    return new Dimension(200, 200);
@@ -44,19 +46,19 @@ public class PieView extends AbstractView{
 		whiteSpots = Math.round(whiteSpots);
 		yellowSpots = Math.round(yellowSpots);
 		lightblueSpots = Math.round(lightblueSpots);
-
+		g.setColor(Color.DARK_GRAY);
 		g.setColor(Color.RED);
-		g.fillArc(0, 0, 160, 160, 90, (int) redSpots);
+		g.fillArc(0, 20, 160, 160, 90, (int) redSpots);
 		g.setColor(Color.ORANGE);
-		g.fillArc(0, 0, 160, 160, (int) redSpots + 90, (int) orangeSpots);
+		g.fillArc(0, 20, 160, 160, (int) redSpots + 90, (int) orangeSpots);
 		g.setColor(Color.BLUE);
-		g.fillArc(0, 0, 160, 160, (int) redSpots + (int) orangeSpots + 90, (int) blueSpots);
+		g.fillArc(0, 20, 160, 160, (int) redSpots + (int) orangeSpots + 90, (int) blueSpots);
 		g.setColor(Color.yellow);
-		g.fillArc(0, 0, 160, 160, (int) redSpots + (int) orangeSpots + (int) blueSpots + 90, (int) yellowSpots);
+		g.fillArc(0, 20, 160, 160, (int) redSpots + (int) orangeSpots + (int) blueSpots + 90, (int) yellowSpots);
 		g.setColor(Color.cyan);
-		g.fillArc(0, 0, 160, 160, (int) redSpots + (int) orangeSpots + (int) blueSpots + (int)yellowSpots + 90, (int) lightblueSpots);
+		g.fillArc(0, 20, 160, 160, (int) redSpots + (int) orangeSpots + (int) blueSpots + (int)yellowSpots + 90, (int) lightblueSpots);
 		g.setColor(Color.white);
-		g.fillArc(0, 0, 160, 160, (int) redSpots + (int) orangeSpots + (int) blueSpots + (int)yellowSpots + (int) lightblueSpots + 90, (int) whiteSpots);
+		g.fillArc(0, 20, 160, 160, (int) redSpots + (int) orangeSpots + (int) blueSpots + (int)yellowSpots + (int) lightblueSpots + 90, (int) whiteSpots);
 		//g.fillArc(10, 510, 180, 180, 90, 90);
 		
 		repaint();

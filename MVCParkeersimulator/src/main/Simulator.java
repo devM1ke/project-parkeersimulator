@@ -74,6 +74,8 @@ public class Simulator{
 
 		
 		JSlider slider = new JSlider();
+		JLabel pietitle = new JLabel("Snelheid bepalen");
+		
 		slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				JSlider source = (JSlider)e.getSource();
@@ -96,13 +98,15 @@ public class Simulator{
 		screen.getContentPane().add(queuelistview);
 		screen.getContentPane().add(imageview);
 		screen.getContentPane().add(lineDiagramView);
+		screen.getContentPane().add(pietitle);
 
 		
 		queueview.setBounds(1100, 300, 175, 210);
-		slider.setBounds(1150, 600, 100, 20);
+		pietitle.setBounds(1100, 580, 200, 20);
+		slider.setBounds(1050, 600, 200, 20);
 		managementview.setBounds(1100, 20, 175, 210);
 		carparkview.setBounds(250, 20, 800, 400);
-		pieview.setBounds(20, 470, 200, 200);
+		pieview.setBounds(20, 450, 160, 220);
 		controller.setBounds(45, 90, 100, 200);
 		barview.setBounds(250, 470, 200, 150);
 		legendview.setBounds(20, 280, 220, 135);

@@ -19,6 +19,7 @@ public class LineDiagram extends AbstractModel {
 		if(oneTime) {
 			max = (int) (dailyearning/100);
 			oneTime = false;
+			earnings.add(0);
 		}
 		
 		int dailyearnings = dailyearning / 100;
