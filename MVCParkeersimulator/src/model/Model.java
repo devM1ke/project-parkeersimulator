@@ -563,7 +563,7 @@ public class Model extends AbstractModel implements Runnable {
         */
         switch(day) {
 	    	case 0:
-	    		if(hour < 8 || hour > 18) { 
+	    		if(hour < 8 || hour > 16) { 
 	    			switch(typeCar) {
     				case 0:
     					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
@@ -578,7 +578,7 @@ public class Model extends AbstractModel implements Runnable {
 		        }
 	    		break;
 	    	case 1:
-	    		if(hour < 8 || hour > 18) { 
+	    		if(hour < 8 || hour > 16) { 
 	    			switch(typeCar) {
     				case 0:
     					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
@@ -593,7 +593,7 @@ public class Model extends AbstractModel implements Runnable {
 		        }
 	    		break;
 	    	case 2:
-	    		if(hour < 8 || hour > 18) { 
+	    		if(hour < 8 || hour > 16) { 
 	    			switch(typeCar) {
     				case 0:
     					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 0.25);
@@ -621,7 +621,7 @@ public class Model extends AbstractModel implements Runnable {
     					break;	    			
 	    			}
 	    		}
-	    		else if(hour > 18) {
+	    		else if(hour > 16) {
 	    			switch(typeCar) {
 	    				case 0:
 	    					averageNumberOfCarsPerHour = (int) (averageNumberOfCarsPerHour * 1.25);
