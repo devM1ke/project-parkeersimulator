@@ -8,7 +8,13 @@ import model.Model;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+/**
+ * klasse voor het aanmaken van de menubar
+ * 
+ * @author Mike
+ * @version 1
+ * @since 28-01-2018
+ */
 public class MenuBarView extends AbstractView {
 	
 	public MenuBarView(Model model) 
