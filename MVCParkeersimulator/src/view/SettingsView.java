@@ -192,6 +192,7 @@ public class SettingsView extends AbstractView{
             public void actionPerformed(ActionEvent e) {
                 try
                 {
+                	model.stop();
                 	/**
                 	 * ophalen van de waarde in carsWeektext en deze vervolgens omzetten naar een int.
                 	 * Deze int vervolgens meegeven aan de methode setWeekDayArrivals.
