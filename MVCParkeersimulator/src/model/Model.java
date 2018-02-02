@@ -66,7 +66,7 @@ public class Model extends AbstractModel implements Runnable {
     int weekendReservations = 50; // average number of arriving cars per hour
     int maxNumberofPassCars = 75; // max number of passholders there can be
     
-    double number = 0;
+    double partOfCar = 0;
     
     int enterSpeed = 20; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
@@ -271,8 +271,8 @@ public class Model extends AbstractModel implements Runnable {
         while (hour > 23) {
             hour -= 24;
             linediagram.addToEarning(dailyearnings, price);
-			soundmanager.play("Coin_Sound.wav");
-			
+			soundmanager.play("Coin_Sound.wav");			
+
 			setDailyEarningZero();
             day++;
         }
@@ -758,10 +758,10 @@ public class Model extends AbstractModel implements Runnable {
         double numberOfCarsPerMinute = numberOfCarsPerHour / 60;
         int roundNumberOfCarsPerMinute = (int)Math.round(numberOfCarsPerMinute);
         if(roundNumberOfCarsPerMinute == 0) {
-        	number = number + numberOfCarsPerMinute;
-        	if(number > 1) {
+        	partOfCar = partOfCar + numberOfCarsPerMinute;
+        	if(partOfCar >= 1) {
         		int carNumber = 1;
-        		number = 0;
+        		partOfCar = 0;
         		return carNumber;
         	}
         	else return roundNumberOfCarsPerMinute;
