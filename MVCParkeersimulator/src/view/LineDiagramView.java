@@ -27,6 +27,7 @@ public class LineDiagramView extends AbstractView {
 	   private static final int Y_HATCH_CNT = 10;
 	   private List<Integer> scores;
 	   private Model model;
+	   
 	   public LineDiagramView(Model model) {
 		  super(model);
 		  this.model = model;
@@ -104,15 +105,5 @@ public class LineDiagramView extends AbstractView {
 	   @Override
 	   public Dimension getPreferredSize() {
 	      return new Dimension(PREF_W, PREF_H);
-	   }
-
-	   public static void createAndShowGui() {
-	      List<Integer> scores = new ArrayList<Integer>();
-	      Random random = new Random();
-	      int maxDataPoints = 20;
-	      int maxScore = 20;
-	      for (int i = 0; i < maxDataPoints ; i++) {
-	         scores.add(random.nextInt(maxScore));
-	      }
 	   }
 }

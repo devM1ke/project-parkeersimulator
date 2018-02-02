@@ -4,7 +4,7 @@ import controller.AbstractController;
 import model.Model;
 
 /**
- *
+ * The TimeController controls the time of the clock
  * @author Mike
  * @version 1
  * @since 29-01-2018
@@ -14,10 +14,7 @@ public class TimeController extends AbstractController{
 
     public TimeController(Model model) {
     	super(model);
-    }
-
-   
-    
+    } 
     
     /**
      * Converting the time in a HH:MM format
@@ -39,9 +36,7 @@ public class TimeController extends AbstractController{
         } else {
             time = hour + ":" + minute;
             return time;
-        }
-        
-        
+        }        
     }
 }
 
