@@ -1,10 +1,15 @@
 package model;
 
+/**
+ * this class is used to create the locations and store them.
+ * this allows us to change the type of a location and allocate cars according to the type.
+ * 
+ * @author Ben Meijer
+ * @version 02-02-2018
+ */
 public class LocationManager extends AbstractModel {
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private int numberOfOpenSpots;
 	private int numberOfFloors;
@@ -16,6 +21,8 @@ public class LocationManager extends AbstractModel {
 	
 	/*
 	 * LocationManager creates the locations and puts them into the array locations
+	 * during the creation process it also allocates a number of locations the type 1.
+	 * this creates the pass holder locations.
 	 */
 	public LocationManager(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
 		this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
@@ -34,11 +41,14 @@ public class LocationManager extends AbstractModel {
 		changeType(1, placeNumberStart, placeNumberAmount);
 	}
 	
+	/*
+	 * returns the number of open spots.
+	 */
 	public int getNumberOfOpenSpots(){
     	return numberOfOpenSpots;
     }
 	
-	/* method for changing the location number in to the array location.
+	/* method for changing the location number to the array location.
 	 * the placeNumber is the number of the location.
 	 * The rowsInFloor is for the amount of rows in one floor.
 	 * The placesInRow is for the amount of places in one row.*/
@@ -67,10 +77,17 @@ public class LocationManager extends AbstractModel {
 		return locationArray;
 	}
 	
+	/*
+	 * this returns the object location
+	 */
 	public Location getLocation(int floor, int row, int place) {
 		return locations[floor][row][place];
 	}
 	
+	/*
+	 * this method changes the type of a number of locations to the given type.
+	 * it does this based on the number where to start and the number of places that need to change
+	 */
 	public void changeType(int type, int placeNumberStart, int NumberOfPlaces) {
 		for(int i = 0; i <= NumberOfPlaces - 1; i++) {
 			int[] locationArray;
@@ -80,6 +97,10 @@ public class LocationManager extends AbstractModel {
 		}
 	}
 	
+	/*
+	 * this method makes us able to change the type of locations with a specific type into another type.
+	 * mainly made so that reservations are unaffected when we change things.
+	 */
 	public void changeTypeTo(int typeFrom, int typeTo, int placeNumberStart, int NumberOfPlaces) {
 		for(int i = 0; i <= NumberOfPlaces - 1; i++) {
 			int[] locationArray;
@@ -91,27 +112,45 @@ public class LocationManager extends AbstractModel {
 		}
 	}
 	
+	/*
+	 * return the number of places.
+	 */
 	public int getNumberOfPlaces() {
 		return this.numberOfPlaces;
 	}
 	
+	/*
+	 * set the number of places.
+	 */
 	public void setNumberOfPlaces(int numberOfPlaces) {
 		this.numberOfPlaces = numberOfPlaces;
 		
 	}
 	
+	/*
+	 * return the number of the place where the change starts.
+	 */
 	public int getPlaceNumberStart() {
 		return this.placeNumberStart;
 	}
 	
+	/*
+	 * return the number of places that need to change.
+	 */
 	public int getPlaceNumberAmount() {
 		return this.placeNumberAmount;
 	}
 	
+	/*
+	 * set the number of places to start
+	 */
 	public void setPlaceNumberStart(int placeNumberStart) {
 		this.placeNumberStart = placeNumberStart;
 	}
 	
+	/*
+	 * set the number of places that have to change.
+	 */
 	public void setPlaceNumberAmount(int placeNumberAmount) {
 		this.placeNumberAmount= placeNumberAmount;
 	}
