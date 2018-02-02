@@ -105,14 +105,14 @@ public class Simulator{
 		pietitle.setBounds(1100, 580, 200, 20);
 		slider.setBounds(1050, 600, 200, 20);
 		managementview.setBounds(1100, 20, 175, 210);
-		carparkview.setBounds(250, 20, 800, 400);
+		carparkview.setBounds(250, 20, 800, 380);
 		pieview.setBounds(20, 450, 160, 220);
 		controller.setBounds(45, 90, 100, 200);
 		barview.setBounds(250, 470, 200, 150);
 		legendview.setBounds(20, 280, 220, 135);
 		timeview.setBounds(600, 0, 200,50);
 		imageview.setBounds(10,10,250,80);
-		queuelistview.setBounds(400, 445, 500, 50);
+		queuelistview.setBounds(400, 415, 500, 70);
 		lineDiagramView.setBounds(500,470,400,200);
 
 		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
