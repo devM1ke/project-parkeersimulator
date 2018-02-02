@@ -57,6 +57,9 @@ public class Location {
     	this.type = type;
     }
     
+    /*
+     * return the type
+     */
     public int getType() {
     	return type;
     }
@@ -81,26 +84,44 @@ public class Location {
         return place;
     }
     
+    /*
+     * set the number plate of the location
+     */
     public void setNumberPlate(int numberPlate) {
     	this.numberPlate = numberPlate;
     }
     
+    /*
+     * get the number plate of the location
+     */
     public int getNumberPlate() {
     	return numberPlate;
     }
     
+    /*
+     * get the timer of the location for reservations
+     */
     public int getTimer() {
     	return timer;
     }
     
+    /*
+     * set the timer of the location for reservations
+     */
     public void setTimer() {
     	this.timer = 45;
     }
     
+    /*
+     * set the timer to zero
+     */
     public void setTimerToZero() {
     	this.timer = 0;
     }
     
+    /*
+     * a tick count down from 45 to 0
+     */
     public void tick() {
     	this.timer--;
     }
