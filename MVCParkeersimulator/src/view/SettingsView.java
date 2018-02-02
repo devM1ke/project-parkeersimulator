@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Opties om gegevens te wijzigen
+ * Klasse voor het aanmaken van opties om gegevens te wijzigen
  * 
  * @author Mike
  * @version 1
@@ -41,7 +41,7 @@ public class SettingsView extends AbstractView{
     }
     
     /** 
-     * aan maken van de JFrame
+     * aanmaken van de JFrame
      */
     private void CreateView()
     {
