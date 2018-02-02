@@ -45,6 +45,10 @@ public class TimeView extends AbstractView {
         setVisible(true);
     }
 
+   /**
+    * omzetten van int dag naar string dag.
+    * @return typeOfDay
+    */
     public String getDay() {
     	String typeOfDay;
         int numberDay = model.getDay();
@@ -76,7 +80,7 @@ public class TimeView extends AbstractView {
     	case 6:
     		typeOfDay = "Zondag";
     		break;
-    		
+   
     	default:
     		throw new IllegalArgumentException("Invalid day of the week: " + numberDay);
     	

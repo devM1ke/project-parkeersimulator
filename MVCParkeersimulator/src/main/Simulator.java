@@ -1,32 +1,21 @@
 package main;
 
 import model.Model;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import controller.Controller;
-import view.SimulatorView;
 import view.TimeView;
 import view.BarView;
 import view.CarParkView;
 import view.ImageView;
 import view.LegendView;
-import view.LineChartView;
 import view.LineDiagramView;
-//import view.LineChartView;
 import view.MenuBarView;
 import view.PieView;
 import view.QueueListView;
 import view.QueueView;
-import view.SettingsView;
 import view.ManagementView; 
 /**
  * It creates the whole GUI (graphic user interface). 
@@ -59,11 +48,11 @@ public class Simulator{
 		model = new Model();
 		screen=new JFrame();
 		screen.setSize(1300, 700);
-		//Set resizable to false. If you can resize it, it wil break
+		//Set resizable to false. If you can resize it, it will break
 		screen.setResizable(false);
 		screen.setLayout(null);
 		
-		//initilize all the views and controllers
+		//initialize all the views and controllers
 		menubarview = new MenuBarView(model);
 		pieview = new PieView(model);
 		controller = new Controller(model);

@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Opties om gegevens te wijzigen
+ * Klasse voor het aanmaken van opties om gegevens te wijzigen
  * 
  * @author Mike
  * @version 1
@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
  */
 public class SettingsView extends AbstractView{
 
+	
     private JFrame settingsFrame;
     private JTextField carsWeektext;
     private JTextField carsWeekendtext;
@@ -39,6 +40,9 @@ public class SettingsView extends AbstractView{
 
     }
     
+    /** 
+     * aanmaken van de JFrame
+     */
     private void CreateView()
     {
         settingsFrame = new JFrame();
@@ -50,7 +54,10 @@ public class SettingsView extends AbstractView{
         settingsFrame.setResizable(false);
         settingsFrame.setVisible(true);
     }
-    
+    /**
+     * aanmaken van de labels en de tekst velden
+     * @return content
+     */
     public JPanel CreatePanel()
     {
         JPanel content = new JPanel(new GridLayout(17,1));
@@ -99,7 +106,8 @@ public class SettingsView extends AbstractView{
         
     	JLabel whiteLine11 = new JLabel(""); JLabel whiteLine12 = new JLabel("");
         
-        content.add(carsWeeklabel);
+        // labels en tekst worden aan de JFrame toegevoegd.
+    	content.add(carsWeeklabel);
         content.add(carsWeektext);
         
         content.add(carsWeekendlabel);
@@ -153,7 +161,11 @@ public class SettingsView extends AbstractView{
         return content;
     }
     
-
+    /**
+     * aanmaken van de JButton cancel en een actionlistener daar aan toevoegen
+     *die ervoor zorgt dat de JFrame wordt afgesloten als er op Cancel wordt geklikt.
+     * @return cancel button
+     */
     public JButton cancelButton()
     {
         JButton cancel = new JButton("Annuleren");
@@ -166,7 +178,11 @@ public class SettingsView extends AbstractView{
 
         return cancel;
     }
-
+/**
+ * aanmaken van de JButton Update toevoegen van een actionListener dit in een try catch constructie.
+ * zodat als je een ongeldige invoer geeft dit op het scherm wordt weergeven. 
+ * @return update button
+ */
     public JButton updateButton()
     {
 
@@ -176,6 +192,10 @@ public class SettingsView extends AbstractView{
             public void actionPerformed(ActionEvent e) {
                 try
                 {
+                	/**
+                	 * ophalen van de waarde in carsWeektext en deze vervolgens omzetten naar een int.
+                	 * Deze int vervolgens meegeven aan de methode setWeekDayArrivals.
+                	 */
                 	String weekSpots = carsWeektext.getText();
                 	model.setWeekDayArrivals(Integer.parseInt(weekSpots));
                  
@@ -221,6 +241,7 @@ public class SettingsView extends AbstractView{
                 }
                 catch(Exception ex)
                 {
+                	//foutmelding als er geen geldige waarde wordt ingevoerd.
                     JOptionPane.showMessageDialog(settingsFrame,
                             "Geen geldig nummer.",
                             "OPGELET",
