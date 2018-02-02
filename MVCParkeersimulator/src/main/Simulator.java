@@ -22,6 +22,8 @@ import view.ManagementView;
  * The component are included initialized and put on the right place on the screen.
  * Also the model is initialized and is added as a parameter to the views and controllers
  * The simulator constructor isn't containing any parameters.
+ * @version 1.3
+ * @since 27-01-2018
  * @author Joeri
  */
 public class Simulator{
