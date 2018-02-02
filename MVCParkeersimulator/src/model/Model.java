@@ -15,7 +15,6 @@ import model.Location;
 import model.ParkingPassCar;
 import model.LocationManager;
 import model.ReservationManager;
-import view.SimulatorView;
 
 import java.awt.*;
 
@@ -45,7 +44,6 @@ public class Model extends AbstractModel implements Runnable {
     private CarQueue entrancePassQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
-    private SimulatorView simulatorView;
     private LocationManager locationManager;
     private ReservationManager reservationManager;
     private SoundManager soundmanager;
@@ -61,9 +59,8 @@ public class Model extends AbstractModel implements Runnable {
     int weekendArrivals = 175; // average number of arriving cars per hour
     int weekDayPassArrivals= 50; // average number of arriving cars per hour
     int weekendPassArrivals = 5; // average number of arriving cars per hour
-    int weekDayReservations = 200;
-    int weekendReservations = 75;
-    
+    int weekDayReservations = 50;
+    int weekendReservations = 50; 
     int maxNumberofPassCars = 75;
     
     double number = 0;
@@ -273,10 +270,8 @@ public class Model extends AbstractModel implements Runnable {
         }
         while (hour > 23) {
             hour -= 24;
-            //never move this bitch, and never put this "setDailyEarningZero" bitch above it!!!!!
             linediagram.addToEarning(dailyearnings, price);
 			soundmanager.play("Coin_Sound.wav");
-			System.out.println(day);
 			
 			setDailyEarningZero();
             day++;
@@ -569,7 +564,6 @@ public class Model extends AbstractModel implements Runnable {
     	int i=0;
     	while (paymentCarQueue.carsInQueue()>0 && i < paymentSpeed){
             Car car = paymentCarQueue.removeCar();
-            // TODO Handle payment.
             carLeavesSpot(car);
             i++;
     	}
