@@ -41,7 +41,7 @@ public class SettingsView extends AbstractView{
     }
     
     /** 
-     * aan maken van de JFrame
+     * aanmaken van de JFrame
      */
     private void CreateView()
     {

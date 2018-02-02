@@ -17,39 +17,38 @@ public class MenuBarView extends AbstractView {
 		
 	}
 
-    public JMenuBar CreateMenuBar()
+    /**
+     * aanmaken van de menubar
+     * @return menubar
+     */
+	public JMenuBar CreateMenuBar()
     {
         JMenuBar menuBar = new JMenuBar();
 
         menuBar.add(options());
-        //setVisible(true);
+
         return menuBar;
     }
 
+	/**
+	 * opties toevoegen aan menubar.
+	 * @return menu
+	 */
     private JMenu options()
     {
         JMenu menu = new JMenu("Opties");
         JMenuItem settings = settings();
-        //JMenuItem reset = reset();
+
 
         menu.add(settings);
-        //menu.add(reset);
+ 
         return menu;
     }
 
-
-   /* private JMenuItem settings()
-    {
-        JMenuItem settings = new JMenuItem("Settings");
-        settings.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-				new SettingsView(model).CreatePanel();
-            }
-        });
-        return settings;
-    }*/
-    
+    /**
+     * subtabje aan opties toevoegen
+     * @return settings
+     */
     private JMenuItem settings()
     {
         JMenuItem settings = new JMenuItem("Instellingen");
@@ -62,9 +61,5 @@ public class MenuBarView extends AbstractView {
         return settings;
   }
 }
-   /* private JMenuItem reset()
-    {
-   
-      return reset();
-    }*/
+  
 
