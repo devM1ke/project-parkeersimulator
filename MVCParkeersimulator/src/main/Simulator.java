@@ -75,6 +75,7 @@ public class Simulator{
 			public void stateChanged(ChangeEvent e) {
 				JSlider source = (JSlider)e.getSource();
 				int i = source.getValue();
+				if(i < 1) {i = 1;}
 				i = i * -1 + 100;
 				model.setTickPause(i);
 			}

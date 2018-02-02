@@ -1,13 +1,16 @@
 package model;
 
+/**
+ * Model is the heart of our project.
+ * It is the place where most things are done.
+ * 
+ *
+ * @author Ben, Joeri, Kerwin, Mike and Jelle.
+ * @version 8.5
+ * @since 20-01-2018
+ */
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-
-import javax.swing.JMenuBar;
-
-import view.ManagementView;
-import view.MenuBarView;
 import model.AdHocCar;
 import model.Car;
 import model.CarQueue;
@@ -15,63 +18,64 @@ import model.Location;
 import model.ParkingPassCar;
 import model.LocationManager;
 import model.ReservationManager;
-
 import java.awt.*;
 
 public class Model extends AbstractModel implements Runnable {
+	//adding variables for the managementview
 	public int price = 5;
 	public int howmanydays = 7;
 	public int[] dailyearningdays;
 	public int dailyearnings = 0;
 	public int[] color = new int[6];
-	
+	// adding variables to limit the queue size and counting the cars that left the queue.
 	public int queueNormalSize = 30;
 	public int queuePassSize = 30;
 	public int left;
-	
+	//variables for creating the carpark.
 	private int numberOfFloors = 3;
     private int numberOfRows = 6;
     private int numberOfPlaces = 30;
     private int numberOfOpenSpots;
     private Car[][][] cars;
     volatile private boolean run;
-    
+    //variables for the different types of cars.
 	private static final String AD_HOC = "1";
 	private static final String PASS = "2";
-	private static final String RESERVATION = "3";
-	
+	// variables for adding the different queues.
 	private CarQueue entranceCarQueue;
     private CarQueue entrancePassQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
+    //creating the different managers used in model.
     private LocationManager locationManager;
     private ReservationManager reservationManager;
     private SoundManager soundmanager;
     private LineDiagram linediagram;
-
+    // variables for keeping track of time.
     public int day = 0;
     public int hour = 0;
     public int minute = 0;
-
+    // the delay in ticks.
     private int tickPause = 100;
-
+    
     int weekDayArrivals= 100; // average number of arriving cars per hour
     int weekendArrivals = 175; // average number of arriving cars per hour
     int weekDayPassArrivals= 50; // average number of arriving cars per hour
     int weekendPassArrivals = 5; // average number of arriving cars per hour
-    int weekDayReservations = 50;
-    int weekendReservations = 50; 
-    int maxNumberofPassCars = 75;
+    int weekDayReservations = 50; // average number of arriving cars per hour
+    int weekendReservations = 50; // average number of arriving cars per hour
+    int maxNumberofPassCars = 75; // max number of passholders there can be
     
-    double number = 0;
+    double partOfCar = 0;
     
     int enterSpeed = 20; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
     int exitSpeed = 5; // number of cars that can leave per minute
-    
+    // the runner thread
     Thread runner;
     
     public Model() {
+    	//initialising the variables discribed above
         entranceCarQueue = new CarQueue();
         entrancePassQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
@@ -85,17 +89,16 @@ public class Model extends AbstractModel implements Runnable {
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         this.runner = new Thread(this);
         this.runner.start();
-		//MenuBarView menuBarView = new MenuBarView(this.model);
     }
-	
+	//starts the simulation
 	public void start() {
 		run=true;
 	}
-
+	// stops the simulation
 	public void stop() {
 		run=false;
 	}
-
+	// runs the simulation for the given ticks given to the parameter
 	public void runFor(int tick) {
 		run=false;
 		int buffTickPause = this.tickPause;
@@ -105,7 +108,7 @@ public class Model extends AbstractModel implements Runnable {
         }
         tickPause = buffTickPause;
 	}
-	
+	// overriding the run method from thread to be used in our project.
 	@Override
 	public void run() {
         minute--;
@@ -116,7 +119,7 @@ public class Model extends AbstractModel implements Runnable {
 			}
 		}
 	}
-    
+    // advances everything at every tick.
     public void tick() {
 		try {
 			Thread.sleep(this.tickPause);
@@ -145,122 +148,119 @@ public class Model extends AbstractModel implements Runnable {
             }
         }
     }
-    public void setGarage(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
-    	this.numberOfFloors = numberOfFloors;
-    	this.numberOfRows = numberOfRows;
-    	this.numberOfPlaces = numberOfPlaces;
-    }
-    
+    // gets the max of the numbers of cars
     public int getMaxNumberofPassCars() {
     	return this.maxNumberofPassCars;
     }
-    
+    // sets the max of the numbers of cars
     public void setMaxNumberofPassCars(int c) {
     	this.maxNumberofPassCars = c;
     }
-    
+    // gets the size of the normal queue
     public int getQueueNormalSize() {
     	return this.queueNormalSize;
     }
-    
+    // sets the size of the normal queue
     public void setQueueNormalSize(int queueNormalSize)
     {
     	this.queueNormalSize = queueNormalSize;
     }
-    
+    // gets the size of the pass queue
     public int getQueuePassSize() {
     	return this.queuePassSize;
     }
-    
+    // sets the size of the pass queue  
     public void setQueuePassSize(int queuePassSize)
     {
     	this.queuePassSize = queuePassSize;
     }
-    
+    // gets the average number per hour of reserved cars during the week days
     public int getWeekdayReserveArrivals() {
     	return this.weekDayReservations;
     }
-    
+    // sets the average number per hour of reserved cars during the week days
     public void setWeekdayReserveArrivals(int c) {
     	this.weekDayReservations = c;
     }
-    
+    // gets the average number per hour of reserved cars during the weekend
     public int getWeekendReserveArrivals() {
     	return this.weekendReservations;
     }
-    
+    // sets the average number per hour of reserved cars during the weekend
     public void setWeekendReserveArrivals(int c) {
     	this.weekendReservations = c;
     }
-    
+    // gets the average number per hour of normal cars during the week
     public int getWeekDayArrivals()
     {
     	return this.weekDayArrivals;
     }
-    
+    // sets the average number per hour of normal cars during the week
     public void setWeekDayArrivals(int weekDayArrivals)
     {
     	this.weekDayArrivals = weekDayArrivals;
     }
-    
+    // gets the average number per hour of normal cars during the weekend
     public int getWeekendArrivals()
     {
     	return this.weekendArrivals;
     }
-    
+    // sets the average number per hour of normal cars during the weekend
     public void setWeekendArrivals(int weekendArrivals)
     {
     	this.weekendArrivals = weekendArrivals;
     }
-    
+    // gets the average number per hour of pass cars during the week
     public int getWeekDayPassArrivals()
     {
     	return this.weekDayPassArrivals;
     }
-    
+    // sets the average number per hour of pass cars during the week
     public void setWeekDayPassArrivals(int weekDayPassArrivals)
     {
     	this.weekDayPassArrivals = weekDayPassArrivals;
     }
-    
+    // gets the average number per hour of pass cars during the weekend
     public int getWeekendPassArrivals()
     {
     	return this.weekendPassArrivals;
     }
-    
+    // sets the average number per hour of pass cars during the weekend
     public void setWeekendPassArrivals(int weekendPassArrivals)
     {
     	this.weekendPassArrivals = weekendPassArrivals;
     }
-    
+    // gets the tickpause
     public int getTickPause()
     {
         return this.tickPause;
     }
-    
+    // sets the tickpause
     public void setTickPause(int ticks)
     {
         this.tickPause = ticks;
     }
-    
+    // gets the day
     public int getDay(){
     	return day;
     }
-    
+    // gets the hour
     public int getHour(){
     	return hour;
     }
-    
+    // gets the minute
     public int getMinute(){
     	return minute;
     }
+    // gets the earnings for the linediagram
     public ArrayList getEarnings() {
     	return linediagram.getEarnings();
     }
+    // get the highest value of earnings
     public int getMax() {
     	return linediagram.getMax();
     }
-    
+    // advances the time by 1 minute.
     private void advanceTime(){
         // Advance the time by one minute.
         minute++;
@@ -271,8 +271,8 @@ public class Model extends AbstractModel implements Runnable {
         while (hour > 23) {
             hour -= 24;
             linediagram.addToEarning(dailyearnings, price);
-			soundmanager.play("Coin_Sound.wav");
-			
+			soundmanager.play("Coin_Sound.wav");			
+
 			setDailyEarningZero();
             day++;
         }
@@ -281,7 +281,7 @@ public class Model extends AbstractModel implements Runnable {
         }
 
     }
-    
+    // sets the dailyearnings to zero and adds them to the specified weekday earnings.
 	public void setDailyEarningZero(){
 		for (int i = 0; i < howmanydays; i++)
 		{
@@ -292,51 +292,51 @@ public class Model extends AbstractModel implements Runnable {
 
 		
 	}
-	
+	// calculates the earnings still to be earned by getting the number of cars in the garage and multiplies them by the price.
 	public int stillToBeEarned(){
 		return (getTotalParkingSpots()-getNumberOfOpenSpots())*price;
 	}
-	
+	// gets the price
 	public int getPrice() {
 		
 		return this.price;
 	}
-	
+	// sets the price
 	public void setPrice(int price){
 		this.price = price;
 	}
-    
+    // gets the number of floors
 	public int getNumberOfFloors() {
         return numberOfFloors;
     }
-
+	//gets the number of rows
     public int getNumberOfRows() {
         return numberOfRows;
     }
-
+	// gets the number of places
     public int getNumberOfPlaces() {
         return numberOfPlaces;
     }
-
+    // gets the number of open spots
     public int getNumberOfOpenSpots(){
     	return numberOfOpenSpots;
     }
-    
+    // gets the total number of parkingspots
     public int getTotalParkingSpots() {
     	return numberOfFloors * numberOfRows * numberOfPlaces;
     }
-    
+    //gets the locationmanager
     public LocationManager getLocationManager() {
     	return locationManager;
     }
-    
+    // gets the car at a specified location
     public Car getCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
         }
         return cars[location.getFloor()][location.getRow()][location.getPlace()];
     }
-    
+    // sets the car at a specified location
     public boolean setCarAt(Location location, Car car) {
         if (!locationIsValid(location)) {
             return false;
@@ -350,7 +350,7 @@ public class Model extends AbstractModel implements Runnable {
         }
         return false;
     }
-
+    // removes the car at a specified location
     public Car removeCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
@@ -364,7 +364,7 @@ public class Model extends AbstractModel implements Runnable {
         numberOfOpenSpots++;
         return car;
     }
-
+    // gets the first free location in the garage
     public Location getFirstFreeLocation(Color color) {
     	
     	if(color == Color.blue) {
@@ -413,7 +413,7 @@ public class Model extends AbstractModel implements Runnable {
 	        return null;
 	    }
     }
-    
+    // gets the rigth reservation spot for the specified car by looking at their numberplates
     public Location getReservationLocation(int numberPlate) {
     	
     	for (int floor = 0; floor < getNumberOfFloors(); floor++) {
@@ -428,7 +428,7 @@ public class Model extends AbstractModel implements Runnable {
     	}
 		return null;
     }
-
+    // gets the first leaving cars
     public Car getFirstLeavingCar() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -443,7 +443,7 @@ public class Model extends AbstractModel implements Runnable {
         }
         return null;
     }
-    
+    //removes the reservation
     public void removeReservations() {
     	for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -758,10 +758,10 @@ public class Model extends AbstractModel implements Runnable {
         double numberOfCarsPerMinute = numberOfCarsPerHour / 60;
         int roundNumberOfCarsPerMinute = (int)Math.round(numberOfCarsPerMinute);
         if(roundNumberOfCarsPerMinute == 0) {
-        	number = number + numberOfCarsPerMinute;
-        	if(number > 1) {
+        	partOfCar = partOfCar + numberOfCarsPerMinute;
+        	if(partOfCar >= 1) {
         		int carNumber = 1;
-        		number = 0;
+        		partOfCar = 0;
         		return carNumber;
         	}
         	else return roundNumberOfCarsPerMinute;
